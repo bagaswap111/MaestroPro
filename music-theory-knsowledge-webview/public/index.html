@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MaestroPro — Perpustakaan Teori Musik</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="brand">
+        <div class="brand-title">MaestroPro</div>
+        <div class="brand-sub">Pustaka Teori Musik &amp; MusicXML</div>
+      </div>
+      <div class="searchbox">
+        <input id="search-input" type="search" placeholder="Cari di semua bab…" autocomplete="off" spellcheck="false" />
+        <div id="search-results" hidden></div>
+      </div>
+      <nav id="tree" aria-label="Daftar bab"></nav>
+    </aside>
+
+    <main id="main">
+      <div id="topbar">
+        <button id="menu-toggle" class="icon-btn" title="Tampilkan/sembunyikan daftar">☰</button>
+        <div id="breadcrumb"></div>
+        <div id="pager">
+          <button id="prev-btn" class="nav-btn" title="Bab sebelumnya">‹ Prev</button>
+          <button id="next-btn" class="nav-btn" title="Bab berikutnya">Next ›</button>
+        </div>
+      </div>
+      <div id="content">
+        <div class="loading">Memuat…</div>
+      </div>
+      <div id="toc-float" hidden>
+        <div class="toc-title">Daftar Isi</div>
+        <div id="toc-list"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/vendor/marked.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
