@@ -12,7 +12,7 @@ venv/
 .env.local
 *.env.*
 
-# Logs and temporary files
+# Logs and temp files
 *.log
 *.tmp
 
@@ -21,7 +21,7 @@ venv/
 .idea/
 
 # Build artifacts
-build/
 dist/
+build/
 target/
 ```
