@@ -1,44 +1,40 @@
 {
-  "id": "maestropro",
   "name": "MaestroPro",
+  "description": "AI-Powered Music Transcription & Arrangement by Maya Instruments Technology",
   "version": "1.0.0",
-  "description": "AI-powered audio to notation transcription and analysis tool",
-  "company": "Maya Instruments Technology",
-  "tagline": "From Audio to Artistry",
   "author": "Maya Instruments Technology",
   "license": "MIT",
-  "homepage": "https://mayainstruments.tech/maestropro",
-  "icon": "icon.png",
-  "category": "transcription",
-  "musescoreVersion": "4.0.0",
-  "musescoreVersionMax": "4.99.99",
   "main": "maestropro.qml",
-  "width": 600,
-  "height": 450,
-  "minimumWidth": 500,
-  "minimumHeight": 400,
-  "startupMode": "modal",
+  "type": "dock",
+  "requiresScore": false,
+  "museScoreVersion": "4.0.0",
+  "museScoreVersionMax": "4.99.99",
   "permissions": [
     "network",
     "file-access"
   ],
-  "features": [
-    "Audio-to-MIDI transcription",
-    "Source separation (stems)",
-    "MusicXML generation",
-    "Musical analysis (Key, Chords, Form)",
-    "AI-powered arrangement rules"
-  ],
   "backend": {
-    "type": "fastapi",
+    "host": "localhost",
     "restPort": 8000,
     "websocketPort": 8765,
-    "endpoints": [
-      "/health",
-      "/api/transcribe",
-      "/api/analyze",
-      "/api/compile-skill",
-      "/ws/{client_id}"
-    ]
+    "healthEndpoint": "/api/health",
+    "transcribeEndpoint": "/api/transcribe",
+    "analyzeEndpoint": "/api/analyze",
+    "arrangeEndpoint": "/api/arrange",
+    "compileSkillEndpoint": "/api/skills/compile",
+    "listSkillsEndpoint": "/api/skills/list"
+  },
+  "features": [
+    "Audio-to-MusicXML transcription",
+    "YouTube/MP3 support",
+    "Source separation (Demucs)",
+    "Music theory analysis",
+    "AI-powered arrangement",
+    "Custom skill compilation"
+  ],
+  "branding": {
+    "tagline": "From Audio to Artistry",
+    "primaryColor": "#1a3a52",
+    "accentColor": "#d4af37"
   }
 }

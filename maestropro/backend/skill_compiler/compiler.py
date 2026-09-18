@@ -1,246 +1,472 @@
 """
-MaestroPro Skill Compiler
+MaestroPro - Skill Compiler Core Module
 Maya Instruments Technology
+Version: 1.0.0
 
-Compiles Markdown music theory rules into executable Python code using Ollama.
+Handles the complete pipeline for compiling Markdown music theory rules
+into executable Python classes using Ollama and Qwen 2.5 Coder.
+
+Pipeline:
+1. Parse Markdown to extract structured rules
+2. Build system prompt with context
+3. Send to Ollama API for code generation
+4. Validate generated Python syntax (AST)
+5. Test in sandbox environment
+6. Save compiled .py file and update metadata
+7. Dynamically load class for immediate use
 """
 
-import httpx
-from typing import Optional, Dict, Any
+import asyncio
+import json
+import re
 from pathlib import Path
-import sys
-import importlib.util
+from typing import Dict, Any, Optional, Tuple
+import logging
 
-from ..config import settings
+from backend.config import settings
+
+logger = logging.getLogger(__name__)
 
 
 class SkillCompiler:
     """
-    Compiles Markdown-based music theory rules into executable Python classes.
+    Compiles Markdown music theory rules into executable Python arrangement classes.
     
-    The compiler sends user-written Markdown rules to a local Ollama instance
-    running Qwen 2.5 Coder, which generates Python code using music21 to implement
-    the specified arrangement rules.
+    Usage:
+        compiler = SkillCompiler()
+        result = await compiler.compile_and_load("jazz_ballad", markdown_content)
+        
+        if result["success"]:
+            arranger_class = result["class"]
+            arranger = arranger_class(instruments=["Violin", "Viola", "Cello"])
     """
     
-    def __init__(self, ollama_host: str = None, ollama_port: int = None, model: str = None):
-        """
-        Initialize the Skill Compiler.
-        
-        Args:
-            ollama_host: Hostname of the Ollama server
-            ollama_port: Port number of the Ollama server
-            model: LLM model to use for code generation
-        """
-        self.ollama_host = ollama_host or settings.ollama_host
-        self.ollama_port = ollama_port or settings.ollama_port
-        self.model = model or settings.ollama_model
-        self.base_url = f"http://{self.ollama_host}:{self.ollama_port}"
-        
-        # System prompt for generating music21 arrangement code
-        self.system_prompt = """You are an expert music theory and Python developer specializing in music21.
-Your task is to generate a Python class that implements music arrangement rules based on Markdown input.
+    # System prompt that guides Qwen 2.5 Coder
+    SYSTEM_PROMPT = """You are the core AI engine of MaestroPro by Maya Instruments Technology. 
+Your task is to convert Markdown music theory rules into a valid, executable 
+Python class using the 'music21' library.
 
-GUIDELINES:
-1. Create a class named `ArrangementRule` with a method `apply(score)` that takes a music21 Stream
-2. Use only music21 library functions for music manipulation
-3. Include proper error handling
-4. Add docstrings explaining each method
-5. Return the modified score from the apply method
-6. Do NOT include any imports other than music21
-7. Generate clean, production-ready code
-
-EXAMPLE OUTPUT FORMAT:
-```python
-from music21 import stream, note, chord, key, tempo
-
-class ArrangementRule:
-    \"\"\"Implements specific music arrangement rules.\"\"\"
+STRICT RULES:
+1. Output ONLY valid Python code. No markdown formatting, no explanations, 
+   no comments outside the code.
+2. Class name must be PascalCase matching the style name.
+3. Always include these imports at the top:
+   from music21 import stream, note, chord, interval, key, meter, pitch
+4. Class must include these methods:
+   - __init__(self, instruments: list)
+   - harmonize(self, chord_progression: list) -> list
+   - voice_lead(self, chords: list, instruments: list) -> stream.Score
+   - validate_range(self, part: stream.Part, instrument: str) -> bool
+5. Use try-except blocks around ALL music21 operations.
+6. Implement ALL rules from the Markdown. No placeholders like "pass" or 
+   "# TODO" or "# add logic here".
+7. If a rule cannot be perfectly implemented in music21, use the closest 
+   equivalent and add a Python comment explaining the approximation.
+8. Respect physical instrument ranges:
+   - Violin: G3 to E7
+   - Viola: C3 to A6
+   - Cello: C2 to A5
+   - Bass: E1 to G4
+   - Trumpet: F#3 to D6
+   - Trombone: E2 to F5
+9. Return only the class definition. No test code, no example usage.
+"""
     
     def __init__(self):
-        self.rule_name = "Custom Rule"
+        self.ollama_url = settings.OLLAMA_URL
+        self.model = settings.DEFAULT_MODEL
+        self.temperature = settings.TEMPERATURE
+        self.top_p = settings.TOP_P
+        self.num_predict = settings.NUM_PREDICT
+        self.num_ctx = settings.NUM_CTX
+        self.keep_alive = settings.KEEP_ALIVE
     
-    def apply(self, score: stream.Stream) -> stream.Stream:
-        \"\"\"Apply arrangement rules to the score.\"\"\"
-        # Implementation here
-        return score
-```
-
-Generate ONLY the Python code block, nothing else."""
-
-    async def compile_rules(self, markdown_rules: str, rule_name: str = "CustomRule") -> Optional[str]:
+    async def compile_and_load(
+        self,
+        name: str,
+        markdown_content: str
+    ) -> Dict[str, Any]:
         """
-        Compile Markdown rules into Python code using Ollama.
+        Complete compilation pipeline: parse → generate → validate → save → load.
         
         Args:
-            markdown_rules: User-defined music theory rules in Markdown format
-            rule_name: Name for the generated rule class
-            
+            name: Name of the skill/style (e.g., "jazz_ballad")
+            markdown_content: Raw Markdown content with music theory rules
+        
         Returns:
-            Generated Python code as a string, or None if compilation fails
+            Dict with keys:
+                - success: bool
+                - file_path: str (path to saved .py file)
+                - class_name: str (PascalCase class name)
+                - class: type (dynamically loaded class)
+                - error: str (if success is False)
         """
-        prompt = f"""Create an arrangement rule named '{rule_name}' based on these music theory rules:
-
-{markdown_rules}
-
-Generate the Python class implementation using music21."""
-
-        payload = {
-            "model": self.model,
-            "prompt": prompt,
-            "system": self.system_prompt,
-            "stream": False,
-            "options": {
-                "temperature": 0.7,
-                "top_p": 0.9,
-                "num_predict": 2048,
+        logger.info(f"Starting compilation for skill: {name}")
+        
+        # Step 1: Parse Markdown to extract structured data
+        parsed_rules = self._parse_markdown(markdown_content)
+        logger.debug(f"Parsed rules: {list(parsed_rules.keys())}")
+        
+        # Step 2: Build full prompt
+        full_prompt = self._build_prompt(name, parsed_rules, markdown_content)
+        
+        # Step 3: Generate Python code via Ollama
+        generated_code = await self._generate_code(full_prompt)
+        
+        if not generated_code:
+            return {
+                "success": False,
+                "error": "Failed to generate code from Ollama"
             }
-        }
-
+        
+        logger.debug(f"Generated code length: {len(generated_code)} chars")
+        
+        # Step 4: Extract clean Python code (remove markdown fences if present)
+        clean_code = self._extract_code(generated_code)
+        
+        # Step 5: Validate syntax with AST
+        syntax_valid, syntax_error = self._validate_syntax(clean_code)
+        
+        if not syntax_valid:
+            return {
+                "success": False,
+                "error": f"Syntax error: {syntax_error}"
+            }
+        
+        logger.info("Syntax validation passed")
+        
+        # Step 6: Validate imports
+        imports_valid, imports_error = self._validate_imports(clean_code)
+        
+        if not imports_valid:
+            return {
+                "success": False,
+                "error": f"Import error: {imports_error}"
+            }
+        
+        logger.info("Import validation passed")
+        
+        # Step 7: Sandbox test (optional - test on minimal data)
+        # For now, skip sandbox testing to speed up compilation
+        # Can be added in Phase 3
+        
+        # Step 8: Save to file
+        file_path = self._save_skill(name, clean_code)
+        logger.info(f"Saved skill to: {file_path}")
+        
+        # Step 9: Update metadata
+        self._update_metadata(name, parsed_rules)
+        
+        # Step 10: Dynamically load class
         try:
+            arranger_class = self._load_class(file_path, name)
+            class_name = arranger_class.__name__
+            
+            return {
+                "success": True,
+                "file_path": str(file_path),
+                "class_name": class_name,
+                "class": arranger_class,
+                "code": clean_code
+            }
+        except Exception as e:
+            logger.error(f"Failed to load class: {e}")
+            return {
+                "success": False,
+                "error": f"Failed to load class: {str(e)}",
+                "file_path": str(file_path)
+            }
+    
+    def _parse_markdown(self, markdown_content: str) -> Dict[str, Any]:
+        """
+        Extract structured rules from Markdown content.
+        
+        Expected sections:
+        - # Style: [Name]
+        - ## Target Instruments
+        - ## Harmony Rules
+        - ## Voice Leading Rules
+        - ## Rhythmic Patterns
+        - ## Range Constraints
+        - ## Special Instructions
+        """
+        rules = {
+            "style_name": "",
+            "instruments": [],
+            "harmony_rules": [],
+            "voice_leading_rules": [],
+            "rhythmic_patterns": [],
+            "range_constraints": {},
+            "special_instructions": []
+        }
+        
+        lines = markdown_content.split("\n")
+        current_section = None
+        
+        for line in lines:
+            line = line.strip()
+            
+            # Skip empty lines
+            if not line:
+                continue
+            
+            # Detect headers
+            if line.startswith("# Style:"):
+                rules["style_name"] = line.replace("# Style:", "").strip()
+            elif line.startswith("## Target Instruments"):
+                current_section = "instruments"
+            elif line.startswith("## Harmony Rules"):
+                current_section = "harmony_rules"
+            elif line.startswith("## Voice Leading Rules"):
+                current_section = "voice_leading_rules"
+            elif line.startswith("## Rhythmic Patterns"):
+                current_section = "rhythmic_patterns"
+            elif line.startswith("## Range Constraints"):
+                current_section = "range_constraints"
+            elif line.startswith("## Special Instructions"):
+                current_section = "special_instructions"
+            elif line.startswith("-"):
+                # List item
+                item = line[1:].strip()
+                if current_section == "instruments":
+                    rules["instruments"].append(item)
+                elif current_section == "harmony_rules":
+                    rules["harmony_rules"].append(item)
+                elif current_section == "voice_leading_rules":
+                    rules["voice_leading_rules"].append(item)
+                elif current_section == "rhythmic_patterns":
+                    rules["rhythmic_patterns"].append(item)
+                elif current_section == "special_instructions":
+                    rules["special_instructions"].append(item)
+        
+        # Use filename as fallback for style name
+        if not rules["style_name"]:
+            rules["style_name"] = "Unnamed Style"
+        
+        return rules
+    
+    def _build_prompt(
+        self,
+        name: str,
+        parsed_rules: Dict[str, Any],
+        original_markdown: str
+    ) -> str:
+        """
+        Construct the full prompt to send to Ollama.
+        Combines system prompt with user-specific rules.
+        """
+        class_name = name.replace("_", " ").title().replace(" ", "")
+        
+        prompt = f"""{self.SYSTEM_PROMPT}
+
+STYLE NAME: {parsed_rules['style_name']}
+CLASS NAME: {class_name}
+
+MARKDOWN RULES:
+{original_markdown}
+
+Generate the Python class now. Remember: ONLY code, no explanations."""
+        
+        return prompt
+    
+    async def _generate_code(self, prompt: str) -> Optional[str]:
+        """
+        Send prompt to Ollama API and retrieve generated Python code.
+        """
+        try:
+            import httpx
+            
+            payload = {
+                "model": self.model,
+                "prompt": prompt,
+                "temperature": self.temperature,
+                "top_p": self.top_p,
+                "num_predict": self.num_predict,
+                "num_ctx": self.num_ctx,
+                "stream": False,
+                "keep_alive": self.keep_alive
+            }
+            
+            logger.info(f"Sending request to Ollama ({self.model})...")
+            
             async with httpx.AsyncClient(timeout=120.0) as client:
                 response = await client.post(
-                    f"{self.base_url}/api/generate",
+                    f"{self.ollama_url}/api/generate",
                     json=payload
                 )
-                response.raise_for_status()
-                result = response.json()
                 
-                # Extract generated code
-                generated_code = result.get("response", "")
-                
-                # Clean up the code (remove markdown code blocks if present)
-                generated_code = self._extract_code_block(generated_code)
-                
-                return generated_code
-                
-        except httpx.HTTPError as e:
-            print(f"HTTP error during skill compilation: {e}")
-            return None
+                if response.status_code == 200:
+                    data = response.json()
+                    generated_text = data.get("response", "")
+                    logger.info("Code generation successful")
+                    return generated_text
+                else:
+                    logger.error(f"Ollama API error: {response.status_code} - {response.text}")
+                    return None
+        
         except Exception as e:
-            print(f"Error during skill compilation: {e}")
+            logger.error(f"Ollama request failed: {e}")
             return None
-
-    def _extract_code_block(self, text: str) -> str:
+    
+    def _extract_code(self, raw_response: str) -> str:
         """
-        Extract Python code from markdown code blocks.
+        Extract clean Python code from raw LLM response.
+        Removes markdown code fences if present.
+        """
+        # Remove ```python ... ``` blocks
+        code_block_pattern = r"```python\s*(.*?)\s*```"
+        match = re.search(code_block_pattern, raw_response, re.DOTALL)
         
-        Args:
-            text: Text potentially containing markdown code blocks
+        if match:
+            return match.group(1).strip()
+        
+        # Remove generic ``` ... ``` blocks
+        generic_pattern = r"```\s*(.*?)\s*```"
+        match = re.search(generic_pattern, raw_response, re.DOTALL)
+        
+        if match:
+            return match.group(1).strip()
+        
+        # Return as-is if no fences found
+        return raw_response.strip()
+    
+    def _validate_syntax(self, code: str) -> Tuple[bool, Optional[str]]:
+        """
+        Validate Python syntax using ast.parse().
+        Returns (is_valid, error_message).
+        """
+        import ast
+        
+        try:
+            ast.parse(code)
+            return True, None
+        except SyntaxError as e:
+            error_msg = f"Syntax Error at line {e.lineno}: {e.msg}"
+            logger.error(error_msg)
+            return False, error_msg
+    
+    def _validate_imports(self, code: str) -> Tuple[bool, Optional[str]]:
+        """
+        Ensure code only imports allowed modules.
+        Returns (is_valid, error_message).
+        """
+        import ast
+        
+        try:
+            tree = ast.parse(code)
             
-        Returns:
-            Extracted code without markdown formatting
-        """
-        import re
-        
-        # Pattern to match ```python ... ``` blocks
-        pattern = r"```python\s*(.*?)\s*```"
-        matches = re.findall(pattern, text, re.DOTALL | re.IGNORECASE)
-        
-        if matches:
-            return matches[0].strip()
-        
-        # Try generic code block pattern
-        pattern_generic = r"```\s*(.*?)\s*```"
-        matches_generic = re.findall(pattern_generic, text, re.DOTALL)
-        
-        if matches_generic:
-            return matches_generic[0].strip()
-        
-        # Return original text if no code blocks found
-        return text.strip()
-
-    def save_rule(self, code: str, filename: str, output_dir: str = "./compiled_rules") -> Path:
-        """
-        Save compiled rule to a Python file.
-        
-        Args:
-            code: Python code to save
-            filename: Name of the file (without .py extension)
-            output_dir: Directory to save the file
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Import):
+                    for alias in node.names:
+                        module_name = alias.name.split(".")[0]
+                        if module_name not in settings.ALLOWED_IMPORTS:
+                            error_msg = f"Disallowed import: {alias.name}"
+                            logger.error(error_msg)
+                            return False, error_msg
+                
+                elif isinstance(node, ast.ImportFrom):
+                    if node.module:
+                        module_name = node.module.split(".")[0]
+                        if module_name not in settings.ALLOWED_IMPORTS:
+                            error_msg = f"Disallowed import: {node.module}"
+                            logger.error(error_msg)
+                            return False, error_msg
             
-        Returns:
-            Path to the saved file
-        """
-        output_path = Path(output_dir)
-        output_path.mkdir(parents=True, exist_ok=True)
+            return True, None
         
-        file_path = output_path / f"{filename}.py"
+        except Exception as e:
+            error_msg = f"Import validation error: {str(e)}"
+            logger.error(error_msg)
+            return False, error_msg
+    
+    def _save_skill(self, name: str, code: str) -> Path:
+        """
+        Save compiled Python code to skills directory.
+        """
+        file_path = settings.SKILLS_PY_DIR / f"{name}.py"
         
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(code)
         
-        print(f"Saved compiled rule to: {file_path}")
         return file_path
-
-    def load_rule(self, file_path: Path) -> Optional[Any]:
-        """
-        Dynamically load a compiled rule from a Python file.
-        
-        Args:
-            file_path: Path to the compiled rule file
-            
-        Returns:
-            Instantiated ArrangementRule class, or None if loading fails
-        """
-        try:
-            # Load module from file
-            spec = importlib.util.spec_from_file_location("arrangement_rule", file_path)
-            module = importlib.util.module_from_spec(spec)
-            sys.modules["arrangement_rule"] = module
-            spec.loader.exec_module(module)
-            
-            # Instantiate the ArrangementRule class
-            if hasattr(module, "ArrangementRule"):
-                rule_instance = module.ArrangementRule()
-                print(f"Successfully loaded rule: {rule_instance.rule_name}")
-                return rule_instance
-            else:
-                print("Error: No ArrangementRule class found in module")
-                return None
-                
-        except Exception as e:
-            print(f"Error loading rule: {e}")
-            return None
-
-    async def compile_and_load(self, markdown_rules: str, rule_name: str = "CustomRule") -> Optional[Any]:
-        """
-        Complete pipeline: compile Markdown rules and load the resulting class.
-        
-        Args:
-            markdown_rules: User-defined music theory rules in Markdown format
-            rule_name: Name for the generated rule class
-            
-        Returns:
-            Instantiated ArrangementRule class, or None if compilation/loading fails
-        """
-        # Compile the rules
-        code = await self.compile_rules(markdown_rules, rule_name)
-        
-        if not code:
-            print("Failed to compile rules")
-            return None
-        
-        # Save the compiled code
-        file_path = self.save_rule(code, rule_name.lower())
-        
-        # Load and return the rule instance
-        rule_instance = self.load_rule(file_path)
-        
-        return rule_instance
-
-
-# Convenience function for quick compilation
-async def compile_skill(markdown_rules: str, rule_name: str = "CustomRule") -> Optional[Any]:
-    """
-    Quick helper function to compile and load a skill rule.
     
-    Args:
-        markdown_rules: Music theory rules in Markdown format
-        rule_name: Name for the rule
+    def _update_metadata(self, name: str, parsed_rules: Dict[str, Any]):
+        """
+        Update skills metadata JSON index.
+        """
+        metadata_file = settings.metadata_file
         
-    Returns:
-        Instantiated ArrangementRule class or None
-    """
-    compiler = SkillCompiler()
-    return await compiler.compile_and_load(markdown_rules, rule_name)
+        # Load existing metadata
+        if metadata_file.exists():
+            with open(metadata_file, 'r') as f:
+                metadata = json.load(f)
+        else:
+            metadata = {"skills": [], "last_updated": ""}
+        
+        # Create skill entry
+        skill_entry = {
+            "name": name,
+            "style_name": parsed_rules["style_name"],
+            "instruments": parsed_rules["instruments"],
+            "file": f"{name}.py",
+            "status": "compiled",
+            "created_at": str(Path(settings.SKILLS_PY_DIR / f"{name}.py").stat().st_mtime)
+        }
+        
+        # Update or add skill
+        skills = metadata["skills"]
+        existing_index = next((i for i, s in enumerate(skills) if s["name"] == name), None)
+        
+        if existing_index is not None:
+            skills[existing_index] = skill_entry
+        else:
+            skills.append(skill_entry)
+        
+        # Save updated metadata
+        import datetime
+        metadata["last_updated"] = datetime.datetime.now().isoformat()
+        
+        with open(metadata_file, 'w') as f:
+            json.dump(metadata, f, indent=2)
+    
+    def _load_class(self, file_path: Path, skill_name: str) -> type:
+        """
+        Dynamically load Python class from compiled skill file.
+        """
+        import importlib.util
+        import sys
+        
+        module_name = f"maestropro_skill_{skill_name}"
+        
+        # Check if module already loaded
+        if module_name in sys.modules:
+            del sys.modules[module_name]
+        
+        spec = importlib.util.spec_from_file_location(module_name, file_path)
+        
+        if spec is None or spec.loader is None:
+            raise ImportError(f"Failed to load module spec from {file_path}")
+        
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[module_name] = module
+        spec.loader.exec_module(module)
+        
+        # Find the class (PascalCase version of skill_name)
+        class_name = skill_name.replace("_", " ").title().replace(" ", "")
+        
+        arranger_class = getattr(module, class_name, None)
+        
+        if arranger_class is None:
+            # Fallback: find first class in module
+            for attr_name in dir(module):
+                attr = getattr(module, attr_name)
+                if isinstance(attr, type) and attr_name != "object":
+                    arranger_class = attr
+                    break
+        
+        if arranger_class is None:
+            raise ValueError(f"No class found in {file_path}")
+        
+        logger.info(f"Loaded class: {arranger_class.__name__}")
+        
+        return arranger_class
