@@ -1,0 +1,44 @@
+{
+  "id": "maestropro",
+  "name": "MaestroPro",
+  "version": "1.0.0",
+  "description": "AI-powered audio to notation transcription and analysis tool",
+  "company": "Maya Instruments Technology",
+  "tagline": "From Audio to Artistry",
+  "author": "Maya Instruments Technology",
+  "license": "MIT",
+  "homepage": "https://mayainstruments.tech/maestropro",
+  "icon": "icon.png",
+  "category": "transcription",
+  "musescoreVersion": "4.0.0",
+  "musescoreVersionMax": "4.99.99",
+  "main": "maestropro.qml",
+  "width": 600,
+  "height": 450,
+  "minimumWidth": 500,
+  "minimumHeight": 400,
+  "startupMode": "modal",
+  "permissions": [
+    "network",
+    "file-access"
+  ],
+  "features": [
+    "Audio-to-MIDI transcription",
+    "Source separation (stems)",
+    "MusicXML generation",
+    "Musical analysis (Key, Chords, Form)",
+    "AI-powered arrangement rules"
+  ],
+  "backend": {
+    "type": "fastapi",
+    "restPort": 8000,
+    "websocketPort": 8765,
+    "endpoints": [
+      "/health",
+      "/api/transcribe",
+      "/api/analyze",
+      "/api/compile-skill",
+      "/ws/{client_id}"
+    ]
+  }
+}
