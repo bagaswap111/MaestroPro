@@ -13,8 +13,12 @@ const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.json': 'application/json; charset=utf-8',
+  '.wasm': 'application/wasm',
+  '.sf3': 'audio/soundfont',
+  '.mp3': 'audio/mpeg',
 };
 
 const isWithin = (base, target) =>
@@ -111,6 +115,15 @@ const server = createServer(async (req, res) => {
     if (p === '/vendor/marked.js' || p === '/marked.js') {
       const content = await readFile(MARKED_FILE, 'utf8');
       res.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' });
+      res.end(content);
+      return;
+    }
+
+    // Serve OSMD vendor file
+    if (p === '/vendor/opensheetmusicdisplay.min.js') {
+      const osmdFile = path.join(__dirname, 'node_modules', 'opensheetmusicdisplay', 'build', 'opensheetmusicdisplay.min.js');
+      const content = await readFile(osmdFile);
+      res.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'public, max-age=3600' });
       res.end(content);
       return;
     }

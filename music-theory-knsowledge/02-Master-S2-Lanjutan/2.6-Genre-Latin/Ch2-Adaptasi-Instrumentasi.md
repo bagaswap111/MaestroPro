@@ -31,25 +31,39 @@ menjadi "gigi" yang menghubungkan semua.
 - **Drums (brush)** → *brush cajón* sedikit shake / maracas.
 
 ```xml
-<measure number="1">
-  <attributes>
-    <time><beats>2</beats><beat-type>2</beat-type></time>
-  </attributes>
-  <note>
-    <pitch><step>F</step><octave>3</octave></pitch>
-    <duration>2</duration>
-    <type>eighth</type>
-    <voice>4</voice>
-    <staff>2</staff>
-  </note>
-  <note>
-    <pitch><step>E</step><octave>5</octave></pitch>
-    <duration>2</duration>
-    <type>eighth</type>
-    <voice>1</voice>
-    <staff>1</staff>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>String Quartet</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>2</beats><beat-type>2</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>F</step><octave>3</octave></pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+        <voice>4</voice>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+        <voice>1</voice>
+        <staff>1</staff>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.3 Adaptasi 2: Salsa → Big Band / Jazz Combo
@@ -61,19 +75,39 @@ menjadi "gigi" yang menghubungkan semua.
 - **Timbales** → *tamburin* atau *cowbell* (percussion) di kit.
 
 ```xml
-<score-instrument id="P1-I1">
-  <instrument-name>Alto Sax</instrument-name>
-</score-instrument>
-<midi-instrument id="P1-I1">
-  <midi-channel>1</midi-channel>
-  <midi-program>65</midi-program>
-</midi-instrument>
-<attributes>
-  <transpose>
-    <diatonic>2</diatonic>
-    <chromatic>-3</chromatic>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+    <score-part id="P2">
+      <part-name>Alto Sax</part-name>
+    </score-part>
+  </part-list>
+  <part id="P2">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>2</diatonic>
+          <chromatic>-3</chromatic>
+        </transpose>
+      </attributes>
+      <score-instrument id="P1-I1">
+        <instrument-name>Alto Sax</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>65</midi-program>
+      </midi-instrument>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Sax Alto E♭: written ↑ maj 6th = concert. `<transpose>` bertanggung jawab —
@@ -89,14 +123,33 @@ menjadi "gigi" yang menghubungkan semua.
 - **Arrastre (glissando)** → violins `glissando` line-type wavy.
 
 ```xml
-<note>
-  <pitch><step>D</step><octave>5</octave></pitch>
-  <duration>3</duration>
-  <type>quarter</type><dot/>
-  <notations>
-    <glissando type="start" line-type="wavy"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>3</duration>
+        <type>quarter</type><dot/>
+        <notations>
+          <glissando type="start" line-type="wavy"/>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.5 Checklist Adaptasi Latin

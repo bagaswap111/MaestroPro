@@ -34,14 +34,33 @@ petunjuk agar hasil render konsisten.
 | `<accidental>` | aksiden tampilan |
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <voice>1</voice>
-  <type>quarter</type>
-  <stem>down</stem>
-  <beam number="1">begin</beam>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <stem>down</stem>
+        <beam number="1">begin</beam>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.3 Spacing — Gould
@@ -59,9 +78,25 @@ MusicXML tidak menyimpan *absolute* spacing; layout dihitung. `width` pada
 measure memberikan sinyal lebar:
 
 ```xml
-<measure number="1" implicit="no" width="640">
-  ...
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1" implicit="no" width="640">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `width` dalam *tenths* — 10 tenths = 1 staff space. Gunakan konsisten bila
@@ -77,12 +112,31 @@ Aturan klasik (Gould ch. notes):
 - Voice 1 umumnya up; Voice 2 down (dalam satu staff).
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <stem>up</stem>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>quarter</type>
+        <stem>up</stem>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Nilai `<stem>`: `up`, `down`, `double`, `none`.
@@ -100,20 +154,39 @@ Nilai `<stem>`: `up`, `down`, `double`, `none`.
 ### 1.5.1 Eighth pairs dalam 4/4
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>1</duration>
-  <type>eighth</type>
-  <stem>up</stem>
-  <beam number="1">begin</beam>
-</note>
-<note>
-  <pitch><step>D</step><octave>4</octave></pitch>
-  <duration>1</duration>
-  <type>eighth</type>
-  <stem>up</stem>
-  <beam number="1">end</beam>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <beam number="1">begin</beam>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>eighth</type>
+        <stem>up</stem>
+        <beam number="1">end</beam>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `beam number="1"` — primary (paling dekat nota head).
@@ -128,15 +201,34 @@ Nilai `<stem>`: `up`, `down`, `double`, `none`.
 | Tie | Nilai diperpanjang pitch sama | `<tied>` |
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>half</type>
-  <notations>
-    <tied type="start"/>
-    <slur type="start" placement="above"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+        <notations>
+          <tied type="start"/>
+          <slur type="start" placement="above"/>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<slur>` & `<tied>` dalam `<notations>`; `type` start/stop.
@@ -148,17 +240,35 @@ Nilai `<stem>`: `up`, `down`, `double`, `none`.
 - Solusi lebih baik: `8va`/`8vb`, ganti clef, atau *sub-staff*.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <octave-shift type="down" size="8"/>
-  </direction-type>
-</direction>
-...
-<direction placement="above">
-  <direction-type>
-    <octave-shift type="stop" size="8"/>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <octave-shift type="down" size="8"/>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <octave-shift type="stop" size="8"/>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `octave-shift` display-only; pitch tidak berubah.

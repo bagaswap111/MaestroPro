@@ -16,12 +16,31 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ## 4.1 Chord Symbol Dasar
 
 ```xml
-<harmony>
-  <root>
-    <root-step>C</root-step>
-  </root>
-  <kind text="maj7">major-seventh</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root>
+      <root-step>C</root-step>
+      </root>
+      <kind text="maj7">major-seventh</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<root-step>` = nada dasar; optional `<root-alter>` untuk akor seperti
@@ -31,12 +50,31 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ### 4.1.1 Contoh: Dm7
 
 ```xml
-<harmony>
-  <root>
-    <root-step>D</root-step>
-  </root>
-  <kind text="m7">minor-seventh</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root>
+      <root-step>D</root-step>
+      </root>
+      <kind text="m7">minor-seventh</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.1.2 Nilai `<kind>` Standar (W3C)
@@ -61,15 +99,34 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ### 4.2.1 `<degree>` — Alter/Add/Subtract
 
 ```xml
-<harmony>
-  <root><root-step>C</root-step></root>
-  <kind text="7b9">dominant</kind>
-  <degree>
-    <degree-value>9</degree-value>
-    <degree-alter>-1</degree-alter>
-    <degree-type>alter</degree-type>
-  </degree>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>C</root-step></root>
+      <kind text="7b9">dominant</kind>
+      <degree>
+      <degree-value>9</degree-value>
+      <degree-alter>-1</degree-alter>
+      <degree-type>alter</degree-type>
+      </degree>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `degree-value`: 1–13 (derajat).
@@ -79,29 +136,67 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ### 4.2.2 Contoh: Fm11♭5
 
 ```xml
-<harmony>
-  <root><root-step>F</root-step></root>
-  <kind text="m11b5">other</kind>
-  <degree>
-    <degree-value>5</degree-value>
-    <degree-alter>-1</degree-alter>
-    <degree-type>alter</degree-type>
-  </degree>
-  <degree>
-    <degree-value>11</degree-value>
-    <degree-alter>0</degree-alter>
-    <degree-type>add</degree-type>
-  </degree>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>F</root-step></root>
+      <kind text="m11b5">other</kind>
+      <degree>
+      <degree-value>5</degree-value>
+      <degree-alter>-1</degree-alter>
+      <degree-type>alter</degree-type>
+      </degree>
+      <degree>
+      <degree-value>11</degree-value>
+      <degree-alter>0</degree-alter>
+      <degree-type>add</degree-type>
+      </degree>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.2.3 Sus-Chord (Sus4)
 
 ```xml
-<harmony>
-  <root><root-step>G</root-step></root>
-  <kind text="sus4">suspended-fourth</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>G</root-step></root>
+      <kind text="sus4">suspended-fourth</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 4.3 Slash Chords, Polychords, Inversi
@@ -109,38 +204,95 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ### 4.3.1 Slash/Inversi — `<bass>`
 
 ```xml
-<harmony>
-  <root><root-step>C</root-step></root>
-  <kind text="C/E">major</kind>
-  <bass>
-    <bass-step>E</bass-step>
-  </bass>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>C</root-step></root>
+      <kind text="C/E">major</kind>
+      <bass>
+      <bass-step>E</bass-step>
+      </bass>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<harmony>
-  <root><root-step>D</root-step></root>
-  <kind text="D/F#">major</kind>
-  <bass>
-    <bass-step>F</bass-step>
-    <bass-alter>1</bass-alter>
-  </bass>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>D</root-step></root>
+      <kind text="D/F#">major</kind>
+      <bass>
+      <bass-step>F</bass-step>
+      <bass-alter>1</bass-alter>
+      </bass>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.3.2 Polychord / Upper Structure — Fallback `<words>`
 
 ```xml
-<harmony>
-  <root><root-step>G</root-step></root>
-  <kind text="G7alt">dominant</kind>
-</harmony>
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">G7alt (US bII: Db)</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>G</root-step></root>
+      <kind text="G7alt">dominant</kind>
+      </harmony>
+      <direction placement="above">
+      <direction-type>
+      <words xml:space="preserve">G7alt (US bII: Db)</words>
+      </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Nonstandar lengan: sebagian software render penuh tidak; simpan simbol kuat
@@ -149,17 +301,36 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ## 4.4 `<frame>` — Diagram Fret untuk Gitar/Ukulele
 
 ```xml
-<harmony>
-  <root><root-step>C</root-step></root>
-  <kind>major</kind>
-  <frame>
-    <frame-strings>6</frame-strings>
-    <frame-frets>3</frame-frets>
-    <frame-note fret="0" string="3"/>
-    <frame-note fret="1" string="2"/>
-    <frame-note fret="3" string="4"/>
-  </frame>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>C</root-step></root>
+      <kind>major</kind>
+      <frame>
+      <frame-strings>6</frame-strings>
+      <frame-frets>3</frame-frets>
+      <frame-note fret="0" string="3"/>
+      <frame-note fret="1" string="2"/>
+      <frame-note fret="3" string="4"/>
+      </frame>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `frame-string` : jumlah senar.
@@ -169,10 +340,29 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ## 4.5 `print-frame`, `print-object`, dan Offset
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>Am</root-step></root>
-  <kind text="m">minor</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+      <root><root-step>Am</root-step></root>
+      <kind text="m">minor</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `print-frame="no"` → jangan render diagram.
@@ -181,11 +371,30 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ## 4.6 `<function>` — Analisis/Roman
 
 ```xml
-<harmony>
-  <root><root-step>G</root-step></root>
-  <kind>dominant</kind>
-  <function>V</function>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+      <root><root-step>G</root-step></root>
+      <kind>dominant</kind>
+      <function>V</function>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<function>` sangat berguna untuk pipeline machine-learning & analisis

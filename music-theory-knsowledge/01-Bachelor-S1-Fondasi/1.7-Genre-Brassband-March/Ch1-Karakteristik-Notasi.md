@@ -57,12 +57,35 @@ better (E♭).
 ### 1.3.1 MusicXML: Transposisi B♭ di `<attributes>`
 
 ```xml
-<attributes>
-  <transpose>
-    <diatonic>-1</diatonic>
-    <chromatic>-2</chromatic>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Cornet in Bb</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>-1</diatonic>
+          <chromatic>-2</chromatic>
+        </transpose>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > **MusicXML menyimpan:** pitch di file harus ditulis **di apa yang dilihat
@@ -79,15 +102,42 @@ better (E♭).
 - **Cymbal:** crash note panjang `<tie>`; *choke* text.
 
 ```xml
-<note>
-  <unpitched display-step="C" display-octave="5"/>
-  <duration>3</duration>
-  <type>8th</type>
-  <dot/>
-  <notations>
-    <articulations><accent/></articulations>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Snare Drum</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <unpitched display-step="C" display-octave="5"/>
+        <duration>3</duration>
+        <type>8th</type>
+        <dot/>
+        <notations>
+          <articulations><accent/></articulations>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>13</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Harmoni March — Kesederhanaan Luas
@@ -112,20 +162,34 @@ Karakter timbral:
 ### 1.6.1 Menulis Pickup (Anacrusis)
 
 ```xml
-<measure number="1">
-  <attributes>
-    <time><beats>2</beats><beat-type>4</beat-type></time>
-  </attributes>
-  <note>
-    <pitch><step>B</step><octave>4</octave></pitch>
-    <duration>1</duration>
-    <voice>1</voice>
-    <type>8th</type>
-    <notations>
-      <slur type="start" number="1"/>
-    </notations>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Cornet</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>2</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>8th</type>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.7 Miskonsepsi Umum

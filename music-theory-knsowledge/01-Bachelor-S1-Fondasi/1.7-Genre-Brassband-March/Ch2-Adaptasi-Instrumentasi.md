@@ -44,22 +44,68 @@ Di MusicXML `part-list` harus mengikuti urutan ini jika ingin *engraving* benar.
 ### 2.2.2 Melodi disalin dengan doubling oktaf
 
 ```xml
-<measure number="1">
-  <!-- Flute + Piccolo octave: piccolo on top -->
-  <note>
-    <pitch><step>F</step><octave>6</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>8th</type>
-  </note>
-  <!-- Trumpet unison concert offset? in written -->
-  <note>
-    <pitch><step>F</step><octave>5</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>8th</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piccolo</part-name>
+    </score-part>
+    <score-part id="P2">
+      <part-name>Trumpet</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <!-- Flute + Piccolo octave: piccolo on top -->
+      <note>
+        <pitch><step>F</step><octave>6</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>8th</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>14</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+  <part id="P2">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <!-- Trumpet unison concert offset? in written -->
+      <note>
+        <pitch><step>F</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>8th</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>14</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.3 Adaptasi 2: Brass Band → *German Brass / Symphonic Pops*
@@ -71,19 +117,42 @@ Di MusicXML `part-list` harus mengikuti urutan ini jika ingin *engraving* benar.
 - Tuba dipertahankan; tambahkan *contrabass* bila orkestra.
 
 ```xml
-<score-instrument id="P3-I1">
-  <instrument-name>Horn in F</instrument-name>
-</score-instrument>
-<midi-instrument id="P3-I1">
-  <midi-channel>3</midi-channel>
-  <midi-program>60</midi-program>
-</midi-instrument>
-<attributes>
-  <transpose>
-    <diatonic>-1</diatonic>
-    <chromatic>-5</chromatic>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P3">
+      <part-name>Horn in F</part-name>
+      <score-instrument id="P3-I1">
+        <instrument-name>Horn in F</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P3-I1">
+        <midi-channel>3</midi-channel>
+        <midi-program>60</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P3">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>-1</diatonic>
+          <chromatic>-5</chromatic>
+        </transpose>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.4 Adaptasi 3: March → Brass Quartet / Fanfare (Indoor)

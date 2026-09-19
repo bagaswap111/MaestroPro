@@ -20,27 +20,64 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ### 3.1.1 Crescendo
 
 ```xml
-<direction placement="below">
-  <direction-type>
-    <wedge type="crescendo" spread="10"/>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="below">
+        <direction-type>
+          <wedge type="crescendo" spread="10"/>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 3.1.2 Diminuendo dan Stop
 
 ```xml
-<direction placement="below">
-  <direction-type>
-    <wedge type="diminuendo" spread="8"/>
-  </direction-type>
-</direction>
-...
-<direction placement="below">
-  <direction-type>
-    <wedge type="stop"/>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="below">
+        <direction-type>
+          <wedge type="diminuendo" spread="8"/>
+        </direction-type>
+      </direction>
+      <direction placement="below">
+        <direction-type>
+          <wedge type="stop"/>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `spread` (tenths) — lebar mulut wedge.
@@ -51,14 +88,33 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 Dinamika titik = `<dynamics>`; posisi default di bawah staff (`below`).
 
 ```xml
-<direction placement="below">
-  <direction-type>
-    <dynamics>
-      <ff/>
-    </dynamics>
-  </direction-type>
-  <sound dynamics="90"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="below">
+        <direction-type>
+          <dynamics>
+            <ff/>
+          </dynamics>
+        </direction-type>
+        <sound dynamics="90"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<sound dynamics>` (0–127) menentukan dynamics playback. Nilai umum:
@@ -77,25 +133,63 @@ Dinamika titik = `<dynamics>`; posisi default di bawah staff (`below`).
 - `<sound>` — nilai playback (tempo, dynamics).
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">rit.</words>
-  </direction-type>
-  <sound tempo="90"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">rit.</words>
+        </direction-type>
+        <sound tempo="90"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 3.3.2 Format Teks
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words font-family="Times New Roman" font-size="14" font-style="italic"
-           font-weight="bold" xml:space="preserve">
-      cantabile
-    </words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words font-family="Times New Roman" font-size="14" font-style="italic"
+                 font-weight="bold" xml:space="preserve">
+            cantabile
+          </words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - Styling opsional di `words`; ini *soft hint* — software override.
@@ -112,52 +206,87 @@ Dinamika titik = `<dynamics>`; posisi default di bawah staff (`below`).
 ## 3.5 Contoh: Crescendo → Forte Penutup
 
 ```xml
-<measure number="9">
-  <direction placement="below">
-    <direction-type>
-      <wedge type="crescendo" spread="12"/>
-    </direction-type>
-  </direction>
-  <note>
-    <pitch><step>F</step><octave>4</octave></pitch>
-    <duration>4</duration>
-    <type>whole</type>
-  </note>
-</measure>
-
-<measure number="10">
-  <direction placement="below">
-    <direction-type>
-      <wedge type="stop"/>
-    </direction-type>
-  </direction>
-  <direction placement="below">
-    <direction-type>
-      <dynamics><ff/></dynamics>
-    </direction-type>
-    <sound dynamics="95"/>
-  </direction>
-  <note>
-    <pitch><step>F</step><octave>4</octave></pitch>
-    <duration>4</duration>
-    <type>whole</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="9">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="below">
+        <direction-type>
+          <wedge type="crescendo" spread="12"/>
+        </direction-type>
+      </direction>
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+    <measure number="10">
+      <direction placement="below">
+        <direction-type>
+          <wedge type="stop"/>
+        </direction-type>
+      </direction>
+      <direction placement="below">
+        <direction-type>
+          <dynamics><ff/></dynamics>
+        </direction-type>
+        <sound dynamics="95"/>
+      </direction>
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.6 Tempo Expressions
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Andante</words>
-    <metronome parentheses="yes">
-      <beat-unit>quarter</beat-unit>
-      <per-minute>76</per-minute>
-    </metronome>
-  </direction-type>
-  <sound tempo="76"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Andante</words>
+          <metronome parentheses="yes">
+            <beat-unit>quarter</beat-unit>
+            <per-minute>76</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="76"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `parentheses="yes"` — metronome dalam kurung.
@@ -174,13 +303,32 @@ Dinamika titik = `<dynamics>`; posisi default di bawah staff (`below`).
 ### 3.7.1 Precision via default
 
 ```xml
-<direction placement="below">
-  <direction-type>
-    <dynamics><mp/></dynamics>
-  </direction-type>
-  <default-x>42</default-x>
-  <default-y>18</default-y>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="below">
+        <direction-type>
+          <dynamics><mp/></dynamics>
+        </direction-type>
+        <default-x>42</default-x>
+        <default-y>18</default-y>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.8 Checklist Expressions

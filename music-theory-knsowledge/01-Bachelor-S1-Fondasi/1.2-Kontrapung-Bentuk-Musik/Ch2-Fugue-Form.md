@@ -54,20 +54,64 @@ Fugue dalam MusicXML sebaiknya satu `<score-part>` per suara (vokal/instrumen),
 bukan per instrumen fisik:
 
 ```xml
-<part-list>
-  <score-part id="P1">
-    <part-name>Soprano</part-name>
-  </score-part>
-  <score-part id="P2">
-    <part-name>Alto</part-name>
-  </score-part>
-  <score-part id="P3">
-    <part-name>Tenor</part-name>
-  </score-part>
-  <score-part id="P4">
-    <part-name>Bass</part-name>
-  </score-part>
-</part-list>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Soprano</part-name>
+    </score-part>
+    <score-part id="P2">
+      <part-name>Alto</part-name>
+    </score-part>
+    <score-part id="P3">
+      <part-name>Tenor</part-name>
+    </score-part>
+    <score-part id="P4">
+      <part-name>Bass</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+  <part id="P2">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+  <part id="P3">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+  <part id="P4">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 2.3.2 Tonal vs Real Answer
@@ -99,12 +143,31 @@ bukan per instrumen fisik:
 ### 2.4.1 MusicXML: Menandai Entri Subject
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Subject</words>
-  </direction-type>
-  <offset>0</offset>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Subject</words>
+        </direction-type>
+        <offset>0</offset>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Letakkan marka ini di awal setiap entri; untuk *answer* tulis "Answer".
@@ -131,25 +194,63 @@ Untuk merencanakan stretto, buat *timeline* tabel:
 Suara yang belum masuk diberi `<rest/>` konsisten sampai entrinya:
 
 ```xml
-<note>
-  <rest measure="yes"/>
-  <duration>4</duration>
-  <voice>4</voice>
-  <type>whole</type>
-  <staff>4</staff>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <rest measure="yes"/>
+        <duration>4</duration>
+        <voice>4</voice>
+        <type>whole</type>
+        <staff>4</staff>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.6a Pengulangan Episoda (repeat)
 
 ```xml
-<barline location="right">
-  <bar-style>light-heavy</bar-style>
-  <repeat direction="backward"/>
-</barline>
-<barline location="left">
-  <repeat direction="forward"/>
-</barline>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <barline location="right">
+        <bar-style>light-heavy</bar-style>
+        <repeat direction="backward"/>
+      </barline>
+      <barline location="left">
+        <repeat direction="forward"/>
+      </barline>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.7 Analisis Fugue Bach (WTK I, BWV 846)

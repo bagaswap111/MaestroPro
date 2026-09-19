@@ -32,12 +32,29 @@ Bila dibalik, **I→IV** (naik kwinlima) menimbulkan stasis — dipakai pada
 kadens plagal dan chorus pop.
 
 ```xml
-<measure number="1">
-  <harmony print-frame="no"><root><root-step>C</root-step></root><kind text="maj">major</kind></harmony>
-  <harmony print-frame="no"><root><root-step>F</root-step></root><kind text="maj">major</kind></harmony>
-  <harmony print-frame="no"><root><root-step>G</root-step></root><kind text="7">dominant</kind></harmony>
-  <harmony print-frame="no"><root><root-step>C</root-step></root><kind text="maj">major</kind></harmony>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no"><root><root-step>C</root-step></root><kind text="maj">major</kind></harmony>
+      <harmony print-frame="no"><root><root-step>F</root-step></root><kind text="maj">major</kind></harmony>
+      <harmony print-frame="no"><root><root-step>G</root-step></root><kind text="7">dominant</kind></harmony>
+      <harmony print-frame="no"><root><root-step>C</root-step></root><kind text="maj">major</kind></harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 2.1.2 Progresi yang Perlu Dicermati
@@ -69,18 +86,35 @@ yang melebihi 3–4 langkah tanpa arah.
 ### 2.2.1 MusicXML: 8 Bar Progresi Pop (I–V–vi–IV)
 
 ```xml
-<measure number="1">
-  <harmony print-frame="no"><root><root-step>C</root-step></root><kind>major</kind></harmony>
-</measure>
-<measure number="2">
-  <harmony print-frame="no"><root><root-step>G</root-step></root><kind text="maj">major</kind></harmony>
-</measure>
-<measure number="3">
-  <harmony print-frame="no"><root><root-step>A</root-step></root><kind text="m">minor</kind></harmony>
-</measure>
-<measure number="4">
-  <harmony print-frame="no"><root><root-step>F</root-step></root><kind>major</kind></harmony>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no"><root><root-step>C</root-step></root><kind>major</kind></harmony>
+    </measure>
+    <measure number="2">
+      <harmony print-frame="no"><root><root-step>G</root-step></root><kind text="maj">major</kind></harmony>
+    </measure>
+    <measure number="3">
+      <harmony print-frame="no"><root><root-step>A</root-step></root><kind text="m">minor</kind></harmony>
+    </measure>
+    <measure number="4">
+      <harmony print-frame="no"><root><root-step>F</root-step></root><kind>major</kind></harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.3 Modulasi: Memindahkan Pusat Tonal
@@ -117,15 +151,28 @@ pop bridges). MusicXML: cukup perbarui `<key>` di awal birama.
 ### 2.3.4 MusicXML: `<key>` di `<attributes>` pada Birama Baru
 
 ```xml
-<attributes>
-  <divisions>2</divisions>
-  <key>
-    <fifths>1</fifths>
-    <mode>major</mode>
-  </key>
-  <time><beats>4</beats><beat-type>4</beat-type></time>
-  <clef><sign>G</sign><line>2</line></clef>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>2</divisions>
+        <key>
+          <fifths>1</fifths>
+          <mode>major</mode>
+        </key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<fifths>` = jumlah krus/mol. G mayor = +1; F mayor = -1; A minor = 0
@@ -135,10 +182,28 @@ pop bridges). MusicXML: cukup perbarui `<key>` di awal birama.
 **Contoh dengan `<cancel>` (pergantian tanda menuju netral):**
 
 ```xml
-<key>
-  <cancel>2</cancel>
-  <fifths>0</fifths>
-</key>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key>
+          <cancel>2</cancel>
+          <fifths>0</fifths>
+        </key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.4 Modulasi vs Transposisi — Perbedaan Krusial
@@ -155,13 +220,30 @@ pop bridges). MusicXML: cukup perbarui `<key>` di awal birama.
 Klarinet in B♭: bunyi konser = **1 nada lebih rendah** dari written. Maka:
 
 ```xml
-<attributes>
-  <transpose>
-    <diatonic>-1</diatonic>
-    <chromatic>-2</chromatic>
-    <octave-change>0</octave-change>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>-1</diatonic>
+          <chromatic>-2</chromatic>
+          <octave-change>0</octave-change>
+        </transpose>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<diatonic>` — pergeseran nama derajat (B♭ klarinet: -1).

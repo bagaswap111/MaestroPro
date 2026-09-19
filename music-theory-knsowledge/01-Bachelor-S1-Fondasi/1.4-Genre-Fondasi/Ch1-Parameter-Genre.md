@@ -104,17 +104,46 @@ menyebar ke banyak elemen:
 ### 1.3.1 Tempo — `<sound tempo>` dan `<metronome>`
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words default-y="10">Swing</words>
-    <sound tempo="126" dacapo="no"/>
-  </direction-type>
-  <sound tempo="126"/>
-</direction>
-<metronome>
-  <beat-unit>quarter</beat-unit>
-  <per-minute>126</per-minute>
-</metronome>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words default-y="10">Swing</words>
+        </direction-type>
+        <sound tempo="126"/>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <metronome>
+            <beat-unit>quarter</beat-unit>
+            <per-minute>126</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="126"/>
+      </direction>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Untuk *swing notation*, tetap tulis not sebagai 8th; swing di-handle playback
@@ -124,13 +153,38 @@ menyebar ke banyak elemen:
 ### 1.3.2 Warna — `<midi-instrument>` + `<sound>`
 
 ```xml
-<score-instrument id="P1-I1">
-  <instrument-name>Electric Guitar</instrument-name>
-</score-instrument>
-<midi-instrument id="P1-I1">
-  <midi-channel>1</midi-channel>
-  <midi-program>27</midi-program>
-</midi-instrument>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Electric Guitar</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Electric Guitar</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>27</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Program MIDI 0–127 adalah "wajah" genre di playback (piano=0, e.bass=33,
@@ -180,32 +234,45 @@ Contoh singkat: **Blues 12-bar → String Quartet**
 - Notasi: tulis swing dengan `equal` sharps; play back dengan swing dll.
 
 ```xml
-<!-- Contoh: turnarounds blues dalam string (fragmen) -->
-<measure number="1">
-  <attributes>
-    <time><beats>4</beats><beat-type>4</beat-type></time>
-    <key><fifths>0</fifths></key>
-  </attributes>
-  <note>
-    <pitch><step>E</step><octave>5</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>eighth</type>
-  </note>
-  <note>
-    <pitch><step>G</step><octave>4</octave></pitch>
-    <duration>6</duration>
-    <voice>2</voice>
-    <type>quarter</type>
-    <dot/>
-  </note>
-  <note>
-    <pitch><step>D</step><octave>3</octave></pitch>
-    <duration>4</duration>
-    <voice>4</voice>
-    <type>quarter</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>String Ensemble</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <!-- Contoh: turnarounds blues dalam string (fragmen) -->
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <key><fifths>0</fifths></key>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>6</duration>
+        <voice>2</voice>
+        <type>quarter</type>
+        <dot/>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>4</voice>
+        <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.6 Miskonsepsi Umum

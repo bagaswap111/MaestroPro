@@ -27,15 +27,34 @@ software: ["Dorico", "Sibelius", "Finale"]
 ### 3.2.1 Tempo Freeze
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <metronome parentheses="no">
-      <beat-unit>quarter</beat-unit>
-      <per-minute>120</per-minute>
-    </metronome>
-  </direction-type>
-  <sound tempo="120"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Conductor</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <metronome parentheses="no">
+            <beat-unit>quarter</beat-unit>
+            <per-minute>120</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="120"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 3.2.2 Tempo Map Deployment (Snow)
@@ -44,13 +63,32 @@ software: ["Dorico", "Sibelius", "Finale"]
 - Perubahan tempo sebelum bar berikutnya — `<offset>` divisions.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">accel. to 168</words>
-  </direction-type>
-  <offset>2</offset>
-  <sound tempo="168"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Conductor</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">accel. to 168</words>
+        </direction-type>
+        <offset>2</offset>
+        <sound tempo="168"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.3 Format Partitur Konduktor
@@ -66,19 +104,57 @@ software: ["Dorico", "Sibelius", "Finale"]
 ### 3.3.1 MusicXML: Cue Name
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">M21 — Jungle Chase</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Conductor</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">M21 — Jungle Chase</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 3.3.2 Bar numbering
 
 ```xml
-<print>
-  <measure-numbering>system</measure-numbering>
-</print>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Conductor</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <print>
+        <measure-numbering>system</measure-numbering>
+      </print>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.4 Hit Points & Streamers
@@ -87,11 +163,30 @@ software: ["Dorico", "Sibelius", "Finale"]
 - **Streamer** — garis vertikal; representasi teks.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">H! (hit on downbeat)</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Conductor</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">H! (hit on downbeat)</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Praktik: buat tabel mapping this:
@@ -112,13 +207,32 @@ Praktik: buat tabel mapping this:
 `<cue/>` menandai not sebagai cue (tampil kecil, tidak dibunyikan).
 
 ```xml
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>1</duration>
-  <type>eighth</type>
-  <cue/>
-  <stem>up</stem>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Conductor</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>eighth</type>
+        <cue/>
+        <stem>up</stem>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Beberapa software menampilkan cabe nota di belakang; name gagal di
@@ -139,9 +253,28 @@ MusicXML tak memiliki elemen SMPTE; software menaruh ekstensi di
 `<miscellaneous>`:
 
 ```xml
-<miscellaneous>
-  <miscellaneous-field name="frame-rate">24</miscellaneous-field>
-</miscellaneous>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Conductor</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <miscellaneous>
+        <miscellaneous-field name="frame-rate">24</miscellaneous-field>
+      </miscellaneous>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 3.7.2 Konversi Frame→Beat

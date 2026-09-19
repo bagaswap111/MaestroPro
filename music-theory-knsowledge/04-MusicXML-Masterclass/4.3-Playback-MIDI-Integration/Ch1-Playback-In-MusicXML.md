@@ -27,18 +27,39 @@ MusicXML bukan sengaja *playback engine*; ia menyimpan *hint*:
 ## 1.2 `<midi-instrument>` & `<midi-channel>`
 
 ```xml
-<score-part id="P1">
-  <score-instrument id="P1-I1">
-    <instrument-name>Violin</instrument-name>
-  </score-instrument>
-  <midi-instrument id="P1-I1">
-    <midi-channel>1</midi-channel>
-    <midi-program>40</midi-program>
-    <volume>78.7402</volume>
-    <pan>0</pan>
-    <name>Violins</name>
-  </midi-instrument>
-</score-part>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <score-instrument id="P1-I1">
+        <instrument-name>Violin</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>40</midi-program>
+        <volume>78.7402</volume>
+        <pan>0</pan>
+        <name>Violins</name>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<midi-channel>` 1–16 (API lihat 0-15).
@@ -64,12 +85,36 @@ MusicXML bukan sengaja *playback engine*; ia menyimpan *hint*:
 ## 1.3 `<sound>` — Atribut
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <dynamics><mp/></dynamics>
-  </direction-type>
-  <sound tempo="108" dynamics="70" pan="0"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+      <direction placement="above">
+        <direction-type>
+          <dynamics><mp/></dynamics>
+        </direction-type>
+        <sound tempo="108" dynamics="70" pan="0"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Atribut umum: `tempo` (BPM), `dynamics` (0-127), `pan`, `elevation`,
@@ -79,15 +124,63 @@ Atribut umum: `tempo` (BPM), `dynamics` (0-127), `pan`, `elevation`,
 ## 1.4 Per-Part: mute/solo
 
 ```xml
-<playback>
-  <mute on="yes"/>
-</playback>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+      <playback>
+        <mute on="yes"/>
+      </playback>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<playback>
-  <solo/>
-</playback>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+      <playback>
+        <solo/>
+      </playback>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Gunakan saat ekspor campuran per bagis (stem) — bukan saat mengedit.
@@ -97,14 +190,42 @@ Atribut umum: `tempo` (BPM), `dynamics` (0-127), `pan`, `elevation`,
 **<instrument-change>** mengganti patch di tengah part:
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <instrument-change>
-      <instrument-name>Flute Legato</instrument-name>
-    </instrument-change>
-  </direction-type>
-  <sound midi-program="74"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Flute</part-name>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>74</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+      <direction placement="above">
+        <direction-type>
+          <instrument-change>
+            <instrument-name>Flute Legato</instrument-name>
+          </instrument-change>
+        </direction-type>
+        <sound midi-program="74"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > **Key switch** (VST) TIDAK distandarkan di MusicXML murni. Banyak library
@@ -121,9 +242,38 @@ Atribut umum: `tempo` (BPM), `dynamics` (0-127), `pan`, `elevation`,
 Nilai distandarkan di `miscellaneous-field` bila software menyimpannya:
 
 ```xml
-<miscellaneous>
-  <miscellaneous-field name="cc11">64</miscellaneous-field>
-</miscellaneous>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">mod-wheel CC11 expression</words>
+        </direction-type>
+        <miscellaneous>
+          <miscellaneous-field name="cc11">64</miscellaneous-field>
+        </miscellaneous>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Ini nonstandar; runtime-availability tergantung app.
@@ -131,12 +281,36 @@ Nilai distandarkan di `miscellaneous-field` bila software menyimpannya:
 ## 1.7 Timing: `offset` & `duration`
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">subito p</words>
-  </direction-type>
-  <offset>2</offset>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">subito p</words>
+        </direction-type>
+        <offset>2</offset>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `offset` dalam divisions — geser momen (untuk subito/con sord. timing).

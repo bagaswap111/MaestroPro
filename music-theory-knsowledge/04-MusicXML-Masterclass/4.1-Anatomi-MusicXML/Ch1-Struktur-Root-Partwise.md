@@ -28,25 +28,46 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="4.0">
   <work>
-    <work-title>Simfoni No. 1</work-title>
-    <work-number>Op. 1</work-number>
+  <work-title>Simfoni No. 1</work-title>
+  <work-number>Op. 1</work-number>
   </work>
   <identification>
-    <creator type="composer">J. S. Bach</creator>
-    <creator type="poet">—</creator>
-    <rights>Public Domain</rights>
-    <encoding>
-      <software>Dorico 5.0</software>
-      <encoding-date>2026-01-15</encoding-date>
-      <supports element="accidental" type="yes"/>
-    </encoding>
+  <creator type="composer">J. S. Bach</creator>
+  <creator type="poet">—</creator>
+  <rights>Public Domain</rights>
+  <encoding>
+  <software>Dorico 5.0</software>
+  <encoding-date>2026-01-15</encoding-date>
+  <supports element="accidental" type="yes"/>
+  </encoding>
   </identification>
   <defaults>
-    <scaling>...</scaling>
-    <page-layout>...</page-layout>
+  <scaling>...</scaling>
+  <page-layout>...</page-layout>
   </defaults>
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch><step>C</step><octave>4</octave></pitch>
+      <duration>4</duration>
+      <type>whole</type>
+      </note>
+    </measure>
+  </part>
 </score-partwise>
 ```
 
@@ -68,6 +89,9 @@ Daftar instrumen — urutan = urutan score staves. Gugus dipanggil
 `<part-group>`.
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
 <part-list>
   <part-group number="1" type="start">
     <group-name>Woodwinds</group-name>
@@ -95,6 +119,22 @@ Daftar instrumen — urutan = urutan score staves. Gugus dipanggil
   </score-part>
   <part-group number="1" type="stop"/>
 </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch><step>C</step><octave>4</octave></pitch>
+      <duration>4</duration>
+      <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `id` part (P1, P2, ...) adalah **kunci referensi** ke `<part id="P1">`.
@@ -103,24 +143,34 @@ Daftar instrumen — urutan = urutan score staves. Gugus dipanggil
 ## 4.4 Struktur `<part>` dan `<measure>`
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
 <part id="P1">
-  <measure number="1" implicit="no" non-controlling="no">
-    <attributes>
-      <divisions>2</divisions>
-      <key><fifths>0</fifths></key>
-      <time><beats>4</beats><beat-type>4</beat-type></time>
-      <clef><sign>G</sign><line>2</line></clef>
-    </attributes>
-    <note>
-      <pitch><step>C</step><octave>4</octave></pitch>
-      <duration>2</duration>
-      <type>quarter</type>
-    </note>
-  </measure>
-  <measure number="2">
-    ...
-  </measure>
+<measure number="1" implicit="no" non-controlling="no">
+<attributes>
+<divisions>2</divisions>
+<key><fifths>0</fifths></key>
+<time><beats>4</beats><beat-type>4</beat-type></time>
+<clef><sign>G</sign><line>2</line></clef>
+</attributes>
+<note>
+<pitch><step>C</step><octave>4</octave></pitch>
+<duration>2</duration>
+<type>quarter</type>
+</note>
+</measure>
+<measure number="2">
+...
+</measure>
 </part>
+</score-partwise>
 ```
 
 - `implicit="yes"` → birama tanpa nomor (pickup bar awal).
@@ -133,14 +183,33 @@ Daftar instrumen — urutan = urutan score staves. Gugus dipanggil
 Diukur dalam *tenths of staff space* relatif terhadap halaman. Format:
 
 ```xml
-<credit page="1">
-  <credit-type>title</credit-type>
-  <credit-words default-x="300" default-y="600" font-size="24" font-style="bold">Judul Karya</credit-words>
-</credit>
-<credit page="1">
-  <credit-type>composer</credit-type>
-  <credit-words default-x="70" default-y="120">Diteliti & diarans.</credit-words>
-</credit>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <credit page="1">
+      <credit-type>title</credit-type>
+      <credit-words default-x="300" default-y="600" font-size="24" font-style="bold">Judul Karya</credit-words>
+      </credit>
+      <credit page="1">
+      <credit-type>composer</credit-type>
+      <credit-words default-x="70" default-y="120">Diteliti & diarans.</credit-words>
+      </credit>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<credit-type>`: `title`, `subtitle`, `composer`, `arranger`, `lyricist`,

@@ -31,7 +31,7 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 | Pathet Sanga | Slendro | ringan, terbuka |
 | Pathet Manyura | Slendro | klimaks, akhir |
 
-> Pathet mengatur *penggunaan nada* dan hiérarchi nada penting — mirip mode
+> Pathet mengatur *penggunaan nada* dan hierarki nada penting — mirip mode
 > tapi berbasis laras spesifik.
 
 ## 1.3 Notasi Gamelan — Kepatihan
@@ -52,27 +52,108 @@ Contoh baris slendro `1 2 3 - 5 6 5 3`.
 ### 1.4.1 Custom Instrument
 
 ```xml
-<score-part id="P1">
-  <part-name>Saron</part-name>
-  <score-instrument id="P1-I1">
-    <instrument-name>Saron (Jawa)</instrument-name>
-    <instrument-sound>pitched</instrument-sound>
-  </score-instrument>
-  <midi-instrument id="P1-I1">
-    <midi-channel>1</midi-channel>
-    <midi-program>0</midi-program>
-  </midi-instrument>
-</score-part>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Saron</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Saron (Jawa)</instrument-name>
+        <instrument-sound>pitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>0</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 1.4.2 Approksimasi Tuning
 
 ```xml
-<attributes>
-  <transpose>
-    <chromatic>0</chromatic>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Saron</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Saron (Jawa)</instrument-name>
+        <instrument-sound>pitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>0</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <chromatic>0</chromatic>
+        </transpose>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Slendro tak bisa direpresentasi sempurna dalam 12-ET; gunakan sample
@@ -81,11 +162,58 @@ Contoh baris slendro `1 2 3 - 5 6 5 3`.
 ### 1.4.3 Menandai Laras/Pathet
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Laras Slendro · Pathet Nem</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Saron</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Saron (Jawa)</instrument-name>
+        <instrument-sound>pitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>0</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Laras Slendro · Pathet Nem</words>
+        </direction-type>
+      </direction>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Struktur Form Gamelan

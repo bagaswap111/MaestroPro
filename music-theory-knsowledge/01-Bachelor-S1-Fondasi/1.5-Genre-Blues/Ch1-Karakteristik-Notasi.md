@@ -56,23 +56,60 @@ Base line: D7 (bar 9) – C# (approach) – C7 (bar 10) – G7 (turnaround).
 Voice 1: A–C#–E–G (D9) → G–A (C6). Menulis pakai `<harmony>` + `<degree>`.
 
 ```xml
-<measure number="9">
-  <harmony>
-    <root><root-step>D</root-step></root>
-    <kind>dominant</kind>
-    <degree>
-      <degree-value>9</degree-value>
-      <degree-alter>0</degree-alter>
-      <degree-type>add</degree-type>
-    </degree>
-  </harmony>
-</measure>
-<measure number="11">
-  <harmony>
-    <root><root-step>G</root-step></root>
-    <kind>dominant</kind>
-  </harmony>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="9">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+        <root><root-step>D</root-step></root>
+        <kind>dominant</kind>
+        <degree>
+          <degree-value>9</degree-value>
+          <degree-alter>0</degree-alter>
+          <degree-type>add</degree-type>
+        </degree>
+      </harmony>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+    <measure number="10">
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+    <measure number="11">
+      <harmony>
+        <root><root-step>G</root-step></root>
+        <kind>dominant</kind>
+      </harmony>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.4 Blue Notes, Bends dan Glissando di Notasi
@@ -86,25 +123,51 @@ pasti). Arranger menuliskan:
 - **Half-valve/teknik:** text expression.
 
 ```xml
-<note>
-  <grace steal-time-previous="1/3"/>
-  <pitch><step>E</step><alter>-1</alter><octave>4</octave></pitch>
-  <duration>1</duration>
-  <type>16th</type>
-  <accidental>flat</accidental>
-  <notations>
-    <slur type="start" number="1"/>
-  </notations>
-</note>
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>1</duration>
-  <type>16th</type>
-  <notations>
-    <slur type="stop" number="1"/>
-    <glissando type="start" number="1" line-type="wavy"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <grace steal-time-previous="1/3"/>
+        <pitch><step>E</step><alter>-1</alter><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <accidental>flat</accidental>
+        <notations>
+          <slur type="start" number="1"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <notations>
+          <slur type="stop" number="1"/>
+          <glissando type="start" number="1" line-type="wavy"/>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>14</duration>
+        <voice>1</voice>
+        <type>half</type>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Shuffle vs Straight — Menulis Swing Blues
@@ -119,16 +182,46 @@ Notasi shuffle: tulis 8th triplet (atau not 8th + `swing` dalam playback).
 Di software: MuseScore `Swing playback %`; Dorico `Swing` text directive.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words>Shuffle (J = 104)</words>
-  </direction-type>
-  <sound tempo="104"/>
-</direction>
-<metronome>
-  <beat-unit>quarter</beat-unit>
-  <per-minute>104</per-minute>
-</metronome>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words>Shuffle (J = 104)</words>
+        </direction-type>
+        <sound tempo="104"/>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <metronome>
+            <beat-unit>quarter</beat-unit>
+            <per-minute>104</per-minute>
+          </metronome>
+        </direction-type>
+        <sound tempo="104"/>
+      </direction>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.6 Ansambel Inti Blues
@@ -149,18 +242,45 @@ Stab = akor pendek 8th/16th pada *off-beat*. Tulis semua part bersam waktu
 birama, tandai `staccatissimo` + `accent`.
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>5</octave></pitch>
-  <duration>1</duration>
-  <voice>1</voice>
-  <type>16th</type>
-  <notations>
-    <articulations>
-      <accent/>
-      <staccatissimo/>
-    </articulations>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Trumpet</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <notations>
+          <articulations>
+            <accent/>
+            <staccatissimo/>
+          </articulations>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>15</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.7 Transkripsi Cepat Blues (Workflow)

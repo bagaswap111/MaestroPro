@@ -23,15 +23,34 @@ Setiap nada bernada punya `<pitch>`:
 | `<octave>` | 0–9 (umum 1–7) | `4` |
 
 ```xml
-<note>
-  <pitch>
-    <step>F</step>
-    <alter>1</alter>
-    <octave>4</octave>
-  </pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch>
+      <step>F</step>
+      <alter>1</alter>
+      <octave>4</octave>
+      </pitch>
+      <duration>2</duration>
+      <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<alter>` menentukan *sounding pitch*; `<accidental>` hanya **tampilan**
@@ -52,23 +71,61 @@ Setiap nada bernada punya `<pitch>`:
 ### 4.2.1 `<rest>`
 
 ```xml
-<note>
-  <rest/>
-  <duration>4</duration>
-  <voice>1</voice>
-  <type>whole</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <rest/>
+      <duration>4</duration>
+      <voice>1</voice>
+      <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<note>
-  <rest measure="yes">
-    <display-step>C</display-step>
-    <display-octave>4</display-octave>
-  </rest>
-  <duration>4</duration>
-  <type>whole</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <rest measure="yes">
+      <display-step>C</display-step>
+      <display-octave>4</display-octave>
+      </rest>
+      <duration>4</duration>
+      <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `measure="yes"` = *full-measure rest*; posisi visual boleh diatur dengan
@@ -77,15 +134,34 @@ Setiap nada bernada punya `<pitch>`:
 ### 4.2.2 `<unpitched>`
 
 ```xml
-<note>
-  <unpitched>
-    <display-step>C</display-step>
-    <display-octave>5</display-octave>
-  </unpitched>
-  <duration>2</duration>
-  <instrument id="P1-S"/>
-  <type>eighth</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <unpitched>
+      <display-step>C</display-step>
+      <display-octave>5</display-octave>
+      </unpitched>
+      <duration>2</duration>
+      <instrument id="P1-S"/>
+      <type>eighth</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 4.3 Durasi & Type
@@ -105,12 +181,31 @@ Setiap nada bernada punya `<pitch>`:
 ### 4.3.2 Dotted Values
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>4</octave></pitch>
-  <duration>3</duration>
-  <type>quarter</type>
-  <dot/>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch><step>E</step><octave>4</octave></pitch>
+      <duration>3</duration>
+      <type>quarter</type>
+      <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<dot/>` boleh berulang (double-dot). MusicXML menghitung durasi, sedangkan
@@ -122,23 +217,42 @@ Setiap nada bernada punya `<pitch>`:
 - Nada ke-2 dst diberi `<chord/>`.
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-</note>
-<note>
-  <pitch><step>E</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <chord/>
-</note>
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <chord/>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch><step>C</step><octave>4</octave></pitch>
+      <duration>2</duration>
+      <type>quarter</type>
+      </note>
+      <note>
+      <pitch><step>E</step><octave>4</octave></pitch>
+      <duration>2</duration>
+      <type>quarter</type>
+      <chord/>
+      </note>
+      <note>
+      <pitch><step>G</step><octave>4</octave></pitch>
+      <duration>2</duration>
+      <type>quarter</type>
+      <chord/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Aturan: semua nilah seri `<chord/>` harus **durasi sama** dan tidak boleh ada
@@ -149,22 +263,41 @@ Setiap nada bernada punya `<pitch>`:
 ### 4.5.1 Tie
 
 ```xml
-<note>
-  <pitch><step>F</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <tie type="start"/>
-  <notations>
-    <tied type="start"/>
-  </notations>
-</note>
-<note>
-  <pitch><step>F</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <tie type="stop"/>
-  <notations>
-    <tied type="stop"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch><step>F</step><octave>4</octave></pitch>
+      <duration>2</duration>
+      <tie type="start"/>
+      <notations>
+      <tied type="start"/>
+      </notations>
+      </note>
+      <note>
+      <pitch><step>F</step><octave>4</octave></pitch>
+      <duration>2</duration>
+      <tie type="stop"/>
+      <notations>
+      <tied type="stop"/>
+      </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<tie>` = playback; `<tied>` (dalam `<notations>`) = kurva visual. Keduanya
@@ -173,17 +306,36 @@ Setiap nada bernada punya `<pitch>`:
 ### 4.5.2 Grace Notes
 
 ```xml
-<note>
-  <grace slash="yes"/>
-  <pitch><step>D</step><octave>5</octave></pitch>
-  <type>eighth</type>
-  <stem>up</stem>
-</note>
-<note>
-  <pitch><step>C</step><octave>5</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <grace slash="yes"/>
+      <pitch><step>D</step><octave>5</octave></pitch>
+      <type>eighth</type>
+      <stem>up</stem>
+      </note>
+      <note>
+      <pitch><step>C</step><octave>5</octave></pitch>
+      <duration>2</duration>
+      <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `grace` boleh punya `slash="yes"`, `make-time="half"` (mencuri separuh),
@@ -192,13 +344,32 @@ Setiap nada bernada punya `<pitch>`:
 ## 4.6 Voice/Staff/Normal & Musis
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <voice>1</voice>
-  <type>quarter</type>
-  <staff>1</staff>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch><step>C</step><octave>4</octave></pitch>
+      <duration>2</duration>
+      <voice>1</voice>
+      <type>quarter</type>
+      <staff>1</staff>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<voice>` — indeks suara (polyphony).
@@ -209,12 +380,31 @@ Setiap nada bernada punya `<pitch>`:
 Dalam hitungan bersamaan, `<time-modification>` dipakai:
 
 ```xml
-<norm k>
-  <time-modification>
-    <actual-notes>3</actual-notes>
-    <normal-notes>2</normal-notes>
-  </time-modification>
-</norm>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <norm k>
+      <time-modification>
+      <actual-notes>3</actual-notes>
+      <normal-notes>2</normal-notes>
+      </time-modification>
+      </norm>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 (Triplet: 3 actual = 2 normal.)
@@ -222,13 +412,32 @@ Dalam hitungan bersamaan, `<time-modification>` dipakai:
 ## 4.7 Tampilan: Accidental, Notehead, Colour
 
 ```xml
-<note>
-  <pitch><step>B</step><alter>-0.5</alter><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <accidental>quarter-flat</accidental>
-  <notehead>diamond</notehead>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <pitch><step>B</step><alter>-0.5</alter><octave>4</octave></pitch>
+      <duration>2</duration>
+      <type>quarter</type>
+      <accidental>quarter-flat</accidental>
+      <notehead>diamond</notehead>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<accidental>`: `natural`, `sharp`, `flat`, `quarter-flat`, `double-sharp`,
@@ -239,23 +448,42 @@ Dalam hitungan bersamaan, `<time-modification>` dipakai:
 ## 4.8 Struktur Lengkap Contoh `<note>`
 
 ```xml
-<note>
-  <chord/>
-  <grace/>
-  <pitch>
-    <step>A</step>
-    <alter>0</alter>
-    <octave>5</octave>
-  </pitch>
-  <duration>2</duration>
-  <tie type="start"/>
-  <voice>2</voice>
-  <type>quarter</type>
-  <accidental>natural</accidental>
-  <notations>
-    <tied type="start"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+      <divisions>4</divisions>
+      <key><fifths>0</fifths></key>
+      <time><beats>4</beats><beat-type>4</beat-type></time>
+      <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+      <chord/>
+      <grace/>
+      <pitch>
+      <step>A</step>
+      <alter>0</alter>
+      <octave>5</octave>
+      </pitch>
+      <duration>2</duration>
+      <tie type="start"/>
+      <voice>2</voice>
+      <type>quarter</type>
+      <accidental>natural</accidental>
+      <notations>
+      <tied type="start"/>
+      </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 4.9 Checklist Note Element

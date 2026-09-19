@@ -58,10 +58,37 @@ Pemilihan tiap sax sesuai *tessitura*:
 ### 1.2.3 MusicXML: Drop 2 dalam Part Sax (konser pitch)
 
 ```xml
-<note><pitch><step>G</step><octave>3</octave></pitch><duration>4</duration><type>whole</type><voice>1</voice></note>
-<note><pitch><step>E</step><octave>4</octave></pitch><duration>4</duration><type>whole</type><voice>2</voice></note>
-<note><pitch><step>B♭</step><octave>4</octave></pitch><duration>4</duration><type>whole</type><voice>3</voice></note>
-<note><pitch><step>C</step><octave>5</octave></pitch><duration>4</duration><type>whole</type><voice>4</voice></note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+    <measure number="2">
+      <note><pitch><step>G</step><octave>3</octave></pitch><duration>4</duration><type>whole</type><voice>1</voice></note>
+    </measure>
+    <measure number="3">
+      <note><pitch><step>E</step><octave>4</octave></pitch><duration>4</duration><type>whole</type><voice>2</voice></note>
+    </measure>
+    <measure number="4">
+      <note><pitch><step>B</step><accidental>flat</accidental><octave>4</octave></pitch><duration>4</duration><type>whole</type><voice>3</voice></note>
+    </measure>
+    <measure number="5">
+      <note><pitch><step>C</step><octave>5</octave></pitch><duration>4</duration><type>whole</type><voice>4</voice></note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Tulis *konser pitch* dalam drafting voicing, lalu bagian tiap sax diberikan
@@ -84,11 +111,30 @@ Pemilihan tiap sax sesuai *tessitura*:
 ### 1.3.3 MusicXML: Shout Chorus Direction
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Shout Chorus</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Shout Chorus</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.4 Rhythm Section
@@ -99,10 +145,29 @@ Pemilihan tiap sax sesuai *tessitura*:
 - Notasi ringkas: harmony symbol + slash rhythm.
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>D</root-step></root>
-  <kind text="m9">minor-ninth</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>D</root-step></root>
+        <kind text="m9">minor-ninth</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 1.4.2 Walking Bass
@@ -130,16 +195,35 @@ Pemilihan tiap sax sesuai *tessitura*:
 ### 1.5.1 Notasi Aksen Kicks
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>5</octave></pitch>
-  <duration>1</duration>
-  <type>eighth</type>
-  <notations>
-    <articulations>
-      <accent/>
-    </articulations>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>1</duration>
+        <type>eighth</type>
+        <notations>
+          <articulations>
+            <accent/>
+          </articulations>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.6 Background vs Foreground
@@ -157,14 +241,28 @@ Pemilihan tiap sax sesuai *tessitura*:
 4. Layout tanpa rest panjang tak perlu (`cue`/`cutaway`).
 
 ```xml
-<part-list>
-  <score-part id="sx1"><part-abbreviation>S.1</part-abbreviation></score-part>
-  <score-part id="sx2"><part-abbreviation>S.2</part-abbreviation></score-part>
-  <score-part id="trp1"><part-abbreviation>Tpt.1</part-abbreviation></score-part>
-  <score-part id="tbn1"><part-abbreviation>Tbn.1</part-abbreviation></score-part>
-  <score-part id="bs"><part-abbreviation>Bass</part-abbreviation></score-part>
-  <score-part id="dr"><part-abbreviation>Drs.</part-abbreviation></score-part>
-</part-list>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="sx1"><part-abbreviation>S.1</part-abbreviation></score-part>
+    <score-part id="sx2"><part-abbreviation>S.2</part-abbreviation></score-part>
+    <score-part id="trp1"><part-abbreviation>Tpt.1</part-abbreviation></score-part>
+    <score-part id="tbn1"><part-abbreviation>Tbn.1</part-abbreviation></score-part>
+    <score-part id="bs"><part-abbreviation>Bass</part-abbreviation></score-part>
+    <score-part id="dr"><part-abbreviation>Drs.</part-abbreviation></score-part>
+  </part-list>
+  <part id="sx1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.8 Checklist Arranging

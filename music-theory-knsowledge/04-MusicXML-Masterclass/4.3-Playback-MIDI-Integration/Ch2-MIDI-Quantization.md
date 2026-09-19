@@ -102,12 +102,31 @@ key signature). music21 default menentukan via key algorithm.
 ### 2.5.1 Contoh XML dari MIDI 60 (durasi quarter)
 
 ```xml
-<note>
-  <pitch><step>C</step><alternate>0</alternate><octave>4</octave></pitch>
-  <duration>2</duration>
-  <voice>1</voice>
-  <type>quarter</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><alternate>0</alternate><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.6 Percussion MIDI
@@ -117,11 +136,36 @@ key signature). music21 default menentukan via key algorithm.
 - Hindari *double hit* accidental saat konversi.
 
 ```xml
-<midi-instrument id="P19-S">
-  <midi-channel>10</midi-channel>
-  <midi-program>0</midi-program>
-  <midi-unpitched>38</midi-unpitched>
-</midi-instrument>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P19">
+      <part-name>Snare Drum</part-name>
+      <midi-instrument id="P19-S">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>38</midi-unpitched>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P19">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>Percussion</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <unpitched><display-step>F</display-step><display-line>3</display-line></unpitched>
+        <duration>4</duration>
+        <type>whole</type>
+        <instrument id="P19-S"/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.7 Legato vs Staccato
@@ -134,16 +178,35 @@ key signature). music21 default menentukan via key algorithm.
 | Human timing | snap grid (hitungan) |
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <notations>
-    <articulations>
-      <staccato/>
-    </articulations>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>quarter</type>
+        <notations>
+          <articulations>
+            <staccato/>
+          </articulations>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.8 Swing & Tuplets
@@ -151,15 +214,34 @@ key signature). music21 default menentukan via key algorithm.
 Swing feel dari MIDI ∼ triplets; tulis time-modification:
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <time-modification>
-    <actual-notes>3</actual-notes>
-    <normal-notes>2</normal-notes>
-  </time-modification>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>quarter</type>
+        <time-modification>
+          <actual-notes>3</actual-notes>
+          <normal-notes>2</normal-notes>
+        </time-modification>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Alternatif: simpan membagi grid straight lalu tambahkan *swing performance*

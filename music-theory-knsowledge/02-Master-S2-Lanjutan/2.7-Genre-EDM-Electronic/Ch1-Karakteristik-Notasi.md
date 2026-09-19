@@ -41,14 +41,33 @@ Riser (8) – Drop (32) – Outro (8)`
 Di MusicXML: metronome `<per-minute>` + optional tempo text.
 
 ```xml
-<direction placement="above">
-  <direction-type><words>Drop — 128 BPM</words></direction-type>
-  <sound tempo="128"/>
-</direction>
-<metronome>
-  <beat-unit>quarter</beat-unit>
-  <per-minute>128</per-minute>
-</metronome>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Synthesizer</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type><words>Drop — 128 BPM</words></direction-type>
+        <sound tempo="128"/>
+      </direction>
+      <metronome>
+        <beat-unit>quarter</beat-unit>
+        <per-minute>128</per-minute>
+      </metronome>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.3 Sintesis = Timbre: Program & Bend Notasi
@@ -77,14 +96,33 @@ triage (bukan semua 16th — readability), dengan `direction` "AI arp".
   direction.
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>1</octave></pitch>
-  <duration>4</duration>
-  <type>quarter</type>
-  <notations>
-    <glissando type="start"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Synthesizer</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>1</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+        <notations>
+          <glissando type="start"/>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Arpeggiator dan Chord Stab
@@ -93,25 +131,44 @@ triage (bukan semua 16th — readability), dengan `direction` "AI arp".
 - **Chord stabs (house)** — semua not serentak di off-beat: `<chord>`.
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>16th</type>
-  <notations><articulations><staccato/></articulations></notations>
-</note>
-<note>
-  <pitch><step>E</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>16th</type>
-  <chord/>
-  <notations><articulations><staccato/></articulations></notations>
-</note>
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>16th</type>
-  <chord/>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Synthesizer</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>16th</type>
+        <notations><articulations><staccato/></articulations></notations>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>16th</type>
+        <chord/>
+        <notations><articulations><staccato/></articulations></notations>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>16th</type>
+        <chord/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.6 Miskonsepsi Umum

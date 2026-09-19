@@ -60,59 +60,116 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ### 4.2.2 Aplikasi MusicXML: Snare + Bass Drum dalam Satu Part
 
 ```xml
-<part-list>
-  <score-part id="P19">
-    <part-name>Percussion</part-name>
-    <part-abbreviation>Perc.</part-abbreviation>
-    <score-instrument id="P19-S">
-      <instrument-name>Snare Drum</instrument-name>
-      <instrument-sound>unpitched</instrument-sound>
-    </score-instrument>
-    <score-instrument id="P19-B">
-      <instrument-name>Bass Drum</instrument-name>
-      <instrument-sound>unpitched</instrument-sound>
-    </score-instrument>
-    <midi-instrument id="P19-S">
-      <midi-channel>10</midi-channel>
-      <midi-program>0</midi-program>
-      <midi-unpitched>38</midi-unpitched>
-    </midi-instrument>
-    <midi-instrument id="P19-B">
-      <midi-channel>10</midi-channel>
-      <midi-program>0</midi-program>
-      <midi-unpitched>36</midi-unpitched>
-    </midi-instrument>
-  </score-part>
-</part-list>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P19">
+      <part-name>Percussion</part-name>
+      <part-abbreviation>Perc.</part-abbreviation>
+      <score-instrument id="P19-S">
+        <instrument-name>Snare Drum</instrument-name>
+        <instrument-sound>unpitched</instrument-sound>
+      </score-instrument>
+      <score-instrument id="P19-B">
+        <instrument-name>Bass Drum</instrument-name>
+        <instrument-sound>unpitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P19-S">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>38</midi-unpitched>
+      </midi-instrument>
+      <midi-instrument id="P19-B">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>36</midi-unpitched>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P19">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <clef><sign>percussion</sign></clef>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>C</display-step>
+          <display-octave>5</display-octave>
+        </unpitched>
+        <duration>2</duration>
+        <instrument id="P19-S"/>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem>up</stem>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.2.3 Not dengan `<instrument>` Attribution
 
 ```xml
-<measure number="1">
-  <note>
-    <unpitched>
-      <display-step>C</display-step>
-      <display-octave>5</display-octave>
-    </unpitched>
-    <duration>2</duration>
-    <instrument id="P19-S"/>
-    <voice>1</voice>
-    <type>eighth</type>
-    <stem>up</stem>
-  </note>
-  <note>
-    <unpitched>
-      <display-step>C</display-step>
-      <display-octave>3</display-octave>
-    </unpitched>
-    <duration>2</duration>
-    <instrument id="P19-B"/>
-    <voice>2</voice>
-    <type>eighth</type>
-    <stem>down</stem>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P19">
+      <part-name>Percussion</part-name>
+      <part-abbreviation>Perc.</part-abbreviation>
+      <score-instrument id="P19-S">
+        <instrument-name>Snare Drum</instrument-name>
+        <instrument-sound>unpitched</instrument-sound>
+      </score-instrument>
+      <score-instrument id="P19-B">
+        <instrument-name>Bass Drum</instrument-name>
+        <instrument-sound>unpitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P19-S">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>38</midi-unpitched>
+      </midi-instrument>
+      <midi-instrument id="P19-B">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>36</midi-unpitched>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P19">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <clef><sign>percussion</sign></clef>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>C</display-step>
+          <display-octave>5</display-octave>
+        </unpitched>
+        <duration>2</duration>
+        <instrument id="P19-S"/>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem>up</stem>
+      </note>
+      <note>
+        <unpitched>
+          <display-step>C</display-step>
+          <display-octave>3</display-octave>
+        </unpitched>
+        <duration>2</duration>
+        <instrument id="P19-B"/>
+        <voice>2</voice>
+        <type>eighth</type>
+        <stem>down</stem>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<instrument>` menghubungkan not dengan salah satu `score-instrument` —
@@ -137,22 +194,49 @@ Posisi staff yang umum (satu staff, clef percussion):
 ### 4.3.1 Contoh Hi-hat: 16-beat antara kick/snare
 
 ```xml
-<note>
-  <unpitched>
-    <display-step>G</display-step>
-    <display-octave>5</display-octave>
-  </unpitched>
-  <duration>1</duration>
-  <instrument id="P19-H"/>
-  <voice>1</voice>
-  <type>16th</type>
-  <stem>up</stem>
-  <notations>
-    <articulations>
-      <staccato/>
-    </articulations>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P19">
+      <part-name>Percussion</part-name>
+      <part-abbreviation>Perc.</part-abbreviation>
+      <score-instrument id="P19-H">
+        <instrument-name>Hi-hat</instrument-name>
+        <instrument-sound>unpitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P19-H">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>42</midi-unpitched>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P19">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <clef><sign>percussion</sign></clef>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>G</display-step>
+          <display-octave>5</display-octave>
+        </unpitched>
+        <duration>1</duration>
+        <instrument id="P19-H"/>
+        <voice>1</voice>
+        <type>16th</type>
+        <stem>up</stem>
+        <notations>
+          <articulations>
+            <staccato/>
+          </articulations>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 4.4 Perkusi Bernada — Timpani & Mallet
@@ -163,23 +247,66 @@ Posisi staff yang umum (satu staff, clef percussion):
 - F-clef, konser pitch.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">D – A</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P18">
+      <part-name>Timpani</part-name>
+    </score-part>
+  </part-list>
+  <part id="P18">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">D – A</words>
+        </direction-type>
+      </direction>
+      <note>
+        <pitch><step>D</step><octave>2</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.4.2 Timpani Note
 
 ```xml
-<note>
-  <pitch><step>D</step><octave>2</octave></pitch>
-  <duration>4</duration>
-  <instrument id="P18-I1"/>
-  <voice>1</voice>
-  <type>whole</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P18">
+      <part-name>Timpani</part-name>
+    </score-part>
+  </part-list>
+  <part id="P18">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>D</step><octave>2</octave></pitch>
+        <duration>4</duration>
+        <instrument id="P18-I1"/>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.4.3 Mallet: Xylophone
@@ -190,23 +317,72 @@ Posisi staff yang umum (satu staff, clef percussion):
 ## 4.5 Simbol Khusus & Teknik
 
 ```xml
-<notations>
-  <articulations>
-    <accent/>
-    <staccato/>
-    <tenuto/>
-  </articulations>
-</notations>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+        <notations>
+          <articulations>
+            <accent/>
+            <staccato/>
+            <tenuto/>
+          </articulations>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Roll (buzz) snare — tremolo:
 
 ```xml
-<notations>
-  <ornaments>
-    <tremolo type="start">2</tremolo>
-  </ornaments>
-</notations>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P20">
+      <part-name>Snare Drum</part-name>
+    </score-part>
+  </part-list>
+  <part id="P20">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <clef><sign>percussion</sign></clef>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>C</display-step>
+          <display-octave>5</display-octave>
+        </unpitched>
+        <duration>16</duration>
+        <type>whole</type>
+        <notations>
+          <ornaments>
+            <tremolo type="start">2</tremolo>
+          </ornaments>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 4.6 Percussion Map di Software

@@ -33,33 +33,91 @@ Tahun portofolio klasik: mengubah ballad pop jadi arrangement kamar.
 ### 2.2.1 Contoh Notasi Chorus Pop di String
 
 ```xml
-<measure number="1">
-  <attributes>
-    <time><beats>4</beats><beat-type>4</beat-type></time>
-    <key><fifths>-1</fifths></key> <!-- F mayor -->
-  </attributes>
-  <note>
-    <pitch><step>A</step><octave>5</octave></pitch>
-    <duration>4</duration>
-    <voice>1</voice>
-    <type>quarter</type>
-  </note>
-  <note>
-    <pitch><step>F</step><octave>4</octave></pitch>
-    <duration>8</duration>
-    <voice>2</voice>
-    <type>half</type>
-  </note>
-  <note>
-    <pitch><step>C</step><octave>3</octave></pitch>
-    <duration>8</duration>
-    <voice>4</voice>
-    <type>half</type>
-    <notations>
-      <technical><pluck>2</pluck></technical>
-    </notations>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin 1</part-name>
+    </score-part>
+    <score-part id="P2">
+      <part-name>Viola</part-name>
+    </score-part>
+    <score-part id="P4">
+      <part-name>Cello</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <key><fifths>-1</fifths></key> <!-- F mayor -->
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+  <part id="P2">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>-1</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>C</sign><line>3</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>8</duration>
+        <voice>2</voice>
+        <type>half</type>
+      </note>
+    </measure>
+  </part>
+  <part id="P4">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>-1</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>8</duration>
+        <voice>4</voice>
+        <type>half</type>
+        <notations>
+          <technical><pluck>2</pluck></technical>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>8</duration>
+        <voice>4</voice>
+        <type>half</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 **Prinsip:** vokal → violin 1 (jangan menutupi dengan string lainnya);
@@ -78,24 +136,50 @@ Sax/trumpet section "menelan" energi rock:
 ### 2.3.1 Fall (Leap Down) untuk Trumpet
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>5</octave></pitch>
-  <duration>2</duration>
-  <voice>1</voice>
-  <type>8th</type>
-  <notations>
-    <glissando type="start" number="1" line-type="wavy"/>
-  </notations>
-</note>
-<note>
-  <rest/>
-  <duration>2</duration>
-  <voice>1</voice>
-  <type>8th</type>
-  <notations>
-    <glissando type="stop" number="1"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Trumpet</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>8th</type>
+        <notations>
+          <glissando type="start" number="1" line-type="wavy"/>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>8th</type>
+        <notations>
+          <glissando type="stop" number="1"/>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.4 Adaptasi 3: Pop-EDM → Full Orchestral
@@ -109,14 +193,41 @@ Teknik *orchestral pop cover* (lagu-lagu aransemen orkes):
 5. **Chorus drop → tutti + glockenspiel** (octave shimmer).
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>6</octave></pitch>
-  <duration>2</duration>
-  <voice>1</voice>
-  <type>8th</type>
-  <instrument id="P10-I1"/>
-  <notations><articulations><doit/></articulations></notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Glockenspiel</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>6</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>8th</type>
+        <instrument id="P10-I1"/>
+        <notations><articulations><doit/></articulations></notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>14</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.5 Checklist Adaptasi Pop/Rock

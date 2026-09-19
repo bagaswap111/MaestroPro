@@ -19,21 +19,59 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 keduanya instruksi + kembali `arco`.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">col legno battuto</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">col legno battuto</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Kembali:
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">arco</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">arco</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.2 Sul Ponticello & Sul Tasto
@@ -45,11 +83,30 @@ Kembali:
 | *Molto sul pont.* | `p.p.s.p.` | histeris |
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">sul pont.</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">sul pont.</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Gabungan teknik: `sul ponticello + tremolo` — tumpuk instruksi,
@@ -60,16 +117,35 @@ Kembali:
 Pizz senar ditekan & dilepas — "snap" ke fingerboard.
 
 ```xml
-<note>
-  <pitch><step>G</step><octave>3</octave></pitch>
-  <duration>1</duration>
-  <type>quarter</type>
-  <notations>
-    <articulations>
-      <snap-pizzicato/>
-    </articulations>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <notations>
+          <articulations>
+            <snap-pizzicato/>
+          </articulations>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.4 Behind-the-Bridge & Teknik Ekstrim
@@ -82,12 +158,30 @@ Pizz senar ditekan & dilepas — "snap" ke fingerboard.
 Scordatura MusicXML pattern:
 
 ```xml
-<attributes>
-  <staff-tuning number="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <staff-tuning number="1">
     <tuning-step>G</tuning-step>
     <tuning-octave>3</tuning-octave>
   </staff-tuning>
-</attributes>
+      </attributes>
+
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.5 Harmonics Lanjutan
@@ -97,15 +191,34 @@ Scordatura MusicXML pattern:
 - Fondasi (bawah) + diamond (atas) dihubungkan.
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>3</octave></pitch>
-  <duration>2</duration><type>half</type>
-</note>
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notehead>diamond</notehead>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>2</duration><type>half</type>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration><type>half</type>
+        <notehead>diamond</notehead>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Natural harm. = diamond single; artificial = dua not + note position.
@@ -117,16 +230,35 @@ Sering di spektralisme — rangkaian harmonik naik/turun.
 ## 2.6 Glissando pada Satu Senar
 
 ```xml
-<note>
-  <pitch><step>D</step><octave>4</octave></pitch>
-  <duration>3</duration><type>dotted-quarter</type>
-  <notations><glissando type="start"/></notations>
-</note>
-<note>
-  <pitch><step>A</step><octave>4</octave></pitch>
-  <duration>1</duration><type>quarter</type>
-  <notations><glissando type="stop"/></notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>3</duration><type>dotted-quarter</type>
+        <notations><glissando type="start"/></notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>1</duration><type>quarter</type>
+        <notations><glissando type="stop"/></notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Tambah `<technical><string>3</string></technical>` untuk penegasan senar.
@@ -137,11 +269,30 @@ Sering di spektralisme — rangkaian harmonik naik/turun.
 - Gabung divisi + tremolo → tekstur dense.
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>4</duration><type>whole</type>
-  <notations><ornaments><tremolo type="start">0</tremolo></ornaments></notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Strings</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration><type>whole</type>
+        <notations><ornaments><tremolo type="start">0</tremolo></ornaments></notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `tremolo type="start">0` = unmeasured (tanpa slash). Nilai 1–8 menambah

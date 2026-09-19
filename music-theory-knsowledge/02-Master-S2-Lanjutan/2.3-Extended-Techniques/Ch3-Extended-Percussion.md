@@ -30,11 +30,30 @@ Objek diletakkan di senar piano mengubah timbre.
 - Instruksi awal part; perubahan `prepared with ...` / `remove preparation`.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Prepared: 3 screws on C4–E4 str.</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Percussion</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>percussion</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Prepared: 3 screws on C4–E4 str.</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 3.2.2 Teknik String Piano
@@ -55,26 +74,64 @@ Objek diletakkan di senar piano mengubah timbre.
 ### 3.3.1 Bowed Cymbal
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">bow cymbal (arco)</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Percussion</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>percussion</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">bow cymbal (arco)</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 3.3.2 Tremolo Mallet
 
 ```xml
-<note>
-  <pitch><step>G</step><octave>5</octave></pitch>
-  <duration>4</duration>
-  <type>whole</type>
-  <notations>
-    <ornaments>
-      <tremolo type="start">3</tremolo>
-    </ornaments>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Percussion</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>percussion</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+        <notations>
+          <ornaments>
+            <tremolo type="start">3</tremolo>
+          </ornaments>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.4 Stage Techniques
@@ -89,15 +146,34 @@ Objek diletakkan di senar piano mengubah timbre.
 Setiap elemen punya `score-instrument` + `midi-unpitched` mapping GM:
 
 ```xml
-<score-instrument id="P01-H">
-  <instrument-name>Hi-hat (pedal)</instrument-name>
-  <instrument-sound>unpitched</instrument-sound>
-</score-instrument>
-<midi-instrument id="P01-H">
-  <midi-channel>10</midi-channel>
-  <midi-program>0</midi-program>
-  <midi-unpitched>44</midi-unpitched>
-</midi-instrument>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Percussion</part-name>
+      <score-instrument id="P01-H">
+        <instrument-name>Hi-hat (pedal)</instrument-name>
+        <instrument-sound>unpitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P01-H">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>44</midi-unpitched>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>percussion</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Kick=36, Snare=38, Hi-hat closed 42 / pedal 44, Ride=51, Crash=49, Tom
@@ -106,11 +182,30 @@ Setiap elemen punya `score-instrument` + `midi-unpitched` mapping GM:
 ### 3.5.1 Setup Dokumentasi di Awal Part
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Setup: 4 drums + 3 cymbals (hi-hat, ride, crash)</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Percussion</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>percussion</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Setup: 4 drums + 3 cymbals (hi-hat, ride, crash)</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.6 Multi-Staff Percussion

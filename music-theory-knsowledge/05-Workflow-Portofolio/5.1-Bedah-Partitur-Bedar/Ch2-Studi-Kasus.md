@@ -36,10 +36,42 @@ software: ["Dorico", "Sibelius", "MuseScore", "IMSLP"]
    pusat tonal tak tergoyahkan.
 
 ```xml
-<part-list>
-  <score-part id="P8"><part-name>Timpani</part-name></score-part>
-  <score-part id="P9"><part-name>Violin I</part-name></score-part>
-</part-list>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P8"><part-name>Timpani</part-name></score-part>
+    <score-part id="P9"><part-name>Violin I</part-name></score-part>
+  </part-list>
+  <part id="P8">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key><fifths>-3</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>4</duration>
+      </note>
+    </measure>
+  </part>
+  <part id="P9">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key><fifths>-3</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>4</duration>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.2 Kasus B: Gershwin — Rhapsody in Blue
@@ -64,12 +96,35 @@ software: ["Dorico", "Sibelius", "MuseScore", "IMSLP"]
    peran berganti antara solois, pengisi, dan perkusi.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">rit. molto</words>
-  </direction-type>
-  <sound tempo="76"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">rit. molto</words>
+        </direction-type>
+        <sound tempo="76"/>
+      </direction>
+      <note>
+        <rest/>
+        <duration>4</duration>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.3 Kasus C: Hans Zimmer — Film Score (mis. *Gladiator*)

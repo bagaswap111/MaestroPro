@@ -27,40 +27,54 @@ Prinsip: **biarkan bassline 16th pindah** — cello pizz. 16th (double stops
 tidak perlu, ada 4 not); horns → violin 2 pluck / viola on 2&4.
 
 ```xml
-<measure number="1">
-  <attributes>
-    <time><beats>4</beats><beat-type>4</beat-type></time>
-  </attributes>
-  <!-- Cello: 16th bass groove, pizzicato -->
-  <note>
-    <pitch><step>G</step><octave>2</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>4</voice>
-    <staff>2</staff>
-  </note>
-  <note>
-    <pitch><step>G</step><octave>2</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>4</voice>
-    <staff>2</staff>
-  </note>
-  <!-- Vln2 pizz on 2&4 (backbeat) -->
-  <note>
-    <rest/>
-    <duration>2</duration>
-    <type>8th</type>
-    <voice>2</voice>
-  </note>
-  <note>
-    <pitch><step>D</step><octave>5</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>2</voice>
-    <articulations><staccato/></articulations>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>String Quartet</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <!-- Cello: 16th bass groove, pizzicato -->
+      <note>
+        <pitch><step>G</step><octave>2</octave></pitch>
+        <duration>1</duration>
+        <voice>4</voice>
+        <type>16th</type>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>2</octave></pitch>
+        <duration>1</duration>
+        <voice>4</voice>
+        <type>16th</type>
+        <staff>2</staff>
+      </note>
+      <!-- Vln2 pizz on 2&4 (backbeat) -->
+      <note>
+        <rest/>
+        <duration>2</duration>
+        <type>8th</type>
+        <voice>2</voice>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <voice>2</voice>
+        <articulations><staccato/></articulations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.3 Adaptasi 2: R&B Ballad → Full Orchestra (String+Full)
@@ -72,16 +86,36 @@ tidak perlu, ada 4 not); horns → violin 2 pluck / viola on 2&4.
 - **Trap hi-hat 16th → tambourine 16th + **marcato** strings on the rim.**
 
 ```xml
-<score-instrument id="P1-I1">
-  <instrument-name>Bass Trombone</instrument-name>
-</score-instrument>
-<midi-instrument id="P1-I1">
-  <midi-channel>1</midi-channel>
-  <midi-program>58</midi-program>
-</midi-instrument>
-<attributes>
-  <transpose><diatonic>0</diatonic><chromatic>0</chromatic></transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+    <score-part id="P2">
+      <part-name>Bass Trombone</part-name>
+    </score-part>
+  </part-list>
+  <part id="P2">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+        <transpose><diatonic>0</diatonic><chromatic>0</chromatic></transpose>
+      </attributes>
+      <score-instrument id="P1-I1">
+        <instrument-name>Bass Trombone</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>58</midi-program>
+      </midi-instrument>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.4 Adaptasi 3: Funk → Brass Band / Wind Band
@@ -93,15 +127,34 @@ Horn section funk langsung naik level ke band:
 - Tak perlu *straight* — **feels tetap syncopated** pada grid 16th.
 
 ```xml
-<note>
-  <pitch><step>G</step><octave>2</octave></pitch>
-  <duration>1</duration>
-  <type>16th</type>
-  <voice>4</voice>
-  <notations>
-    <technical><double-tongue/></technical>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Tuba</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>2</octave></pitch>
+        <duration>1</duration>
+        <voice>4</voice>
+        <type>16th</type>
+        <notations>
+          <technical><double-tongue/></technical>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.5 Checklist Adaptasi Funk/Soul/R&B

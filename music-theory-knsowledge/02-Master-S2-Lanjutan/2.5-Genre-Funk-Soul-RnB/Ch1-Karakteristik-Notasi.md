@@ -34,21 +34,38 @@ Tulis funk *grid* sebagai 16th — *ghost note* (dibunyikan sangat halus)
 pakai `notehead` `ghost` di MusicXML (percussion) atau `<ghost>` text di bass.
 
 ```xml
-<note>
-  <pitch><step>G</step><octave>2</octave></pitch>
-  <duration>2</duration>
-  <type>16th</type>
-  <voice>2</voice>
-  <staff>2</staff>
-</note>
-<note>
-  <pitch><step>G</step><octave>2</octave></pitch>
-  <duration>2</duration>
-  <type>16th</type>
-  <voice>2</voice>
-  <staff>2</staff>
-  <notehead>ghost</notehead>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Bass</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>2</octave></pitch>
+        <duration>2</duration>
+        <voice>2</voice>
+        <type>16th</type>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>2</octave></pitch>
+        <duration>2</duration>
+        <voice>2</voice>
+        <type>16th</type>
+        <notehead>ghost</notehead>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 1.2.1 Pola Bass 16th Klasik
@@ -78,14 +95,33 @@ Funk jarang pindah akor; **stabs** memberikan *color change*:
 ### 1.3.1 Menulis Chord Stab di Rhythm Section
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>E</root-step></root>
-  <kind text="9">dominant</kind>
-  <degree>
-    <degree-value>9</degree-value><degree-alter>0</degree-alter>
-    <degree-type>add</degree-type>
-  </degree>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>E</root-step></root>
+        <kind text="9">dominant</kind>
+        <degree>
+          <degree-value>9</degree-value><degree-alter>0</degree-alter>
+          <degree-type>add</degree-type>
+        </degree>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.4 Horns & String Pads (Aransemen R&B)
@@ -103,21 +139,38 @@ tremolo *marcato*:
 ### 1.4.1 Contoh Horn Stab Bar
 
 ```xml
-<measure number="1">
-  <note>
-    <pitch><step>C</step><octave>5</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>16th</type>
-    <notations><articulations><accent/><staccatissimo/></articulations></notations>
-  </note>
-  <note>
-    <rest/>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>16th</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Trumpet</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>16th</type>
+        <notations><articulations><accent/><staccatissimo/></articulations></notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>16th</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Vokal R&B: Runs, Melisma, Ad-libs

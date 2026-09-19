@@ -55,38 +55,82 @@ key signature naik satu flat/ruz:
 ### 4.2.2 Struktur MusicXML untuk Clarinet Bb
 
 ```xml
-<score-part id="P3">
-  <part-name>Clarinet in Bb</part-name>
-  <part-abbreviation>Cl.</part-abbreviation>
-  <score-instrument id="P3-I1">
-    <instrument-name>Clarinet</instrument-name>
-    <instrument-sound>pitched</instrument-sound>
-  </score-instrument>
-  <midi-instrument id="P3-I1">
-    <midi-channel>4</midi-channel>
-    <midi-program>71</midi-program>
-    <volume>74.8031</volume>
-    <pan>0</pan>
-  </midi-instrument>
-</score-part>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P3">
+      <part-name>Clarinet in Bb</part-name>
+      <part-abbreviation>Cl.</part-abbreviation>
+      <score-instrument id="P3-I1">
+        <instrument-name>Clarinet</instrument-name>
+        <instrument-sound>pitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P3-I1">
+        <midi-channel>4</midi-channel>
+        <midi-program>71</midi-program>
+        <volume>74.8031</volume>
+        <pan>0</pan>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P3">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>2</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>-1</diatonic>
+          <chromatic>-2</chromatic>
+          <octave-change>0</octave-change>
+        </transpose>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.2.3 Elemen `<transpose>` di dalam `<attributes>`
 
 ```xml
-<attributes>
-  <divisions>2</divisions>
-  <key>
-    <fifths>2</fifths>
-  </key>
-  <time><beats>4</beats><beat-type>4</beat-type></time>
-  <clef><sign>G</sign><line>2</line></clef>
-  <transpose>
-    <diatonic>-1</diatonic>
-    <chromatic>-2</chromatic>
-    <octave-change>0</octave-change>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Clarinet in Bb</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>2</divisions>
+        <key>
+          <fifths>2</fifths>
+        </key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>-1</diatonic>
+          <chromatic>-2</chromatic>
+          <octave-change>0</octave-change>
+        </transpose>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>8</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - `<diatonic>-1</diatonic>` — turun 1 derajat skala (written→sound).
@@ -114,13 +158,35 @@ Ditulis +Perfect5 dari konser:
 - Konser A4 → tertulis E5.
 
 ```xml
-<attributes>
-  <transpose>
-    <diatonic>4</diatonic>
-    <chromatic>7</chromatic>
-    <octave-change>0</octave-change>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>French Horn in F</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>4</diatonic>
+          <chromatic>7</chromatic>
+          <octave-change>0</octave-change>
+        </transpose>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `+7` semitone = written lebih tinggi dari sound; horn F: tulis G terdengar C.
@@ -130,13 +196,34 @@ Ditulis +Perfect5 dari konser:
 **Ledger line berlebih:** pindah ke register *notatable*:
 
 ```xml
-<attributes>
-  <clef>
-    <sign>G</sign>
-    <line>2</line>
-    <clef-octave-change>-1</clef-octave-change>
-  </clef>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Double Bass</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+          <clef-octave-change>-1</clef-octave-change>
+        </clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 4.3.2 Trumpet in Bb
@@ -144,12 +231,34 @@ Ditulis +Perfect5 dari konser:
 Sama dengan klarinet B♭:
 
 ```xml
-<attributes>
-  <transpose>
-    <diatonic>-1</diatonic>
-    <chromatic>-2</chromatic>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Trumpet in Bb</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+        <transpose>
+          <diatonic>-1</diatonic>
+          <chromatic>-2</chromatic>
+        </transpose>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 - Range sounding: F#3 – C6; Range written: Ab4 – D7.
@@ -165,13 +274,35 @@ Sama dengan klarinet B♭:
 | Celesta | −1 oktaf | G |
 
 ```xml
-<attributes>
-  <transpose>
-    <diatonic>-7</diatonic>
-    <chromatic>-12</chromatic>
-    <octave-change>-1</octave-change>
-  </transpose>
-</attributes>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Double Bass</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+        <transpose>
+          <diatonic>-7</diatonic>
+          <chromatic>-12</chromatic>
+          <octave-change>-1</octave-change>
+        </transpose>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Contoh: bass guitar tertulis C3 → terbaca tengah 1 oktaf lebih rendah (C2);

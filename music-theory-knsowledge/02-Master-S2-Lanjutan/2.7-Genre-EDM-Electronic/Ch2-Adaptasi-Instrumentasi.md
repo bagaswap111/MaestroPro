@@ -35,14 +35,33 @@ Strategi *orchestral house cover*:
 6. `drop` → full tutti + timpani + cymbals + chimes.
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>1</octave></pitch>
-  <duration>4</duration>
-  <voice>4</voice>
-  <staff>2</staff>
-  <type>quarter</type>
-  <notations><technical><timpani-tap/></technical></notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Timpani</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>1</octave></pitch>
+        <duration>4</duration>
+        <voice>4</voice>
+        <staff>2</staff>
+        <type>quarter</type>
+        <notations><technical><timpani-tap/></technical></notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.3 Adaptasi 2: Trap (808) → Modern Acoustic Ensemble
@@ -54,15 +73,34 @@ Strategi *orchestral house cover*:
 - **Half-time drop** → strings *détaché* pada bass line, timpani + crash.
 
 ```xml
-<direction placement="above">
-  <direction-type><words>half-time drop</words></direction-type>
-</direction>
-<note>
-  <pitch><step>F</step><octave>1</octave></pitch>
-  <duration>8</duration>
-  <type>half</type>
-  <notations><glissando type="start" line-type="chromatic"/></notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Contrabass</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type><words>half-time drop</words></direction-type>
+      </direction>
+      <note>
+        <pitch><step>F</step><octave>1</octave></pitch>
+        <duration>8</duration>
+        <type>half</type>
+        <notations><glissando type="start" line-type="chromatic"/></notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.4 Adaptasi 3: Trance → Lounge/Piano Chamber

@@ -76,49 +76,77 @@ menuliskannya lewat susunan nada staf.
 Menulis not aktual dengan tag `<chord>` pada staf yang sama:
 
 ```xml
-<measure number="1">
-  <attributes>
-    <divisions>2</divisions>
-    <key><fifths>0</fifths></key>
-    <time><beats>4</beats><beat-type>4</beat-type></time>
-    <clef><sign>G</sign><line>2</line></clef>
-  </attributes>
-  <note>
-    <pitch><step>C</step><octave>4</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>quarter</type>
-  </note>
-  <note>
-    <pitch><step>E</step><octave>4</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>quarter</type>
-    <chord/>
-  </note>
-  <note>
-    <pitch><step>G</step><octave>4</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>quarter</type>
-    <chord/>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>2</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <chord/>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <chord/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Dan sebagai **chord symbol** (lead sheet) di staf terpisah:
 
 ```xml
-<measure number="1">
-  <harmony print-frame="no">
-    <root><root-step>C</root-step></root>
-    <kind text="maj">major</kind>
-  </harmony>
-  <harmony print-frame="no">
-    <root><root-step>G</root-step></root>
-    <kind text="7">dominant</kind>
-  </harmony>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root>
+        <kind text="maj">major</kind>
+      </harmony>
+      <harmony print-frame="no">
+        <root><root-step>G</root-step></root>
+        <kind text="7">dominant</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.2 Seventh Chords (Akor Ke-7)
@@ -154,22 +182,41 @@ tritone substitution di jazz.
 ### 1.2.2 MusicXML: Kualitas dengan `<kind>`
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>C</root-step></root>
-  <kind text="maj7">major-seventh</kind>
-</harmony>
-<harmony print-frame="no">
-  <root><root-step>D</root-step></root>
-  <kind text="m7">minor-seventh</kind>
-</harmony>
-<harmony print-frame="no">
-  <root><root-step>G</root-step></root>
-  <kind text="7">dominant</kind>
-</harmony>
-<harmony print-frame="no">
-  <root><root-step>B</root-step></root>
-  <kind text="o7">diminished-seventh</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root>
+        <kind text="maj7">major-seventh</kind>
+      </harmony>
+      <harmony print-frame="no">
+        <root><root-step>D</root-step></root>
+        <kind text="m7">minor-seventh</kind>
+      </harmony>
+      <harmony print-frame="no">
+        <root><root-step>G</root-step></root>
+        <kind text="7">dominant</kind>
+      </harmony>
+      <harmony print-frame="no">
+        <root><root-step>B</root-step></root>
+        <kind text="o7">diminished-seventh</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.3 Harmoni Fungsional: T – S – D
@@ -197,26 +244,43 @@ Tiga fungsi pusat (Kostka & Payne Bab 3–4; teori Riemann):
 ### 1.3.2 MusicXML: I–IV–V–I Lengkap
 
 ```xml
-<measure number="1">
-  <harmony print-frame="no">
-    <root><root-step>C</root-step></root><kind text="maj">major</kind>
-  </harmony>
-</measure>
-<measure number="2">
-  <harmony print-frame="no">
-    <root><root-step>F</root-step></root><kind text="maj">major</kind>
-  </harmony>
-</measure>
-<measure number="3">
-  <harmony print-frame="no">
-    <root><root-step>G</root-step></root><kind text="7">dominant</kind>
-  </harmony>
-</measure>
-<measure number="4">
-  <harmony print-frame="no">
-    <root><root-step>C</root-step></root><kind text="maj">major</kind>
-  </harmony>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root><kind text="maj">major</kind>
+      </harmony>
+    </measure>
+    <measure number="2">
+      <harmony print-frame="no">
+        <root><root-step>F</root-step></root><kind text="maj">major</kind>
+      </harmony>
+    </measure>
+    <measure number="3">
+      <harmony print-frame="no">
+        <root><root-step>G</root-step></root><kind text="7">dominant</kind>
+      </harmony>
+    </measure>
+    <measure number="4">
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root><kind text="maj">major</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.4 Kaden (Cadences) dan 6/4 Embellishing
@@ -238,24 +302,41 @@ Kadens adalah titik jeda frase (Kostka & Payne Bab 7):
 menyebutnya *dominant preparation*.
 
 ```xml
-<measure number="10">
-  <harmony print-frame="no">
-    <root><root-step>C</root-step></root>
-    <kind text="6/4">major</kind>
-  </harmony>
-</measure>
-<measure number="11">
-  <harmony print-frame="no">
-    <root><root-step>G</root-step></root>
-    <kind text="7">dominant</kind>
-  </harmony>
-</measure>
-<measure number="12">
-  <harmony print-frame="no">
-    <root><root-step>C</root-step></root>
-    <kind text="maj">major</kind>
-  </harmony>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="10">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root>
+        <kind text="6/4">major</kind>
+      </harmony>
+    </measure>
+    <measure number="11">
+      <harmony print-frame="no">
+        <root><root-step>G</root-step></root>
+        <kind text="7">dominant</kind>
+      </harmony>
+    </measure>
+    <measure number="12">
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root>
+        <kind text="maj">major</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 1.4.2 Kadens Authentic dengan Figured Bass di MusicXML
@@ -263,13 +344,32 @@ menyebutnya *dominant preparation*.
 `<bass>` untuk memberitahu *root symbol* dengan bass berbeda (C/E):
 
 ```xml
-<harmony>
-  <root><root-step>C</root-step></root>
-  <kind>major</kind>
-  <bass>
-    <bass-step>E</bass-step>
-  </bass>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+        <root><root-step>C</root-step></root>
+        <kind>major</kind>
+        <bass>
+          <bass-step>E</bass-step>
+        </bass>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Kromatisme Dini: Secondary Dominants
@@ -286,10 +386,29 @@ C:   V7/V   V7    I
 dari leading tone X (C# untuk D).
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>D</root-step></root>
-  <kind text="7" use-symbols="yes">dominant</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>D</root-step></root>
+        <kind text="7" use-symbols="yes">dominant</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Also *secondary leading-tone*: vii°7/V → (D#dim) → V.

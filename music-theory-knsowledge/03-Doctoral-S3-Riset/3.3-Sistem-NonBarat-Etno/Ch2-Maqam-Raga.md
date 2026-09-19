@@ -33,16 +33,48 @@ interval mikrotonal — terutama untuk Oud, Kanun, dan vokal.
 ### 2.1.2 MusicXML: Hijaz quarter-note example
 
 ```xml
-<note>
-  <pitch>
-    <step>E</step>
-    <alter>-0.5</alter>
-    <octave>4</octave>
-  </pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <accidental>quarter-flat</accidental>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Oud</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Oud</instrument-name>
+        <instrument-sound>plucked.string</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>21</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>-0.5</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>quarter</type>
+        <accidental>quarter-flat</accidental>
+      </note>
+      <note>
+        <rest/>
+        <duration>6</duration>
+        <type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.2 Ornamen Maqam
@@ -52,13 +84,46 @@ interval mikrotonal — terutama untuk Oud, Kanun, dan vokal.
 - **Trill** — kadang mulai dari nada bawah.
 
 ```xml
-<note>
-  <pitch><step>F</step><octave>4</octave></pitch>
-  <duration>1</duration><type>eighth</type>
-  <notations>
-    <ornaments><trill/></ornaments>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Kanun</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Kanun</instrument-name>
+        <instrument-sound>plucked.string</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>32</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>eighth</type>
+        <notations>
+          <ornaments><trill/></ornaments>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>7</duration>
+        <type>eighth</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.3 Raga: Kerangka Modal India
@@ -83,16 +148,45 @@ interval mikrotonal — terutama untuk Oud, Kanun, dan vokal.
 - Partitur Barat perlu `glissando` & `portamento`.
 
 ```xml
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notations><glissando type="start"/></notations>
-</note>
-<note>
-  <pitch><step>A</step><octave>4</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notations><glissando type="stop"/></notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Sitar</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Sitar</instrument-name>
+        <instrument-sound>plucked.string</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>105</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+        <notations><glissando type="start"/></notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+        <notations><glissando type="stop"/></notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.5 Taal: Siklus Ritmik
@@ -104,10 +198,41 @@ interval mikrotonal — terutama untuk Oud, Kanun, dan vokal.
 | Ektaal | 12 | 2+2+2+2+2+2 | |
 
 ```xml
-<time>
-  <beats>4</beats>
-  <beat-type>4</beat-type>
-</time>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Tablā</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>Tabla</instrument-name>
+        <instrument-sound>drum</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>116</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef><sign>Percussion</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Struktur poliritmik sam/dam dapat direpresentasi dengan `metronome` atau

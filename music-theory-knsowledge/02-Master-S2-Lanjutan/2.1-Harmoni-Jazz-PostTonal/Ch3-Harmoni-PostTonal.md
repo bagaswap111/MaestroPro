@@ -37,16 +37,33 @@ Abad ke-20 melampaui fungsi tonal:
 ### 3.2.2 MusicXML: Akor Paralel
 
 ```xml
-<measure number="1">
-  <note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
-  <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
-  <note><pitch><step>G</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
-</measure>
-<measure number="2">
-  <note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
-  <note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
-  <note><pitch><step>A</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note><pitch><step>C</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
+      <note><pitch><step>E</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
+      <note><pitch><step>G</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
+    </measure>
+    <measure number="2">
+      <note><pitch><step>D</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
+      <note><pitch><step>F</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
+      <note><pitch><step>A</step><octave>4</octave></pitch><duration>2</duration><type>half</type></note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.3 Pitch-Class & Set Theory (Straus)
@@ -64,16 +81,35 @@ Abad ke-20 melampaui fungsi tonal:
   `<accidental>` lengkap (StudioPraktik set notation).
 
 ```xml
-<note>
-  <pitch>
-    <step>B</step>
-    <alter>-1</alter>
-    <octave>4</octave>
-  </pitch>
-  <duration>2</duration>
-  <type>eighth</type>
-  <accidental>flat</accidental>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+        <accidental>flat</accidental>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.4 Serialisme (12-Tone)
@@ -98,11 +134,30 @@ Abad ke-20 melampaui fungsi tonal:
 3. `<direction><words>` untuk tanda P/R/I/RI.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Row P</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Row P</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.5 Spektral Harmony (Grisey, Murail)
@@ -120,11 +175,30 @@ Prinsip: harmoni diambil dari **overtones** satu nada dasar.
 Overtone stack dari C2 (16.35 Hz); harmonik urut ≈ mayor triad plus 7th/9th:
 
 ```xml
-<note><pitch><step>C</step><octave>2</octave></pitch><duration>4</duration><type>whole</type></note>
-<note><pitch><step>C</step><octave>3</octave></pitch><duration>4</duration><type>whole</type></note>
-<note><pitch><step>G</step><octave>3</octave></pitch><duration>4</duration><type>whole</type></note>
-<note><pitch><step>C</step><octave>4</octave></pitch><duration>4</duration><type>whole</type></note>
-<note><pitch><step>E</step><octave>4</octave></pitch><duration>4</duration><type>whole</type></note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note><pitch><step>C</step><octave>2</octave></pitch><duration>4</duration><type>whole</type></note>
+      <note><pitch><step>C</step><octave>3</octave></pitch><duration>4</duration><type>whole</type></note>
+      <note><pitch><step>G</step><octave>3</octave></pitch><duration>4</duration><type>whole</type></note>
+      <note><pitch><step>C</step><octave>4</octave></pitch><duration>4</duration><type>whole</type></note>
+      <note><pitch><step>E</step><octave>4</octave></pitch><duration>4</duration><type>whole</type></note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.6 Set Theory Lanjutan (Straus)

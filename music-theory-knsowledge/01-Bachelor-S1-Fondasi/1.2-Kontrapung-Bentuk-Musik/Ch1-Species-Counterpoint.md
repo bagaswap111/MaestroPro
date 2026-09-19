@@ -39,7 +39,7 @@ tone*-ke-tonik atau subtonik-ke-tonik). Aturan membuat C.F. yang baik:
 3. Puncak melodi (climax) hanya sekali.
 4. Kadens diakhiri *2 → 1* (atau *7 → 1*).
 
-## 1.2 First Species: Note-Against-Note
+## 1.2 First Species: Note-Again-Note
 
 ### 1.2.1 Aturan (Fux, Mann ed.)
 
@@ -63,34 +63,51 @@ tone*-ke-tonik atau subtonik-ke-tonik). Aturan membuat C.F. yang baik:
 ### 1.2.3 MusicXML: First Species Dua Suara
 
 ```xml
-<measure number="1">
-  <note>
-    <pitch><step>C</step><octave>4</octave></pitch>
-    <duration>4</duration>
-    <voice>1</voice>
-    <type>whole</type>
-  </note>
-  <note>
-    <pitch><step>E</step><octave>4</octave></pitch>
-    <duration>4</duration>
-    <voice>2</voice>
-    <type>whole</type>
-  </note>
-</measure>
-<measure number="2">
-  <note>
-    <pitch><step>D</step><octave>4</octave></pitch>
-    <duration>4</duration>
-    <voice>1</voice>
-    <type>whole</type>
-  </note>
-  <note>
-    <pitch><step>A</step><octave>3</octave></pitch>
-    <duration>4</duration>
-    <voice>2</voice>
-    <type>whole</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+    <measure number="2">
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>2</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > **Verifikasi cepat:** untuk tiap birama, selisih skala antara suara =
@@ -111,23 +128,40 @@ tone*-ke-tonik atau subtonik-ke-tonik). Aturan membuat C.F. yang baik:
 ### 1.3.2 MusicXML: Second Species
 
 ```xml
-<measure number="1">
-  <note>
-    <pitch><step>E</step><octave>4</octave></pitch>
-    <duration>2</duration>
-    <type>half</type>
-  </note>
-  <note>
-    <pitch><step>D</step><octave>4</octave></pitch>
-    <duration>2</duration>
-    <type>half</type>
-  </note>
-  <note>
-    <pitch><step>C</step><octave>3</octave></pitch>
-    <duration>4</duration>
-    <type>whole</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>2</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Pada contoh: nada 2 (D) adalah PT dari E→C (konsonan→konsonan). Pastikan
@@ -148,28 +182,45 @@ tone*-ke-tonik atau subtonik-ke-tonik). Aturan membuat C.F. yang baik:
 ### 1.4.2 Contoh
 
 ```xml
-<measure number="1">
-  <note>
-    <pitch><step>G</step><octave>4</octave></pitch>
-    <duration>1</duration><type>quarter</type>
-  </note>
-  <note>
-    <pitch><step>A</step><octave>4</octave></pitch>
-    <duration>1</duration><type>quarter</type>
-  </note>
-  <note>
-    <pitch><step>B</step><octave>4</octave></pitch>
-    <duration>1</duration><type>quarter</type>
-  </note>
-  <note>
-    <pitch><step>C</step><octave>5</octave></pitch>
-    <duration>1</duration><type>quarter</type>
-  </note>
-  <note>
-    <pitch><step>C</step><octave>3</octave></pitch>
-    <duration>4</duration><type>whole</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>1</duration><type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>1</duration><type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>1</duration><type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>1</duration><type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>4</duration><type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Fourth Species: Sinkopasi (Ligasi)
@@ -194,24 +245,43 @@ Tiga fase suspension:
 ### 1.5.2 MusicXML: Tie + Tied
 
 ```xml
-<note>
-  <pitch><step>F</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>half</type>
-  <tie type="start"/>
-  <notations>
-    <tied type="start"/>
-  </notations>
-</note>
-<note>
-  <pitch><step>F</step><octave>4</octave></pitch>
-  <duration>2</duration>
-  <type>half</type>
-  <tie type="stop"/>
-  <notations>
-    <tied type="stop"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+        <tie type="start"/>
+        <notations>
+          <tied type="start"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>F</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+        <tie type="stop"/>
+        <notations>
+          <tied type="stop"/>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<tie>` = playback; `<tied>` dalam `<notations>` = kurva tampilan. Keduanya
@@ -229,20 +299,37 @@ Tiga fase suspension:
 ### 1.6.2 Contoh Ritmik Campur
 
 ```xml
-<measure number="1">
-  <note>
-    <pitch><step>G</step><octave>4</octave></pitch>
-    <duration>2</duration><type>half</type>
-  </note>
-  <note>
-    <pitch><step>A</step><octave>4</octave></pitch>
-    <duration>1</duration><type>quarter</type>
-  </note>
-  <note>
-    <pitch><step>G</step><octave>4</octave></pitch>
-    <duration>1</duration><type>quarter</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration><type>half</type>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>1</duration><type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>1</duration><type>quarter</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.7 Kontrapung dalam Konteks Modern & Orkestrasi

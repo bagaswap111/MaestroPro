@@ -47,36 +47,88 @@ tanpa istirahat.
 Lirik menempel pada `<note>` melalui `<lyric>` dengan `syllabic`:
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>5</octave></pitch>
-  <duration>4</duration>
-  <type>quarter</type>
-  <lyric number="1">
-    <syllabic>begin</syllabic>
-    <text>Count</text>
-  </lyric>
-</note>
-<note>
-  <pitch><step>D</step><octave>5</octave></pitch>
-  <duration>4</duration>
-  <type>quarter</type>
-  <lyric number="1">
-    <syllabic>end</syllabic>
-    <text>ry</text>
-  </lyric>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Soprano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+        <lyric number="1">
+          <syllabic>begin</syllabic>
+          <text>Count</text>
+        </lyric>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+        <lyric number="1">
+          <syllabic>end</syllabic>
+          <text>ry</text>
+        </lyric>
+      </note>
+      <note>
+        <rest/>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 **Melisma:** satu silabel pada beberapa not → letakkan `<extend/>` pada not
 ke-dua dst (tanda `_`).
 
 ```xml
-<note>
-  <pitch><step>A</step><octave>5</octave></pitch>
-  <duration>2</duration>
-  <type>8th</type>
-  <lyric number="1"><syllabic>end</syllabic><text>la</text><extend/></lyric>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Soprano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <type>8th</type>
+        <lyric number="1"><syllabic>end</syllabic><text>la</text><extend/></lyric>
+      </note>
+      <note>
+        <rest/>
+        <duration>14</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.4 Harmoni Vokal: Voicing dan Doubling
@@ -90,19 +142,39 @@ ke-dua dst (tanda `_`).
 ### 1.4.1 Contoh SATB pada Progressi I–V–I (C)
 
 ```xml
-<measure number="1">
-  <attributes>
-    <time><beats>4</beats><beat-type>4</beat-type></time>
-  </attributes>
-  <!-- Soprano E -->
-  <note><pitch><step>E</step><octave>5</octave></pitch><duration>4</duration><voice>1</voice><type>quarter</type></note>
-  <!-- Alto C -->
-  <note><pitch><step>C</step><octave>4</octave></pitch><duration>4</duration><voice>2</voice><type>quarter</type></note>
-  <!-- Tenor G -->
-  <note><pitch><step>G</step><octave>3</octave></pitch><duration>4</duration><voice>3</voice><type>quarter</type></note>
-  <!-- Bass C -->
-  <note><pitch><step>C</step><octave>3</octave></pitch><duration>4</duration><voice>4</voice><type>quarter</type></note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>SATB</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <!-- Soprano E -->
+      <note><pitch><step>E</step><octave>5</octave></pitch><duration>4</duration><voice>1</voice><type>quarter</type></note>
+      <!-- Alto C -->
+      <note><pitch><step>C</step><octave>4</octave></pitch><duration>4</duration><voice>2</voice><type>quarter</type></note>
+      <!-- Tenor G -->
+      <note><pitch><step>G</step><octave>3</octave></pitch><duration>4</duration><voice>3</voice><type>quarter</type></note>
+      <!-- Bass C -->
+      <note><pitch><step>C</step><octave>3</octave></pitch><duration>4</duration><voice>4</voice><type>quarter</type></note>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Teknik Vokal Khas Genre

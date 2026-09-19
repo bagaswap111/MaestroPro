@@ -23,19 +23,36 @@ Tiga gaya inti:
 ### 1.1.1 Son Clave 3-2 dalam notasi perkusi
 
 ```xml
-<measure number="1">
-  <!-- 3 side: 1, &a of 2, 4 -->
-  <note>
-    <unpitched display-step="C" display-octave="5"/>
-    <duration>3</duration>
-    <type>eighth</type><dot/>
-  </note>
-  <note>
-    <unpitched display-step="C" display-octave="5"/>
-    <duration>1</duration>
-    <type>16th</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Claves</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>percussion</sign><line>2</line></clef>
+      </attributes>
+      <!-- 3 side: 1, &a of 2, 4 -->
+      <note>
+        <unpitched display-step="C" display-octave="5"/>
+        <duration>3</duration>
+        <type>eighth</type><dot/>
+      </note>
+      <note>
+        <unpitched display-step="C" display-octave="5"/>
+        <duration>1</duration>
+        <type>16th</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Notasi clave: cowbell / claves, satu staf, `>n` accent. Siklus TIDAK pindah —
@@ -47,21 +64,35 @@ Karakter: **bass root+5th 8th swing, chord off-beat** (2&4), syncopation
 *breathing*, harmoni **jazz** (ii–V), tempo 120–132.
 
 ```xml
-<measure number="1">
-  <attributes>
-    <time><beats>2</beats><beat-type>2</beat-type></time>
-  </attributes>
-  <note>
-    <pitch><step>A</step><octave>2</octave></pitch>
-    <duration>2</duration>
-    <type>eighth</type>
-  </note>
-  <note>
-    <pitch><step>D</step><octave>4</octave></pitch>
-    <duration>2</duration>
-    <type>eighth</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>2</beats><beat-type>2</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>A</step><octave>2</octave></pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.3 Salsa: Montuno dan Coro
@@ -76,22 +107,39 @@ Karakter: **bass root+5th 8th swing, chord off-beat** (2&4), syncopation
 ### 1.3.1 Guajeo Piano (Contoh 2 Bar)
 
 ```xml
-<measure number="1">
-  <note>
-    <pitch><step>G</step><octave>3</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>1</voice>
-    <staff>1</staff>
-  </note>
-  <note>
-    <pitch><step>B</step><octave>3</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>1</voice>
-    <staff>1</staff>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <voice>1</voice>
+        <staff>1</staff>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <voice>1</voice>
+        <staff>1</staff>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.4 Samba: Energi Karnaval, Semiquaver Grid
@@ -109,20 +157,39 @@ Karakter: **bass root+5th 8th swing, chord off-beat** (2&4), syncopation
 - Forma: ABAC / ABA-C; *rubato* intro, *tango* kesan.
 
 ```xml
-<direction placement="above">
-  <direction-type><words>Tango</words></direction-type>
-</direction>
-<note>
-  <pitch><step>E</step><octave>3</octave></pitch>
-  <duration>2</duration>
-  <type>eighth</type>
-  <notations><articulations><staccato/></articulations></notations>
-</note>
-<note>
-  <pitch><step>A</step><octave>3</octave></pitch>
-  <duration>2</duration>
-  <type>eighth</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type><words>Tango</words></direction-type>
+      </direction>
+      <note>
+        <pitch><step>E</step><octave>3</octave></pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+        <notations><articulations><staccato/></articulations></notations>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.6 Miskonsepsi Umum

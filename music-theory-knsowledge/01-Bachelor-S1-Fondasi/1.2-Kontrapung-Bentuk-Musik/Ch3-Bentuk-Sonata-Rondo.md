@@ -42,16 +42,35 @@ minor (v)** — bukan dominant mayor seperti mayor.
 ### 3.1.4 MusicXML: Menandai Struktur + Repeat
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Exposition</words>
-  </direction-type>
-  <sound tempo="120"/>
-</direction>
-<barline location="right">
-  <bar-style>heavy-light</bar-style>
-  <repeat direction="forward"/>
-</barline>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Exposition</words>
+        </direction-type>
+        <sound tempo="120"/>
+      </direction>
+      <barline location="right">
+        <bar-style>heavy-light</bar-style>
+        <repeat direction="forward"/>
+      </barline>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > *Repeat* eksposisi lazim (klasik). Gunakan `<repeat direction="forward"/>`
@@ -89,20 +108,42 @@ Struktur A–B–A–C–A–…–A dengan *refrain* berulang di antara couplet
 ### 3.2.3 MusicXML: Refrain + Coda Navigation
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Coda</words>
-  </direction-type>
-</direction>
-<direction placement="below">
-  <direction-type>
-    <words xml:space="preserve">Da Capo al Coda</words>
-  </direction-type>
-</direction>
-<barline location="right">
-  <bar-style>dotted</bar-style>
-  <segno/>
-</barline>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <barline location="left">
+        <repeat direction="forward"/>
+      </barline>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Coda</words>
+        </direction-type>
+      </direction>
+      <direction placement="below">
+        <direction-type>
+          <words xml:space="preserve">Da Capo al Coda</words>
+        </direction-type>
+      </direction>
+      <barline location="right">
+        <bar-style>dotted</bar-style>
+        <segno/>
+      </barline>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.3 Tema & Variasi
@@ -128,11 +169,30 @@ Pertahankan kerangka harmoni/melodi tema sambil mengubah tempat parameter.
 ### 3.3.3 MusicXML: Menandai Nomor Variasi
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">Var. III</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">Var. III</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.4 Bentuk Terkait
@@ -156,11 +216,30 @@ Saran hasil dari era dorico (integrity joints):
 4. **Cek "jump" solver** di software — pastikan `D.S. al Coda` benar.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <rehearsal letters="A">A</rehearsal>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <rehearsal letters="A">A</rehearsal>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 3.6 Studi Kasus

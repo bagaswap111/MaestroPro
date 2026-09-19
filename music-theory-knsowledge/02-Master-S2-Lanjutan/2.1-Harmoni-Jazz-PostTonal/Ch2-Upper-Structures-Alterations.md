@@ -51,39 +51,77 @@ Ketiganya *setara sonically*. Pilihan bergantung konteks/engraver.
 ### 2.3.1 MusicXML: C7#9♭13
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>C</root-step></root>
-  <kind text="7#9b13">dominant</kind>
-  <degree>
-    <degree-value>9</degree-value>
-    <degree-alter>1</degree-alter>
-    <degree-type>alter</degree-type>
-  </degree>
-  <degree>
-    <degree-value>13</degree-value>
-    <degree-alter>-1</degree-alter>
-    <degree-type>alter</degree-type>
-  </degree>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root>
+        <kind text="7#9b13">dominant</kind>
+        <degree>
+          <degree-value>9</degree-value>
+          <degree-alter>1</degree-alter>
+          <degree-type>alter</degree-type>
+        </degree>
+        <degree>
+          <degree-value>13</degree-value>
+          <degree-alter>-1</degree-alter>
+          <degree-type>alter</degree-type>
+        </degree>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 2.3.2 Fm11♭5 (half-diminished dengan 11)
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>F</root-step></root>
-  <kind text="m11b5">other</kind>
-  <degree>
-    <degree-value>5</degree-value>
-    <degree-alter>-1</degree-alter>
-    <degree-type>alter</degree-type>
-  </degree>
-  <degree>
-    <degree-value>11</degree-value>
-    <degree-alter>0</degree-alter>
-    <degree-type>add</degree-type>
-  </degree>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>F</root-step></root>
+        <kind text="m11b5">other</kind>
+        <degree>
+          <degree-value>5</degree-value>
+          <degree-alter>-1</degree-alter>
+          <degree-type>alter</degree-type>
+        </degree>
+        <degree>
+          <degree-value>11</degree-value>
+          <degree-alter>0</degree-alter>
+          <degree-type>add</degree-type>
+        </degree>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.4 Tritone Substitution
@@ -101,18 +139,37 @@ Kekuatannya: resolusi turun setengah nada (C♭→B♮, F→E) menuju tonik.
 ### 2.4.1 Aplikasi: ii–V–I dengan Substitusi
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>D</root-step></root>
-  <kind text="m7">minor-seventh</kind>
-</harmony>
-<harmony print-frame="no">
-  <root><root-step>D♭</root-step></root>
-  <kind text="7">dominant</kind>
-</harmony>
-<harmony print-frame="no">
-  <root><root-step>C</root-step></root>
-  <kind text="maj7">major-seventh</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>D</root-step></root>
+        <kind text="m7">minor-seventh</kind>
+      </harmony>
+      <harmony print-frame="no">
+        <root><root-step>D♭</root-step></root>
+        <kind text="7">dominant</kind>
+      </harmony>
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root>
+        <kind text="maj7">major-seventh</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 2.4.2 Backup: bIII7 / bVI7
@@ -126,10 +183,29 @@ Extensions (9, 11, 13) boleh ditulis sebagai polychord (dua root berbeda):
 `C7` di atas `Db` (US bII). Kerepresentasian MusicXML:
 
 ```xml
-<harmony print-frame="no">
-  <root><root-step>C</root-step></root>
-  <kind text="C7/US bII">dominant</kind>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony print-frame="no">
+        <root><root-step>C</root-step></root>
+        <kind text="C7/US bII">dominant</kind>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Untuk diagram fret, gunakan `<frame>` dalam `<harmony>` (gitar) atau

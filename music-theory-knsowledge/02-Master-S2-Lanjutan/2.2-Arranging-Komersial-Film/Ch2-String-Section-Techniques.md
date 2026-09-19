@@ -37,22 +37,64 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 - Contoh: Divisi 2 garis: not di voice 1 & voice 2.
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">div.</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">div.</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>5</octave></pitch>
-  <duration>2</duration><voice>1</voice><type>half</type>
-</note>
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>2</duration><voice>2</voice><type>half</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+    </measure>
+    <measure number="2">
+      <note>
+        <pitch><step>E</step><octave>5</octave></pitch>
+        <duration>2</duration><voice>1</voice><type>half</type>
+      </note>
+    </measure>
+    <measure number="3">
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>2</duration><voice>2</voice><type>half</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Kembali `unison`: `<direction><words>unison</words>`. Dorico punya
@@ -64,15 +106,34 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 - **Vamp** — repetisi.
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notations>
-    <ornaments>
-      <tremolo type="start">3</tremolo>
-    </ornaments>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>2</duration><type>half</type>
+        <notations>
+          <ornaments>
+            <tremolo type="start">3</tremolo>
+          </ornaments>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > 3 slice → 32nd-tremolo (sangat cepat). Tremolo seharusnya berakhir di
@@ -84,20 +145,58 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 - **Artificial**: tekanan + fingerboard; notasi biasa di bawah + diamond.
 
 ```xml
-<note>
-  <pitch><step>G</step><octave>4</octave></pitch>
-  <duration>4</duration>
-  <type>whole</type>
-  <notehead>diamond</notehead>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <type>whole</type>
+        <notehead>diamond</notehead>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">harm.</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">harm.</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.5 Bowing Techniques
@@ -112,19 +211,61 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 | Sulla punta (bow-where) | — | `<words>sulla punta</words>` |
 
 ```xml
-<notations>
-  <technical>
-    <down-bow/>
-  </technical>
-</notations>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>4</duration><type>whole</type>
+        <notations>
+          <technical>
+            <down-bow/>
+          </technical>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">sul pont.</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">sul pont.</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > **Trik notasi:** ulangi teknik tiap perubahan — jangan asumsi berlanjut.
@@ -135,16 +276,35 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 - Bartók pizz = pluck keras (senar pantul ke fingerboard).
 
 ```xml
-<note>
-  <pitch><step>A</step><octave>3</octave></pitch>
-  <duration>1</duration>
-  <type>quarter</type>
-  <notations>
-    <articulations>
-      <pizzicato/>
-    </articulations>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <notations>
+          <articulations>
+            <pizzicato/>
+          </articulations>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Pizzicato via `<articulations><pizzicato/>`. Kembali arco:
@@ -160,20 +320,41 @@ software: ["Dorico", "Sibelius", "Finale", "MuseScore"]
 ### 2.7.1 Glissando
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>4</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notations>
-    <glissando type="start"/>
-  </notations>
-</note>
-<note>
-  <pitch><step>D</step><octave>5</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notations>
-    <glissando type="stop"/>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>2</duration><type>half</type>
+        <notations>
+          <glissando type="start"/>
+        </notations>
+      </note>
+    </measure>
+    <measure number="2">
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration><type>half</type>
+        <notations>
+          <glissando type="stop"/>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.8 Template String Orchestra

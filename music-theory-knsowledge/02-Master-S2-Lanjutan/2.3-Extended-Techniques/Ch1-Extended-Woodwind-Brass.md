@@ -29,22 +29,60 @@ Dua+ nada berbunyi serentak via fingering khusus.
 - Fingering optional di bawah staff (angka/tabel).
 
 ```xml
-<direction placement="below">
-  <direction-type>
-    <words xml:space="preserve">multiph.</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="below">
+        <direction-type>
+          <words xml:space="preserve">multiph.</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<note>
-  <pitch><step>D</step><octave>5</octave></pitch>
-  <duration>2</duration><type>half</type>
-</note>
-<note>
-  <pitch><step>A</step><octave>4</octave></pitch>
-  <duration>2</duration><type>half</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration><type>half</type>
+      </note>
+      <note>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>2</duration><type>half</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Pastikan dua not --- satu staff --- memakai `<voice>` berbeda; bila
@@ -56,19 +94,57 @@ Instruksi `flutter` / `frullato`; beberapa software mengenali
 `<technical><tonguing>`; fallback words.
 
 ```xml
-<notations>
-  <articulations>
-    <ornamental/>
-  </articulations>
-</notations>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <notations>
+        <articulations>
+          <ornamental/>
+        </articulations>
+      </notations>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<notations>
-  <technical>
-    <tonguing>flutter-tongue</tonguing>
-  </technical>
-</notations>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <notations>
+        <technical>
+          <tonguing>flutter-tongue</tonguing>
+        </technical>
+      </notations>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 1.2.3 Key Clicks (Klak Tuts)
@@ -76,12 +152,31 @@ Instruksi `flutter` / `frullato`; beberapa software mengenali
 - Suara mekanis; `×` notehead pada tinggi tuts.
 
 ```xml
-<note>
-  <pitch><step>D</step><octave>4</octave></pitch>
-  <duration>1</duration>
-  <type>quarter</type>
-  <notehead>x</notehead>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>quarter</type>
+        <notehead>x</notehead>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > bila bunyi tak bernada, tambahkan `<technical><mute on="yes"/>`? Tidak —
@@ -109,32 +204,69 @@ Setengah valve = *false tones* (nada rendah nonharmonic). Tulis pitch terdengar
 | Plunger | wah-wah | `plunger` |
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">con sord.</words>
-  </direction-type>
-</direction>
-...
-<direction placement="above">
-  <direction-type>
-    <words xml:space="preserve">senza sord.</words>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">con sord.</words>
+        </direction-type>
+      </direction>
+      <direction placement="above">
+        <direction-type>
+          <words xml:space="preserve">senza sord.</words>
+        </direction-type>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 1.3.3 Lip/Valve Trill
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>5</octave></pitch>
-  <duration>2</duration>
-  <type>half</type>
-  <notations>
-    <ornaments>
-      <trill/>
-    </ornaments>
-  </notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <type>half</type>
+        <notations>
+          <ornaments>
+            <trill/>
+          </ornaments>
+        </notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ### 1.3.4 Trombone Glissandi (Slide)
@@ -142,16 +274,35 @@ Setengah valve = *false tones* (nada rendah nonharmonic). Tulis pitch terdengar
 Glissando trombone = perubahan posisi slide kromatik:
 
 ```xml
-<note>
-  <pitch><step>F</step><octave>3</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notations><glissando type="start"/></notations>
-</note>
-<note>
-  <pitch><step>B</step><octave>3</octave></pitch>
-  <duration>2</duration><type>half</type>
-  <notations><glissando type="stop"/></notations>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>F</step><octave>3</octave></pitch>
+        <duration>2</duration><type>half</type>
+        <notations><glissando type="start"/></notations>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>3</octave></pitch>
+        <duration>2</duration><type>half</type>
+        <notations><glissando type="stop"/></notations>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.4 Microtonal
@@ -160,16 +311,35 @@ Glissando trombone = perubahan posisi slide kromatik:
 - Accidental custom `quarter-flat`/`quarter-sharp` saat dukungan font.
 
 ```xml
-<note>
-  <pitch>
-    <step>E</step>
-    <alter>0.5</alter>
-    <octave>4</octave>
-  </pitch>
-  <duration>2</duration>
-  <type>quarter</type>
-  <accidental>quarter-flat</accidental>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Woodwind</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch>
+          <step>E</step>
+          <alter>0.5</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>quarter</type>
+        <accidental>quarter-flat</accidental>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Di MusicXML sebagai `<accidental>`; rumus: alter 0.5 = quarter sharp,

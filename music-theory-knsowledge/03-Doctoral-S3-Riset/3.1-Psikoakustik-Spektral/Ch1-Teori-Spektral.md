@@ -104,18 +104,37 @@ dari piccolo↔tuba — transisi instrumentasi sebagai "spectral morph".
 Tulis pitch nyata; interval non-12-TET → microtone.
 
 ```xml
-<note>
-  <pitch><step>C</step><octave>2</octave></pitch>
-  <duration>4</duration><type>whole</type>
-</note>
-<note>
-  <pitch><step>C</step><alter>1</alter><octave>3</octave></pitch>
-  <duration>4</duration><type>whole</type>
-</note>
-<note>
-  <pitch><step>G</step><octave>3</octave></pitch>
-  <duration>4</duration><type>whole</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>2</octave></pitch>
+        <duration>4</duration><type>whole</type>
+      </note>
+      <note>
+        <pitch><step>C</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>4</duration><type>whole</type>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>3</octave></pitch>
+        <duration>4</duration><type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Untuk partial non-harmonik (spektral tak penuh), gunakan mikro interval
@@ -127,12 +146,31 @@ Tulis waktu sebagai proses — paling baik via *glissandi terhitung* dan
 crescendo/diminuendo dengan tanda skala:
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <dynamics><pp/></dynamics>
-  </direction-type>
-  <sound dynamics="20"/>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <dynamics><pp/></dynamics>
+        </direction-type>
+        <sound dynamics="20"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > Untuk interpolasi spektral presisi gunakan OpenMusic/Canvas — MusicXML

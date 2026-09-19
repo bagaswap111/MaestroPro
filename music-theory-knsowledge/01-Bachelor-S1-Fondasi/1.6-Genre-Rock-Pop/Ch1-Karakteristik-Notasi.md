@@ -29,20 +29,45 @@ Power chord = interval **root + 5th** (plus ±oktaf) tanpa 3rd → netral nada
 mayor/minor. Ditulis dengan staf gitar/bass sebagai dua atau empat not.
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>2</octave></pitch>
-  <duration>4</duration>
-  <voice>1</voice>
-  <type>quarter</type>
-  <notations><technique><double-tongue/></technique></notations>
-</note>
-<note>
-  <pitch><step>B</step><octave>2</octave></pitch>
-  <duration>4</duration>
-  <voice>1</voice>
-  <type>quarter</type>
-  <chord/>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Electric Guitar</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>2</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <notations><technique><double-tongue/></technique></notations>
+      </note>
+      <note>
+        <pitch><step>B</step><octave>2</octave></pitch>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <chord/>
+      </note>
+      <note>
+        <rest/>
+        <duration>8</duration>
+        <voice>1</voice>
+        <type>half</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > **Gitar akor box:** tulis small `chord frame` di atas staf (MuseScore:
@@ -50,16 +75,41 @@ mayor/minor. Ditulis dengan staf gitar/bass sebagai dua atau empat not.
 > diagram.
 
 ```xml
-<harmony>
-  <frame>
-    <frame-strings>6</frame-strings>
-    <frame-frets>5</frame-frets>
-    <frame-note string="6" fret="0"/>
-    <frame-note string="5" fret="2"/>
-    <frame-note string="4" fret="2"/>
-    <!-- E5 power chord shape -->
-  </frame>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Electric Guitar</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+        <frame>
+          <frame-strings>6</frame-strings>
+          <frame-frets>5</frame-frets>
+          <frame-note string="6" fret="0"/>
+          <frame-note string="5" fret="2"/>
+          <frame-note string="4" fret="2"/>
+          <!-- E5 power chord shape -->
+        </frame>
+      </harmony>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.3 Groove Baterai — Notasi Rock
@@ -67,13 +117,40 @@ mayor/minor. Ditulis dengan staf gitar/bass sebagai dua atau empat not.
 Pola dasar rock (ketukan = 8th di hi-hat, 2&4 snare, 1&3 bass drum):
 
 ```xml
-<note>
-  <unpitched display-step="C" display-octave="5"/>
-  <duration>1</duration>
-  <voice>1</voice>
-  <type>8th</type>
-  <instrument id="P2-I1"/>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P2">
+      <part-name>Drums</part-name>
+    </score-part>
+  </part-list>
+  <part id="P2">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <unpitched display-step="C" display-octave="5"/>
+        <duration>1</duration>
+        <voice>1</voice>
+        <type>8th</type>
+        <instrument id="P2-I1"/>
+      </note>
+      <note>
+        <rest/>
+        <duration>15</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 **Fungsi potongan (fundamental drum chart):**
@@ -128,15 +205,41 @@ Urutan *intensity per section* ("build"):
 ### 1.5.1 Replica Drop — Menulis *Fills* Transisi
 
 ```xml
-<direction placement="above">
-  <direction-type><words>build — riser to bar 33</words></direction-type>
-</direction>
-<note>
-  <rest/>
-  <duration>4</duration>
-  <voice>1</voice>
-  <type>quarter</type>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="32">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type><words>build — riser to bar 33</words></direction-type>
+      </direction>
+      <note>
+        <rest/>
+        <duration>4</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.6 Vokal Pop — Notasi dan Tessitura

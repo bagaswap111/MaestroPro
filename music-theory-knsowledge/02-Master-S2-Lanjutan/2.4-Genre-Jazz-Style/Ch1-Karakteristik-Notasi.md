@@ -39,12 +39,31 @@ Swing = **asimetri 8th** (long-short). Aturan praktis:
 Di MusicXML 3.1+, swing ditulis `<sound swing>`:
 
 ```xml
-<direction placement="above">
-  <direction-type>
-    <words>Swing</words>
-    <sound tempo="144" swing="eighth" first="third" second="third"/>
-  </direction-type>
-</direction>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction placement="above">
+        <direction-type>
+          <words>Swing</words>
+        </direction-type>
+        <sound tempo="144" swing="eighth" first="third" second="third"/>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Jika perlu **exact notation** (untuk exam/engraving), tulis triplet 8th
@@ -66,18 +85,37 @@ Kosakata (Levine tab): **7th chords** pada setiap derajat; extensions
 | Cmaj7#11 | major-seventh + add #11 | `<degree><alter>1</alter>` |
 
 ```xml
-<harmony>
-  <root><root-step>C</root-step></root>
-  <kind text="7b9#9">dominant</kind>
-  <degree>
-    <degree-value>9</degree-value><degree-alter>-1</degree-alter>
-    <degree-type>alter</degree-type>
-  </degree>
-  <degree>
-    <degree-value>9</degree-value><degree-alter>1</degree-alter>
-    <degree-type>alter</degree-type>
-  </degree>
-</harmony>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <harmony>
+        <root><root-step>C</root-step></root>
+        <kind text="7b9#9">dominant</kind>
+        <degree>
+          <degree-value>9</degree-value><degree-alter>-1</degree-alter>
+          <degree-type>alter</degree-type>
+        </degree>
+        <degree>
+          <degree-value>9</degree-value><degree-alter>1</degree-alter>
+          <degree-type>alter</degree-type>
+        </degree>
+      </harmony>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 Lihat detail: `../../04-MusicXML-Masterclass/4.1-Anatomi-MusicXML/Ch4-Harmony-Chord-Symbols.md`.
@@ -103,29 +141,48 @@ Progresi jiwa jazz: **ii–V–I** (Dm7–G7–Cmaj7) dan *turnaround*
 ### 1.4.1 Basin: Piano Voicing Rootless di MusicXML
 
 ```xml
-<note>
-  <pitch><step>E</step><octave>4</octave></pitch>
-  <duration>4</duration>
-  <voice>3</voice>
-  <staff>2</staff>
-  <type>quarter</type>
-</note>
-<note>
-  <pitch><step>Bb</step><octave>4</octave></pitch>
-  <duration>4</duration>
-  <voice>3</voice>
-  <staff>2</staff>
-  <type>quarter</type>
-  <chord/>
-</note>
-<note>
-  <pitch><step>D</step><octave>5</octave></pitch>
-  <duration>4</duration>
-  <voice>3</voice>
-  <staff>2</staff>
-  <type>quarter</type>
-  <chord/>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <staff>2</staff>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch><step>Bb</step><octave>4</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <staff>2</staff>
+        <type>quarter</type>
+        <chord/>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>4</duration>
+        <voice>3</voice>
+        <staff>2</staff>
+        <type>quarter</type>
+        <chord/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.5 Melodi Jazz: Bebop Scale, Approach, dan Enclosure
@@ -136,18 +193,37 @@ Progresi jiwa jazz: **ii–V–I** (Dm7–G7–Cmaj7) dan *turnaround*
 - **Enclosure:** approach atas+bawah target (C → B–B♭/A–C).
 
 ```xml
-<note>
-  <pitch><step>B</step><octave>4</octave></pitch>
-  <duration>1</duration>
-  <type>16th</type>
-  <slur type="stop"/>
-</note>
-<note>
-  <pitch><step>C</step><octave>5</octave></pitch>
-  <duration>3</duration>
-  <type>8th</type>
-  <dot/>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>B</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <notations><slur type="stop"/></notations>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>5</octave></pitch>
+        <duration>3</duration>
+        <type>8th</type>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.6 Big Band Scoring: Layout & Part

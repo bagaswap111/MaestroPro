@@ -32,39 +32,79 @@ Aturan emas: **idiom dapat dipindah, register tidak boleh bentrok** — tandai
 - **Cello (bass):** walking pizzicato; aksen 1 & 3 pada bass line.
 
 ```xml
-<measure number="1">
-  <attributes>
-    <time><beats>4</beats><beat-type>4</beat-type></time>
-    <key><fifths>0</fifths></key>
-  </attributes>
-  <!-- Violin 1: kick-off 2 8ths -->
-  <note>
-    <pitch><step>F</step><octave>5</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>eighth</type>
-    <notations>
-      <slur type="start"/>
-    </notations>
-  </note>
-  <note>
-    <pitch><step>D</step><octave>5</octave></pitch>
-    <duration>2</duration>
-    <voice>1</voice>
-    <type>eighth</type>
-    <notations>
-      <slur type="stop"/>
-      <glissando type="start" line-type="wavy"/>
-    </notations>
-  </note>
-  <!-- Cello walking: D - F - A - C -->
-  <note>
-    <pitch><step>D</step><octave>3</octave></pitch>
-    <duration>4</duration>
-    <voice>4</voice>
-    <type>quarter</type>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin 1</part-name>
+    </score-part>
+    <score-part id="P4">
+      <part-name>Cello</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <key><fifths>0</fifths></key>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <!-- Violin 1: kick-off 2 8ths -->
+      <note>
+        <pitch><step>F</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <notations>
+          <slur type="start"/>
+        </notations>
+      </note>
+      <note>
+        <pitch><step>D</step><octave>5</octave></pitch>
+        <duration>2</duration>
+        <voice>1</voice>
+        <type>eighth</type>
+        <notations>
+          <slur type="stop"/>
+          <glissando type="start" line-type="wavy"/>
+        </notations>
+      </note>
+      <note>
+        <rest/>
+        <duration>12</duration>
+        <voice>1</voice>
+        <type>quarter</type>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+  <part id="P4">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <!-- Cello walking: D - F - A - C -->
+      <note>
+        <pitch><step>D</step><octave>3</octave></pitch>
+        <duration>4</duration>
+        <voice>4</voice>
+        <type>quarter</type>
+      </note>
+      <note>
+        <rest/>
+        <duration>12</duration>
+        <voice>4</voice>
+        <type>quarter</type>
+        <dot/>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 **Catatan voicing string:** jazz/string penulis menulis *chord* di bawah
@@ -83,21 +123,57 @@ Big-band blues pakai **form baku dan bagian horn section**:
 `part-list` + score-order **trumpets (B♭), trombones, saxes, rhythm.**
 
 ```xml
-<part-list>
-  <score-part id="P1">
-    <part-name>Trumpet 1</part-name>
-    <score-instrument id="P1-I1">
-      <instrument-name>B Trumpet</instrument-name>
-    </score-instrument>
-    <midi-instrument id="P1-I1">
-      <midi-channel>1</midi-channel>
-      <midi-program>56</midi-program>
-    </midi-instrument>
-  </score-part>
-  <score-part id="P6">
-    <part-name>Rhythm (Piano/Bass/Drums)</part-name>
-  </score-part>
-</part-list>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Trumpet 1</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>B Trumpet</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>56</midi-program>
+      </midi-instrument>
+    </score-part>
+    <score-part id="P6">
+      <part-name>Rhythm (Piano/Bass/Drums)</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+  <part id="P6">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <rest/>
+        <duration>16</duration>
+        <voice>1</voice>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 **Trick seksi:** pada *stop time*, semua brass menulis `rest` 2 ketuk penuh lalu
@@ -109,37 +185,62 @@ Piano blues = **stride** (bass on 1&3, chord on 2&4) atau **boogie-woogie**
 (pola delapan bass line disinkop).
 
 ```xml
-<!-- Boogie in C: [C] (root+10th) ... -->
-<measure number="1">
-  <note>
-    <pitch><step>C</step><octave>3</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>3</voice>
-    <staff>2</staff>
-  </note>
-  <note>
-    <pitch><step>E</step><octave>4</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>3</voice>
-    <staff>2</staff>
-  </note>
-  <note>
-    <pitch><step>G</step><octave>4</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>3</voice>
-    <staff>2</staff>
-  </note>
-  <note>
-    <pitch><step>C</step><octave>4</octave></pitch>
-    <duration>1</duration>
-    <type>16th</type>
-    <voice>3</voice>
-    <staff>2</staff>
-  </note>
-</measure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Piano</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <!-- Boogie in C: [C] (root+10th) ... -->
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>3</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <voice>3</voice>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <voice>3</voice>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>G</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <voice>3</voice>
+        <staff>2</staff>
+      </note>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>1</duration>
+        <type>16th</type>
+        <voice>3</voice>
+        <staff>2</staff>
+      </note>
+      <note>
+        <rest/>
+        <duration>12</duration>
+        <voice>3</voice>
+        <type>quarter</type>
+        <dot/>
+        <staff>2</staff>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 2.5 Adaptasi 4: Blues → Brass Band (Tanpa Gitar/Bass)

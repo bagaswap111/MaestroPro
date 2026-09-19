@@ -49,20 +49,41 @@ Bass yang bunyi satu oktaf lebih rendah dari notasi).
 ### 1.1.3 Aplikasi MusicXML: Definisi Part Violin dengan Teknik Standar
 
 ```xml
-<score-part id="P1">
-  <part-name>Violin</part-name>
-  <part-abbreviation>Vln.</part-abbreviation>
-  <score-instrument id="P1-I1">
-    <instrument-name>Orchestral Violin</instrument-name>
-    <instrument-sound>pitched</instrument-sound>
-  </score-instrument>
-  <midi-instrument id="P1-I1">
-    <midi-channel>1</midi-channel>
-    <midi-program>40</midi-program>
-    <volume>78.7937</volume>
-    <pan>0</pan>
-  </midi-instrument>
-</score-part>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Violin</part-name>
+      <part-abbreviation>Vln.</part-abbreviation>
+      <score-instrument id="P1-I1">
+        <instrument-name>Orchestral Violin</instrument-name>
+        <instrument-sound>pitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-program>40</midi-program>
+        <volume>78.7937</volume>
+        <pan>0</pan>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.2 Keluarga Woodwind (Tiup Kayu)
@@ -90,18 +111,39 @@ Clarinet, Contrabassoon). Tiap alat punya **transposisi** & **register** khas
 ### 1.2.2 MusikXML: Clarinet Bb dengan `instrument-sound` benar
 
 ```xml
-<score-part id="P4">
-  <part-name>Clarinet in Bb</part-name>
-  <part-abbreviation>Cl.</part-abbreviation>
-  <score-instrument id="P4-I1">
-    <instrument-name>B-flat Clarinet</instrument-name>
-    <instrument-sound>pitched</instrument-sound>
-  </score-instrument>
-  <midi-instrument id="P4-I1">
-    <midi-channel>5</midi-channel>
-    <midi-program>71</midi-program>
-  </midi-instrument>
-</score-part>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P4">
+      <part-name>Clarinet in Bb</part-name>
+      <part-abbreviation>Cl.</part-abbreviation>
+      <score-instrument id="P4-I1">
+        <instrument-name>B-flat Clarinet</instrument-name>
+        <instrument-sound>pitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P4-I1">
+        <midi-channel>5</midi-channel>
+        <midi-program>71</midi-program>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P4">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.3 Keluarga Brass (Tiup Logam)
@@ -149,33 +191,76 @@ Trumpet, Horn, Trombone, Tuba, Euphonium, Flugelhorn. Kebanyakan transpos;
 ### 1.4.1 Aplikasi MusicXML: Snare (Unpitched)
 
 ```xml
-<score-part id="P20">
-  <part-name>Snare Drum</part-name>
-  <part-abbreviation>S.D.</part-abbreviation>
-  <score-instrument id="P20-I1">
-    <instrument-name>Snare Drum</instrument-name>
-    <instrument-sound>unpitched</instrument-sound>
-  </score-instrument>
-  <midi-instrument id="P20-I1">
-    <midi-channel>10</midi-channel>
-    <midi-program>0</midi-program>
-    <midi-unpitched>38</midi-unpitched>
-  </midi-instrument>
-</score-part>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P20">
+      <part-name>Snare Drum</part-name>
+      <part-abbreviation>S.D.</part-abbreviation>
+      <score-instrument id="P20-I1">
+        <instrument-name>Snare Drum</instrument-name>
+        <instrument-sound>unpitched</instrument-sound>
+      </score-instrument>
+      <midi-instrument id="P20-I1">
+        <midi-channel>10</midi-channel>
+        <midi-program>0</midi-program>
+        <midi-unpitched>38</midi-unpitched>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P20">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <clef><sign>percussion</sign></clef>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>C</display-step>
+          <display-octave>5</display-octave>
+        </unpitched>
+        <duration>2</duration>
+        <instrument id="P20-I1"/>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem>up</stem>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<note>
-  <unpitched>
-    <display-step>C</display-step>
-    <display-octave>5</display-octave>
-  </unpitched>
-  <duration>2</duration>
-  <instrument id="P20-I1"/>
-  <voice>1</voice>
-  <type>eighth</type>
-  <stem>up</stem>
-</note>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P20">
+      <part-name>Snare Drum</part-name>
+      <part-abbreviation>S.D.</part-abbreviation>
+    </score-part>
+  </part-list>
+  <part id="P20">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <clef><sign>percussion</sign></clef>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>C</display-step>
+          <display-octave>5</display-octave>
+        </unpitched>
+        <duration>2</duration>
+        <instrument id="P20-I1"/>
+        <voice>1</voice>
+        <type>eighth</type>
+        <stem>up</stem>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 > `<midi-unpitched>` menetapkan drum/kim ke derajat GM tertentu. Snare=38,
@@ -213,17 +298,64 @@ Trumpet, Horn, Trombone, Tuba, Euphonium, Flugelhorn. Kebanyakan transpos;
    untuk part player.
 
 ```xml
-<clef>
-  <sign>percussion</sign>
-</clef>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Percussion</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <clef>
+          <sign>percussion</sign>
+        </clef>
+      </attributes>
+      <note>
+        <unpitched>
+          <display-step>C</display-step>
+          <display-octave>5</display-octave>
+        </unpitched>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ```xml
-<clef>
-  <sign>G</sign>
-  <line>2</line>
-  <clef-octave-change>-1</clef-octave-change>
-</clef>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Double Bass</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>4</divisions>
+        <key><fifths>0</fifths></key>
+        <time><beats>4</beats><beat-type>4</beat-type></time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+          <clef-octave-change>-1</clef-octave-change>
+        </clef>
+      </attributes>
+      <note>
+        <pitch><step>C</step><octave>4</octave></pitch>
+        <duration>16</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
 ```
 
 ## 1.7 Miskonsepsi Umum
