@@ -1,0 +1,15 @@
+{
+  "defaultLanguage": "id",
+  "fallbackLanguage": "id",
+  "languages": [
+    { "code": "id", "label": "Bahasa Indonesia", "englishName": "Indonesian", "status": "primary", "suffix": "" },
+    { "code": "en", "label": "English", "englishName": "English", "status": "complete", "suffix": ".en" },
+    { "code": "zh", "label": "中文", "englishName": "Chinese", "status": "pending", "suffix": ".zh" },
+    { "code": "it", "label": "Italiano", "englishName": "Italian", "status": "pending", "suffix": ".it" },
+    { "code": "fr", "label": "Français", "englishName": "French", "status": "pending", "suffix": ".fr" },
+    { "code": "de", "label": "Deutsch", "englishName": "German", "status": "pending", "suffix": ".de" },
+    { "code": "nl", "label": "Nederlands", "englishName": "Dutch", "status": "pending", "suffix": ".nl" },
+    { "code": "es", "label": "Español", "englishName": "Spanish", "status": "pending", "suffix": ".es" },
+    { "code": "ja", "label": "日本語", "englishName": "Japanese", "status": "pending", "suffix": ".ja" }
+  ]
+}
