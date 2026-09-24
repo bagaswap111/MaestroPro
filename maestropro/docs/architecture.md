@@ -2,7 +2,7 @@
 # MaestroPro by Maya Instruments Technology
 
 **Tagline:** *"From Audio to Artistry — AI-Powered Music Notation & Arrangement"*  
-**Version:** 2.0.0 (Final Consolidated)  
+**Version:** 2.1.0 (SheetSage2 & YuE2 Integration)  
 **Status:** Ready for Implementation  
 **Author:** Bagassap / Maya Instruments Technology  
 
@@ -25,6 +25,7 @@
 13. [Development Roadmap](#13-development-roadmap)
 14. [Constraints & Edge Cases](#14-constraints--edge-cases)
 15. [Phase 1 File-by-File Specification](#15-phase-1-file-by-file-specification)
+16. [SheetSage2 & YuE2 Integration](#16-sheetsage2--yue2-integration)
 
 ---
 
@@ -106,6 +107,15 @@ graph TB
         DYN[Dynamic Module Loader]
     end
 
+    subgraph "🎼 ORCHESTRATION ENGINE (SheetSage2 + YuE2)"
+        SS2[SheetSage2 Adapter]
+        ABCB[Native ABC Bridge]
+        SCON[Score Constructor]
+        ABCX[ABC Exporter]
+        YUE[YuE2 Adapter]
+        ORCH[Orchestration Session Store]
+    end
+
     subgraph "💾 LOCAL STORAGE"
         CACHE[(Audio/MIDI Cache)]
         SKILLS_MD[(Markdown Rules)]
@@ -136,6 +146,11 @@ graph TB
     DYN --> SKILLS_PY
     DYN -->|Load Class| ARR
     SKILLS_MD --> MD
+
+    REST_API -->|/api/orchestrate/*| ORCH
+    ORCH --> SS2 -->|score.abc| ABCB --> SCON -->|MusicXML| ABCB
+    SCON -->|MusicXML| UI
+    ABCX -->|native ABC| YUE -->|audio.flac| UI
 ```
 
 ### 2.2 Diagram B: End-to-End Data Flow (Sequence Diagram)
@@ -242,6 +257,10 @@ graph TD
 | **Packaging** | `PyInstaller` | 6.x | Bundle backend into standalone .exe |
 | **HTTP Client** | `requests` | 2.x | Ollama API communication |
 | **Audio Processing** | `librosa`, `soundfile` | Latest | Audio format conversion, resampling |
+| **Lead-Sheet Transcription** | `SheetSage2` (skill) | m-a-p/SheetSage2 | Audio → native 2-voice ABC lead sheet (`score.abc` + manifest) |
+| **Arrangement Preview** | `YuE2` (skill) | m-a-p/YuE2-3B | Score-conditioned ABC → audio mockup (`run/audio.flac`) |
+| **Native ABC Dialect** | `abc_tools.py` | yue2-music skill | Strict parse/validate/strip for SheetSage2 & YuE2 ABC contract |
+| **Orchestration Bridge** | `backend/orchestration/` | New (v1.1.0) | Session state machine, score construction, ABC export, adapters |
 
 ---
 
@@ -268,6 +287,18 @@ maestropro/
 │   │   ├── analyzer.py               # Key, tempo, chord, form detection
 │   │   ├── arranger.py               # Applies compiled skills to score
 │   │   └── xml_generator.py          # Final MusicXML assembly & export
+│   ├── orchestration/
+│   │   ├── __init__.py
+│   │   ├── models.py                 # ArrangementConfig, session/stage Pydantic models
+│   │   ├── instruments.py            # Instrument presets & role resolution (melody/bass/…)
+│   │   ├── abc_bridge.py             # Loads yue2-music abc_tools; LeadSheet parsing
+│   │   ├── chords.py                 # music21 figures ↔ native ABC chord symbols
+│   │   ├── score_builder.py          # Lead sheet → multi-part music21 score → MusicXML
+│   │   ├── abc_export.py             # MusicXML score → native 2-voice ABC for YuE2
+│   │   ├── sheetsage2.py             # SheetSage2 subprocess adapter (transcribe.py)
+│   │   ├── yue2.py                   # YuE2 subprocess adapter (run_yue2.py)
+│   │   ├── session.py                # HITL state machine + JSON session store
+│   │   └── orchestrator.py           # OrchestrationService: transcribe/preview/export
 │   └── skill_compiler/
 │       ├── __init__.py
 │       ├── parser.py                 # Extract structured rules from .md
@@ -294,6 +325,7 @@ maestropro/
 │
 ├── data/                              # Runtime data (gitignored)
 │   ├── cache/                         # Temporary audio/MIDI files
+│   ├── orchestration/                 # Orchestration sessions (ABC, MusicXML, runs)
 │   ├── projects/                      # User project workspaces
 │   └── skills/
 │       ├── markdown/                  # User-written .md rule files
@@ -307,7 +339,16 @@ maestropro/
 │       ├── banner.bmp               # Installer banner
 │       └── icon.ico                 # Installer icon
 │
+├── yue2-music/                        # SheetSage2 + YuE2 skill (sibling checkout)
+│   ├── SKILL.md
+│   └── scripts/
+│       ├── transcribe.py              # SheetSage2 CLI → score.abc + manifest
+│       ├── run_yue2.py                # YuE2 CLI → run/audio.flac + run.json
+│       └── abc_tools.py               # Strict native ABC parser/validator
+│
 ├── tests/
+│   ├── conftest.py                    # Puts maestropro root on sys.path
+│   ├── test_orchestration.py          # ABC bridge, score builder, ABC export, sessions
 │   ├── test_downloader.py
 │   ├── test_separator.py
 │   ├── test_transcriber.py
@@ -316,6 +357,8 @@ maestropro/
 │   └── test_validator.py
 │
 └── docs/
+    ├── architecture.md                # This document (SSOT)
+    ├── version-1.1.md                 # SheetSage2 & YuE2 integration spec
     ├── USER_GUIDE.md
     ├── DEVELOPER_GUIDE.md
     └── MARKDOWN_SYNTAX.md           # How to write skill .md files
@@ -455,6 +498,73 @@ WebSocket event → QML → MuseScore opens new score
 User sees full arrangement with original + new string parts
 ```
 
+### 5.4 Workflow D: Full Orchestration (SheetSage2 + YuE2 + Human-in-the-Loop)
+
+```
+[1] Insert song to arrange
+    User uploads audio / pastes YouTube URL
+  │
+  ▼
+[2] Configure arrangement
+    Genre, target instruments, part count, key, tempo, style prompt, lyrics
+    (e.g. "String Orchestra — Violin I/II, Viola, Cello, Contrabass")
+  │
+  ▼
+[3] SheetSage2 transcribes → lead sheet → multi-part MusicXML
+    POST /api/orchestrate/transcribe
+    ├── resolve source (local file or yt-dlp download)
+    ├── SheetSage2 adapter → score.abc (native 2-voice) + transcription_manifest.json
+    ├── abc_bridge parses lead sheet (melody + chords)
+    ├── score_builder realizes harmony across configured instruments
+    └── Export MusicXML → stage: awaiting_edit
+  │
+  ▼
+[4] Human edits in MuseScore (HITL)
+    Add/remove notes, change voicing, dynamics, articulations...
+    POST /api/orchestrate/session/{id}/edit  → marks edited file, allows redo
+  │
+  ▼
+[5] YuE2 generates audio mockup
+    POST /api/orchestrate/preview
+    ├── load edited MusicXML → music21 score
+    ├── abc_export → native 2-voice ABC (cot full) or chord-free (cot melody)
+    ├── snapshot score + score_r{n}.abc per revision
+    ├── YuE2 adapter → run/audio.flac  (score-conditioned generative preview)
+    └── stage: preview_ready
+  │
+  ▼
+[6] Iterate (optional)
+    Listen → edit again in MuseScore → regenerate preview → repeat
+    until satisfied → POST /api/orchestrate/session/{id}/export → print-ready MusicXML
+```
+
+**State machine (per session):**
+
+```mermaid
+stateDiagram-v2
+    [*] --> configured: POST /api/orchestrate/session
+    configured --> transcribing: POST /transcribe
+    transcribing --> awaiting_edit: SheetSage2 OK
+    transcribing --> error: failure
+    awaiting_edit: user edits MusicXML in MuseScore
+    awaiting_edit --> previewing: POST /preview
+    awaiting_edit --> transcribing: redo (config/source change)
+    previewing --> preview_ready: YuE2 OK
+    previewing --> error: failure
+    preview_ready --> previewing: iterate (re-preview)
+    preview_ready --> awaiting_edit: user edits again
+    preview_ready --> exported: POST /export
+    awaiting_edit --> exported: POST /export
+    exported --> previewing: re-preview
+    exported --> transcribing: redo
+    error --> awaiting_edit: recover if lead sheet exists
+    error --> transcribing: retry
+```
+
+> **Note:** YuE2 preview is a *generative, score-conditioned* mockup — musically
+> informative but **not** sample-accurate to the notation. For sample-accurate
+> rendering use MuseScore's own playback on the edited MusicXML.
+
 ---
 
 ## 6. API & COMMUNICATION CONTRACTS
@@ -515,6 +625,14 @@ User sees full arrangement with original + new string parts
 | `DELETE` | `/api/skills/{name}` | - | `{"status": "deleted"}` |
 | `POST` | `/api/arrange` | `{"file_path": "...", "style": "jazz_ballad", "instruments": [...]}` | `{"task_id": "txn_..."}` |
 | `GET` | `/api/health` | - | `{"status": "ok", "ollama": true, "model": "qwen2.5-coder:7b"}` |
+| `POST` | `/api/orchestrate/session` | `CreateSessionRequest` (`source`, `config: ArrangementConfig`) | `{"session_id", "stage", "session"}` |
+| `POST` | `/api/orchestrate/transcribe` | `OrchestrateTranscribeRequest` (`session_id`) | `{"task_id", "session_id"}` (WS progress) |
+| `POST` | `/api/orchestrate/preview` | `OrchestratePreviewRequest` (`session_id`) | `{"task_id", "session_id"}` (WS progress) |
+| `GET` | `/api/orchestrate/session/{id}` | - | Full `OrchestrationSession` |
+| `GET` | `/api/orchestrate/sessions` | - | `{"sessions": [...]}` |
+| `POST` | `/api/orchestrate/session/{id}/edit` | `EditRegisteredRequest` (`file_path`) | Updated session (`awaiting_edit`) |
+| `POST` | `/api/orchestrate/session/{id}/export` | - | `{"file_path": ".../score_final.musicxml"}` |
+| `GET` | `/api/orchestrate/health` | - | SheetSage2/YuE2 availability, skill dirs, venvs |
 
 ---
 
@@ -996,11 +1114,19 @@ QtObject {
 {
   "name": "MaestroPro",
   "description": "AI-Powered Music Transcription & Arrangement by Maya Instruments Technology",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Maya Instruments Technology",
   "main": "main.qml",
   "type": "dock",
-  "requiresScore": false
+  "requiresScore": false,
+  "backend": {
+    "restPort": 8000,
+    "websocketPort": 8765,
+    "healthEndpoint": "/api/health",
+    "orchestrateSessionEndpoint": "/api/orchestrate/session",
+    "orchestrateTranscribeEndpoint": "/api/orchestrate/transcribe",
+    "orchestratePreviewEndpoint": "/api/orchestrate/preview"
+  }
 }
 ```
 
@@ -1067,6 +1193,7 @@ Write-Host "AI Engine ready!" -ForegroundColor Green
 | **Phase 3: AI Skill Compiler** | Week 6-8 | Markdown parser, Ollama client, AST validator, dynamic loader, Skill Manager UI | `parser.py`, `ollama_client.py`, `validator.py`, `loader.py`, `SkillManager.qml` |
 | **Phase 4: Arrangement Engine** | Week 9-11 | Score analyzer, arrangement executor, 3-5 built-in styles, ArrangementDialog UI | `analyzer.py`, `arranger.py`, `ArrangementDialog.qml` |
 | **Phase 5: Polish & Package** | Week 12-14 | UI theming, error handling, PyInstaller packaging, Ollama auto-setup, docs | `theme.qml`, `build_windows.spec`, `setup_ollama.ps1`, `USER_GUIDE.md` |
+| **Phase 6: Orchestration (v1.1)** | Week 15-18 | SheetSage2 transcription, YuE2 preview, HITL orchestration sessions, native ABC bridge/export | `orchestration/`, `sheetsage2.py`, `yue2.py`, `abc_export.py`, `session.py`, `/api/orchestrate/*` |
 
 ---
 
@@ -1084,6 +1211,9 @@ Write-Host "AI Engine ready!" -ForegroundColor Green
 | 8 | **Large audio files (>30 min)** | Chunk processing in transcriber; progress updates per chunk |
 | 9 | **Port conflicts (8765/8000/11434)** | Config file allows custom ports; auto-detect available ports on startup |
 | 10 | **User writes ambiguous Markdown** | System prompt instructs AI to use closest `music21` equivalent + comment; validator catches syntax issues |
+| 11 | **SheetSage2 / YuE2 need heavy, conflicting deps** | Separate virtualenvs per skill (`SHEETSAGE2_PYTHON`, `YUE2_PYTHON`); adapters preflight `available: False` + endpoints return 503 when unconfigured |
+| 12 | **YuE2 preview ≠ sample-accurate render** | Documented as generative mockup; MuseScore playback remains the source of truth for timing/notes |
+| 13 | **MusicXML → native ABC export loses detail** | Duration quantization to 1/32-grid units, chord-onset splits with ties, per-bar accidental replay check (`_validate_bar_tokens`) before handoff |
 
 ---
 
@@ -1248,9 +1378,85 @@ Rectangle {
 
 ---
 
-## 🚀 HOW TO USE THIS DOCUMENT WITH QWEN CODER
+## 16. SHEETSAGE2 & YUE2 INTEGRATION
 
-1. Copy this **entire document** (all 15 sections).
+Spec source: `docs/version-1.1.md`. Implementation: `backend/orchestration/` + `backend/audio_engine/downloader.py`, glue endpoints in `backend/main.py`. App version **1.1.0**.
+
+### 16.1 The Two Models
+
+| | **SheetSage2** | **YuE2** |
+| :--- | :--- | :--- |
+| Origin | MIT / UC Berkeley (`m-a-p/SheetSage2`) | NetEase (`m-a-p/YuE2-3B` + `YuE2-Vae`) |
+| Role | Audio → **lead sheet** transcription (melody + chords) | Score-conditioned **audio mockup** generation |
+| CLI | `yue2-music/scripts/transcribe.py` | `yue2-music/scripts/run_yue2.py` |
+| Input | audio file (after `download_audio` resolve) | request JSON `{style, lyrics, cot, seed, id}` + ABC via `--abc-file` |
+| Output | `score.abc` + `transcription_manifest.json` | `run/audio.flac` + `run.json` |
+| ABC cot modes | produces native 2-voice ABC | `full` = melody+chord ABC · `melody` = chord-free (`strip_chords`) · `off` = no ABC |
+| Adapter | `sheetsage2.SheetSage2Adapter` | `yue2.YuE2Adapter` |
+| Timeout (config) | `SHEETSAGE2_TIMEOUT` (1800s) | `YUE2_TIMEOUT` (3600s) |
+
+**Virtualenv contract:** each skill runs in its *own* Python (`SHEETSAGE2_PYTHON`, `YUE2_PYTHON`; env overrides `MAESTROPRO_SHEETSAGE2_PYTHON`, `MAESTROPRO_YUE2_PYTHON`). When unset or the skill dir is missing, `adapter.available == False`, `health()` explains how to fix it, and orchestrate endpoints fail fast with **HTTP 503** preflight instead of starting a doomed job.
+
+### 16.2 Native ABC Dialect (`abc_tools.py`)
+
+Strict dialect shared by both skills — loaded dynamically by `abc_bridge.load_abc_tools()` (module name `maestropro_abc_tools`):
+
+- Header: `X:1`, blank `T:`, `M:`, `L:1/32`, `Q:1/4=int`, exactly two `V:` lines, `K:`
+- Bodies grouped in **1–4 measures**; both voices must share the same bar grid
+- Durations in units where **1 quarter = 8**; allowed: `{1,2,3,4,6,8,12,16,24,32,48}`
+- Chords (`"Cmaj7"`) **only on the Vocal voice**
+- `strip_chords()` removes chord symbols but keeps `name="..."` header quotes
+
+### 16.3 Orchestration Package Map
+
+| Module | Responsibility |
+| :--- | :--- |
+| `models.py` | `OrchestrationStage`, `ArrangementConfig`, session/request/response models |
+| `instruments.py` | `INSTRUMENT_PRESETS`, `resolve_roles()` (first part = melody; bass hints → bass) |
+| `abc_bridge.py` | Parse/validate native ABC → `LeadSheet` (notes + `ChordEvent`s); `strip_chords()` |
+| `chords.py` | music21 figures ↔ native symbols (`C+`→`Caug`, `Ebmaj7`…) and chord pitch sets |
+| `score_builder.py` | Lead sheet + config → multi-part music21 score (melody + ChordSymbols, realized harmony, key/tempo overrides) → MusicXML |
+| `abc_export.py` | MusicXML score → native 2-voice ABC: unit quantization, chord-onset forced splits w/ ties, bar-crossing ties, per-bar accidental emission + `_validate_bar_tokens()` replay |
+| `sheetsage2.py` / `yue2.py` | Subprocess adapters (progress bridged via `run_coroutine_threadsafe`) |
+| `session.py` | `ALLOWED_TRANSITIONS` state machine + atomic JSON `SessionStore` |
+| `orchestrator.py` | `OrchestrationService.run_transcribe` / `run_preview` / `register_edit` / `export_session` / `health` |
+
+### 16.4 Sequence: Transcribe + Preview + Iterate
+
+```mermaid
+sequenceDiagram
+    participant Q as QML UI
+    participant API as FastAPI :8000
+    participant WS as WS :8765
+    participant S as SheetSage2 venv
+    participant Y as YuE2 venv
+    Q->>API: POST /api/orchestrate/session (source, config)
+    API-->>Q: session_id (stage: configured)
+    Q->>API: POST /api/orchestrate/transcribe
+    API->>WS: progress (transcribing)
+    API->>S: transcribe.py → score.abc + manifest
+    S-->>API: score.abc
+    API->>API: abc_bridge → score_builder → MusicXML
+    API->>WS: progress complete (awaiting_edit)
+    Q->>API: POST /session/{id}/edit (user's edited MusicXML)
+    Q->>API: POST /api/orchestrate/preview
+    API->>WS: progress (previewing)
+    API->>API: music21 → abc_export (score_r{n}.abc, cot full/melody)
+    API->>Y: run_yue2.py --abc-file → run/audio.flac
+    Y-->>API: audio.flac
+    API->>WS: progress complete (preview_ready, audio_path)
+    Note over Q,Y: loop — edit → preview → listen — until export
+    Q->>API: POST /session/{id}/export
+    API-->>Q: score_final.musicxml
+```
+
+### 16.5 Honest Limitations
+
+1. **YuE2 preview is generative**, not a renderer — timing/dynamics may drift from notation; use MuseScore playback for sample-accurate checking.
+2. **ABC round-trip is lossy** by nature (quantized durations, tied splits); unsupported source material raises `AbcExportError` rather than silently corrupting the contract.
+3. **Two venvs + model weights** are the main setup cost; `/api/orchestrate/health` is the single diagnostic for both.
+
+1. Copy this **entire document** (all 16 sections).
 2. Open [https://coder.qwen.ai/](https://coder.qwen.ai/).
 3. Create a new project named `maestropro`.
 4. Paste this document into the chat with the following instruction:

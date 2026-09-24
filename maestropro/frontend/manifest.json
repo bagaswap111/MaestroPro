@@ -1,7 +1,7 @@
 {
   "name": "MaestroPro",
   "description": "AI-Powered Music Transcription & Arrangement by Maya Instruments Technology",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Maya Instruments Technology",
   "license": "MIT",
   "main": "maestropro.qml",
@@ -22,7 +22,11 @@
     "analyzeEndpoint": "/api/analyze",
     "arrangeEndpoint": "/api/arrange",
     "compileSkillEndpoint": "/api/skills/compile",
-    "listSkillsEndpoint": "/api/skills/list"
+    "listSkillsEndpoint": "/api/skills/list",
+    "orchestrateSessionEndpoint": "/api/orchestrate/session",
+    "orchestrateTranscribeEndpoint": "/api/orchestrate/transcribe",
+    "orchestratePreviewEndpoint": "/api/orchestrate/preview",
+    "orchestrateHealthEndpoint": "/api/orchestrate/health"
   },
   "features": [
     "Audio-to-MusicXML transcription",
@@ -30,7 +34,9 @@
     "Source separation (Demucs)",
     "Music theory analysis",
     "AI-powered arrangement",
-    "Custom skill compilation"
+    "Custom skill compilation",
+    "SheetSage2 lead-sheet transcription",
+    "YuE2 arrangement preview (human-in-the-loop)"
   ],
   "branding": {
     "tagline": "From Audio to Artistry",

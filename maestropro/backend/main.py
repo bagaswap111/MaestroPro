@@ -20,6 +20,20 @@ import logging
 
 from backend.config import settings
 from backend.skill_compiler.compiler import SkillCompiler
+from backend.orchestration import (
+    CreateSessionRequest,
+    EditRegisteredRequest,
+    OrchestratePreviewRequest,
+    OrchestrateTranscribeRequest,
+    OrchestrationService,
+    OrchestrationStage,
+    SessionError,
+)
+from backend.orchestration.models import (
+    OrchestrateHealthComponent,
+    OrchestrateHealthResponse,
+    SessionListResponse,
+)
 
 # Configure logging
 logging.basicConfig(
@@ -61,6 +75,7 @@ class TaskResponse(BaseModel):
     """Response model for task initiation endpoints."""
     task_id: str
     status: str = "queued"
+    session_id: Optional[str] = None
 
 
 class HealthResponse(BaseModel):
@@ -118,6 +133,9 @@ manager = ConnectionManager()
 # Global skill compiler instance
 skill_compiler = SkillCompiler()
 
+# Full Orchestration Workflow service (SheetSage2 + YuE2 + Human-in-the-Loop)
+orchestration_service = OrchestrationService(settings)
+
 # Task storage (in production, use Redis or database)
 active_tasks: Dict[str, dict] = {}
 
@@ -135,6 +153,17 @@ async def lifespan(app: FastAPI):
     logger.info(f"WebSocket: ws://{settings.HOST}:{settings.WS_PORT}")
     logger.info(f"Ollama URL: {settings.OLLAMA_URL}")
     logger.info(f"Default Model: {settings.DEFAULT_MODEL}")
+    logger.info(f"Orchestration dir: {settings.ORCHESTRATION_DIR}")
+    sheet_health = orchestration_service.sheetsage2.health()
+    yue_health = orchestration_service.yue2.health()
+    logger.info(
+        f"SheetSage2: {'available' if sheet_health['available'] else 'unavailable'}"
+        f" ({sheet_health['detail'] or sheet_health['script']})"
+    )
+    logger.info(
+        f"YuE2: {'available' if yue_health['available'] else 'unavailable'}"
+        f" ({yue_health['detail'] or yue_health['script']})"
+    )
     
     # Check Ollama connectivity
     try:
@@ -425,6 +454,264 @@ async def arrange_score(request: ArrangeRequest, background_tasks: BackgroundTas
     logger.info(f"Arrangement task {task_id} queued: {request.style}")
     
     return TaskResponse(task_id=task_id, status="queued")
+
+
+# ==================== Full Orchestration Workflow ====================
+# SheetSage2 + YuE2 + Human-in-the-Loop (see docs/architecture.md §16)
+
+def orchestration_progress(task_id: str):
+    """Build an async progress callback that mirrors the WebSocket protocol."""
+
+    async def _progress(stage: str, percent: int, message: str) -> None:
+        if task_id in active_tasks:
+            active_tasks[task_id]["status"] = stage
+            active_tasks[task_id]["progress"] = percent
+        await manager.send_personal_message({
+            "type": "progress",
+            "task_id": task_id,
+            "stage": stage,
+            "percent": percent,
+            "message": message,
+        }, task_id)
+
+    return _progress
+
+
+@app.post("/api/orchestrate/session")
+async def create_orchestrate_session(request: CreateSessionRequest):
+    """
+    Step [1]+[2]: create a human-in-the-loop orchestration session.
+    Registers the audio source and arrangement configuration.
+    """
+    session = orchestration_service.create_session(request.source, request.config)
+    logger.info(
+        f"Orchestration session {session.session_id} created: "
+        f"{session.config.genre} [{', '.join(session.config.instruments)}]"
+    )
+    return session
+
+
+@app.post("/api/orchestrate/transcribe", response_model=TaskResponse)
+async def orchestrate_transcribe(
+    request: OrchestrateTranscribeRequest,
+    background_tasks: BackgroundTasks,
+):
+    """
+    Step [3]: SheetSage2 transcribes the source → lead sheet is split into
+    per-instrument parts → multi-part MusicXML for editing in MuseScore.
+
+    Provide either `session_id`, or `source` + `config` to auto-create one.
+    Progress streams over WebSocket as task_id events.
+    """
+    # Resolve or create the session
+    if request.session_id:
+        try:
+            session = orchestration_service.get_session(request.session_id)
+        except SessionError as exc:
+            raise HTTPException(status_code=404, detail=str(exc))
+        if request.source:
+            session.source = request.source
+        if request.config:
+            session.config = request.config
+            session.stage = OrchestrationStage.CONFIGURED
+        orchestration_service.sessions.save(session)
+    else:
+        if not request.source or not request.config:
+            raise HTTPException(
+                status_code=422,
+                detail="Provide session_id, or both source and config",
+            )
+        session = orchestration_service.create_session(request.source, request.config)
+
+    # Preflight: SheetSage2 runtime must be configured
+    health = orchestration_service.sheetsage2.health()
+    if not health["available"]:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "unavailable",
+                "component": "sheetsage2",
+                "message": health["detail"],
+                "session_id": session.session_id,
+            },
+        )
+
+    task_id = f"orc_{uuid.uuid4().hex[:8]}"
+    active_tasks[task_id] = {
+        "type": "orchestrate_transcribe",
+        "status": "queued",
+        "session_id": session.session_id,
+        "progress": 0,
+    }
+    background_tasks.add_task(
+        _run_transcribe_task, task_id, session.session_id,
+    )
+    logger.info(
+        f"Orchestration transcribe task {task_id} queued "
+        f"(session {session.session_id})"
+    )
+    return TaskResponse(task_id=task_id, status="queued", session_id=session.session_id)
+
+
+@app.post("/api/orchestrate/preview", response_model=TaskResponse)
+async def orchestrate_preview(
+    request: OrchestratePreviewRequest,
+    background_tasks: BackgroundTasks,
+):
+    """
+    Step [5]: YuE2 generates an audio mockup from the (edited) MusicXML.
+    The score is exported to native ABC first and used as symbolic conditioning.
+    """
+    if not request.session_id:
+        raise HTTPException(status_code=422, detail="session_id is required")
+    try:
+        session = orchestration_service.get_session(request.session_id)
+    except SessionError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+    score_path = Path(request.musicxml_path or session.musicxml_path or "")
+    if not score_path.is_file():
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                f"Score not found ({score_path or 'no score yet'}); "
+                "run /api/orchestrate/transcribe first"
+            ),
+        )
+
+    health = orchestration_service.yue2.health()
+    if not health["available"]:
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "status": "unavailable",
+                "component": "yue2",
+                "message": health["detail"],
+                "session_id": session.session_id,
+            },
+        )
+
+    task_id = f"prev_{uuid.uuid4().hex[:8]}"
+    active_tasks[task_id] = {
+        "type": "orchestrate_preview",
+        "status": "queued",
+        "session_id": session.session_id,
+        "progress": 0,
+    }
+    background_tasks.add_task(
+        _run_preview_task, task_id, session.session_id, request,
+    )
+    logger.info(f"Orchestration preview task {task_id} queued (session {session.session_id})")
+    return TaskResponse(task_id=task_id, status="queued", session_id=session.session_id)
+
+
+@app.get("/api/orchestrate/session/{session_id}")
+async def get_orchestrate_session(session_id: str):
+    """Poll human-in-the-loop session state: stage, artifacts, previews."""
+    try:
+        return orchestration_service.get_session(session_id)
+    except SessionError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+
+
+@app.get("/api/orchestrate/sessions", response_model=SessionListResponse)
+async def list_orchestrate_sessions():
+    """List all orchestration sessions (most recent first)."""
+    return SessionListResponse(sessions=orchestration_service.list_sessions())
+
+
+@app.post("/api/orchestrate/session/{session_id}/edit")
+async def register_orchestrate_edit(session_id: str, request: EditRegisteredRequest):
+    """
+    Step [4]: register a human edit performed in MuseScore.
+    Bumps the edit revision so the next preview reflects the edited score.
+    """
+    try:
+        return orchestration_service.register_edit(session_id, request)
+    except SessionError as exc:
+        status = 404 if "not found" in str(exc).lower() else 409
+        raise HTTPException(status_code=status, detail=str(exc))
+
+
+@app.post("/api/orchestrate/session/{session_id}/export")
+async def export_orchestrate_session(session_id: str):
+    """Step [6]: export the final score as print-ready MusicXML."""
+    try:
+        return orchestration_service.export_session(session_id)
+    except SessionError as exc:
+        status = 404 if "not found" in str(exc).lower() else 409
+        raise HTTPException(status_code=status, detail=str(exc))
+
+
+@app.get("/api/orchestrate/health", response_model=OrchestrateHealthResponse)
+async def orchestrate_health():
+    """Report SheetSage2 & YuE2 runtime availability for the orchestration workflow."""
+    data = orchestration_service.health()
+    return OrchestrateHealthResponse(
+        status=data["status"],
+        sheetsage2=OrchestrateHealthComponent(**data["sheetsage2"]),
+        yue2=OrchestrateHealthComponent(**data["yue2"]),
+    )
+
+
+async def _run_transcribe_task(task_id: str, session_id: str):
+    """Background wrapper: run transcribe and publish completion/error events."""
+    progress = orchestration_progress(task_id)
+    try:
+        session = await orchestration_service.run_transcribe(
+            task_id, session_id, progress=progress,
+        )
+        await manager.send_personal_message({
+            "type": "complete",
+            "task_id": task_id,
+            "session_id": session_id,
+            "file_path": session.musicxml_path,
+            "stage": session.stage.value,
+        }, task_id)
+    except Exception as exc:
+        logger.error(f"Orchestration transcribe task {task_id} failed: {exc}")
+        if task_id in active_tasks:
+            active_tasks[task_id]["status"] = "error"
+        await manager.send_personal_message({
+            "type": "error",
+            "task_id": task_id,
+            "session_id": session_id,
+            "stage": "transcription",
+            "message": str(exc),
+        }, task_id)
+
+
+async def _run_preview_task(task_id: str, session_id: str, request: OrchestratePreviewRequest):
+    """Background wrapper: run YuE2 preview and publish completion/error events."""
+    progress = orchestration_progress(task_id)
+    try:
+        session = await orchestration_service.run_preview(
+            task_id,
+            session_id,
+            musicxml_path=request.musicxml_path,
+            style_prompt=request.style_prompt,
+            lyrics=request.lyrics,
+            progress=progress,
+        )
+        latest = session.previews[-1] if session.previews else None
+        await manager.send_personal_message({
+            "type": "complete",
+            "task_id": task_id,
+            "session_id": session_id,
+            "audio_path": latest.audio_path if latest else None,
+            "stage": session.stage.value,
+        }, task_id)
+    except Exception as exc:
+        logger.error(f"Orchestration preview task {task_id} failed: {exc}")
+        if task_id in active_tasks:
+            active_tasks[task_id]["status"] = "error"
+        await manager.send_personal_message({
+            "type": "error",
+            "task_id": task_id,
+            "session_id": session_id,
+            "stage": "preview",
+            "message": str(exc),
+        }, task_id)
 
 
 # ==================== Background Task Handlers ====================

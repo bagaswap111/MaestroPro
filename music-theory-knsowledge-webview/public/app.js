@@ -258,6 +258,8 @@ async function initMusicXmlBlocks() {
 async function renderSheet(xml, sheet) {
   try {
     const lib = await loadOSMD();
+    // Strip DOCTYPE — OSMD chokes on it
+    const clean = xml.replace(/<!DOCTYPE[^>]*>/gi, '');
     const osmd = new lib.OpenSheetMusicDisplay(sheet, {
       autoResize: false,
       backend: 'svg',
@@ -266,9 +268,8 @@ async function renderSheet(xml, sheet) {
       drawCredits: false,
       drawPartNames: true,
       drawPartAbbreviations: true,
-      drawingParameters: 'compact',
     });
-    await osmd.load(xml);
+    await osmd.load(clean);
     osmd.render();
   } catch (err) {
     console.error('OSMD error:', err);

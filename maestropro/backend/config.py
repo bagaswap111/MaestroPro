@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     # Application Info
     APP_NAME: str = "MaestroPro"
     COMPANY: str = "Maya Instruments Technology"
-    VERSION: str = "1.0.0"
+    VERSION: str = "1.1.0"
     TAGLINE: str = "From Audio to Artistry"
     
     # Server Configuration
@@ -56,7 +56,25 @@ class Settings(BaseSettings):
     DEMUCS_MODEL: str = "htdemucs_ft"
     QUANTIZE_GRID: str = "1/16"
     GHOST_NOTE_VELOCITY_THRESHOLD: int = 20
-    
+
+    # SheetSage2 & YuE2 (Full Orchestration Workflow)
+    # Skill folder ships with the repo (scripts/ + references/). Each model family
+    # runs in its own virtualenv because dependency pins differ; point the *_PYTHON
+    # settings at the matching interpreter (env: MAESTROPRO_SHEETSAGE2_PYTHON, etc.).
+    SHEETSAGE2_SKILL_DIR: Path = Path(__file__).resolve().parents[2] / "yue2-music"
+    YUE2_SKILL_DIR: Path = Path(__file__).resolve().parents[2] / "yue2-music"
+    SHEETSAGE2_PYTHON: str = ""
+    YUE2_PYTHON: str = ""
+    SHEETSAGE2_MODEL: str = "m-a-p/SheetSage2"
+    SHEETSAGE2_REVISION: str = ""
+    SHEETSAGE2_TASK: str = "full"
+    YUE2_MODEL: str = "m-a-p/YuE2-3B"
+    YUE2_VAE: str = "m-a-p/YuE2-Vae"
+    YUE2_SEED: int = 831001
+    SHEETSAGE2_TIMEOUT: int = 1800
+    YUE2_TIMEOUT: int = 3600
+    ORCHESTRATION_DIR: Path = DATA_DIR / "orchestration"
+
     # Allowed imports for AI-generated code
     ALLOWED_IMPORTS: set = {"music21", "typing", "math", "random"}
     
@@ -79,6 +97,7 @@ class Settings(BaseSettings):
             self.PROJECTS_DIR,
             self.SKILLS_MD_DIR,
             self.SKILLS_PY_DIR,
+            self.ORCHESTRATION_DIR,
         ]
         for directory in directories:
             directory.mkdir(parents=True, exist_ok=True)
